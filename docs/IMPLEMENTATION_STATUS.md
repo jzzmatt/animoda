@@ -116,7 +116,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ### Phase 2 — Public website and navigation
 
-- Status: AWAITING APPROVAL
+- Status: APPROVED
 - Scope: Landing page, public navigation and footer, marketplace preview, featured designs, featured couturiers, responsive layout, SEO metadata, and public informational pages.
 - Completed work:
   - Replaced `/` with the light landing page in the approved section order: hero, fauna rail, four pillars, signature pieces, couturier spotlight, closing banner, footer.
@@ -264,7 +264,9 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2 is implemented and awaiting approval. The plan that was executed:
+Phase 2 is approved. Phase 3 is implemented and awaiting approval. Phase 4, the Studio journey, stays closed until a separate approval.
+
+The Phase 2 plan that was executed:
 
 1. Re-read this document and the landing screen `bb5a18bbe54f4428aea65041113914bc`.
 2. Move the foundation review from `/` to `/foundation`.
@@ -277,9 +279,7 @@ Phase 2 is implemented and awaiting approval. The plan that was executed:
 9. Download approved Stitch photographs into the repository when the CDN URLs still resolve. Where a URL fails, use a labelled editorial placeholder in the existing card frame.
 10. Treat prices, atelier counts, and named houses in the Stitch copy as illustrative development content.
 11. Verify desktop and mobile in the browser, then run tests, lint, typecheck, and the production build.
-12. Stop. Phase 3 stays closed until a separate approval.
-
-Phase 3 is implemented and awaiting approval. Phase 4, the Studio journey, stays closed until a separate approval.
+12. Stop after Phase 2. Phase 3 began only after the explicit approval on 25 October 2026 at 13:13 Europe/London.
 
 Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gallery, 7 marketplace and manufacturing requests, 8 couturier and administrator workflows, 9 PWA, localisation, and production hardening.
 
