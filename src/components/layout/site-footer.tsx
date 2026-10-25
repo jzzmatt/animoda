@@ -35,7 +35,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-gutter md:grid-cols-2 lg:grid-cols-12">
           <div className="flex flex-col gap-space-sm lg:col-span-4">
             <Link href={routes.home} className="inline-flex items-center">
-              <Image src="/stitch/logo-lockup.png" alt="Animoda" width={462} height={94} className="h-7 w-auto" />
+              <Image src="/stitch/logo-lockup.png" alt="Animoda" width={462} height={94} className="h-7 w-auto max-w-full dark:brightness-200" />
             </Link>
             <p className="max-w-sm font-body-md text-body-md text-on-surface-variant">
               Where biological majesty harmonizes with Parisian haute couture. Organic patterns, bespoke atelier craftsmanship, and couturiers for women, men, children, and unisex wardrobes.
@@ -74,7 +74,7 @@ export function SiteFooter() {
             <p className="font-body-sm text-body-sm text-on-surface-variant">
               Receive exclusive private previews of animal-inspired collections and couturier masterclasses.
             </p>
-            <form className="mt-space-xxs flex items-center gap-space-xs" onSubmit={onSubmit}>
+            <form className="mt-space-xxs flex flex-col gap-space-xs sm:flex-row sm:items-center" onSubmit={onSubmit}>
               <label htmlFor="newsletter-email" className="sr-only">
                 Email address
               </label>
@@ -84,11 +84,11 @@ export function SiteFooter() {
                 required
                 autoComplete="email"
                 placeholder="Your email address"
-                className="flex-1 rounded-full bg-surface-container-lowest px-space-md py-space-xs font-body-sm text-body-sm text-neutral-dark shadow-sm placeholder:text-outline"
+                className="min-h-11 w-full min-w-0 rounded-full bg-surface-container-lowest px-space-md py-space-xs font-body-sm text-body-sm text-on-surface shadow-sm placeholder:text-outline sm:flex-1"
               />
               <button
                 type="submit"
-                className="rounded-full bg-primary px-space-md py-space-xs font-label-md text-label-md text-on-primary transition-colors hover:bg-primary-container"
+                className="min-h-11 rounded-full bg-primary-container px-space-md py-space-xs font-label-md text-label-md text-on-primary transition-colors hover:brightness-110"
               >
                 Subscribe
               </button>

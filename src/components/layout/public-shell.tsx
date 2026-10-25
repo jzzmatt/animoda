@@ -12,7 +12,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="content" className="w-full bg-surface pt-20">
+      <main id="content" className="w-full min-w-0 bg-surface pt-20">
         {children}
       </main>
       <SiteFooter />

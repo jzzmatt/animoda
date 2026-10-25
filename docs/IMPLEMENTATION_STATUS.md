@@ -30,7 +30,7 @@ Stitch screen inventory used as the UI source of truth:
 | Screen | Stitch id | Phase |
 | --- | --- | --- |
 | Animoda — Landing Page | `bb5a18bbe54f4428aea65041113914bc` | 2 |
-| Animoda — Landing Page (Dark Mode) | `68edc16cca97489f95d3d46a0491fcd4` | Deferred. The design system colour mode is light. |
+| Animoda — Landing Page (Dark Mode) | `68edc16cca97489f95d3d46a0491fcd4` | Public site. Obsidian Atelier edition, switched from the header. |
 | Animal Catalogue & Discovery | `d83683226b7a44d89ef144a22837994f` | 3 |
 | Animal Detail & Fashion Inspiration | `98257c77296b4199a7cd27c40b52e29d` | 3 |
 | Studio Step 1 — Your Photograph | `d0cd90ea87224048aa443ea17cdba487` | 4 |
@@ -296,7 +296,7 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 - There is no production canonical URL, so the root layout sets no `metadataBase` and ships no sitemap.
 - Studio Step 1 copy claims “99.4% Fit Accuracy” and precise anatomical mapping. That claim must not ship. The product must not promise identity preservation or perfect garment fidelity.
 - The landing audience chips are All Pieces, Women, Men, Kids & Youth, and Unisex. The product specification also asks for girls’ and boys’ clothing as distinct choices. Phase 4 Studio settings should offer those choices. Phase 2 should keep the landing labels from the approved screen.
-- Dark-mode landing and suggestions screens exist. The active theme stays light until a later phase audits dark tokens.
+- The public site has two editions from Stitch. Light uses the Animoda Couture Ecosystem tokens. Dark uses Obsidian Atelier (`assets/4576187f175d4c1e9d740a6ca318e505`) and the dark landing screen `68edc16cca97489f95d3d46a0491fcd4`. The header toggle stores the choice as `animoda-theme`. The first visit uses the Obsidian Atelier edition. A script applies a saved choice before paint, and the document element allows that attribute to differ from the server HTML. Editorial photographs are the original Stitch files and are served at quality 90. Below the `lg` breakpoint the header keeps the wordmark, the edition toggle, and a menu; search and account sit inside that menu. Touch targets in the menu, filters, and newsletter are at least 44px.
 - The geographic explorer has no approved Stitch screen. Phase 3 uses the habitat tab on the animal profile: MapLibre, the catalogue type scale, and forest occurrence dots.
 - Map tiles use the keyless OpenFreeMap Liberty style, `https://tiles.openfreemap.org/styles/liberty`. The MapLibre worker is served from `public/maplibre-gl-worker.js` because the Next.js dev server did not load the package worker URL.
 - Wildlife records come from the public GBIF API with no key. Occurrence points and distribution rows are quoted with their source. A country filter does not create a native-range polygon. The curated browse tags (Africa, Asia, and the rest) are labels on this sample, not range maps.
