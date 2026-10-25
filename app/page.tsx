@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { FoundationGallery } from "@/components/foundation/foundation-gallery";
+import { LandingPage } from "@/components/landing/landing-page";
+import { PublicShell } from "@/components/layout/public-shell";
+import { siteDescription } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Design foundation",
-  description:
-    "Animoda colour, type, and interface primitives from the approved Stitch design system.",
+  title: "Discover Nature. Design Your Style.",
+  description: siteDescription,
 };
 
 export default function HomePage() {
-  return <FoundationGallery />;
+  return (
+    <PublicShell>
+      <LandingPage />
+    </PublicShell>
+  );
 }

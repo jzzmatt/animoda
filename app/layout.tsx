@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import { siteDescription, siteName } from "@/content/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,12 +19,18 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Animoda design foundation",
+    default: `${siteName} — Discover Nature. Design Your Style.`,
     template: "%s · Animoda",
   },
-  description:
-    "Phase 1 design foundation for Animoda. Discover Nature. Design Your Style.",
-  applicationName: "Animoda",
+  description: siteDescription,
+  applicationName: siteName,
+  openGraph: {
+    title: `${siteName} — Discover Nature. Design Your Style.`,
+    description: siteDescription,
+    siteName,
+    locale: "en",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -19,7 +19,7 @@
   - Follow the colour roles embedded in the generated Stitch screens for components. Keep the written brand hexes as extra tokens where they differ.
   - Use Inter for interface text. Use Playfair Display for the editorial italic, because the approved Studio screens load it and the landing tagline is set in a serif italic.
   - Use Material Symbols Outlined, the icon set in the approved screens. `next/font` does not ship that family, so the root layout loads the same Google Fonts stylesheet the screens use.
-  - Keep the foundation review at `/` until Phase 2 replaces it with the landing page and moves this review to `/foundation`.
+  - The foundation review now lives at `/foundation`. The public landing page is `/`.
   - Keep product localisation for Phase 9. This foundation review is in English, matching the approved screens. Portuguese remains the planned default language.
   - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists the later names only.
 
@@ -42,7 +42,7 @@ Stitch screen inventory used as the UI source of truth:
 | Animoda Haute Couture Platform (mobile, 390px) | `7eae1b92b5944d19b4246c6ecf10bc7b` | Reference only. The screenshot resource is empty. |
 | DESIGN.md | `17633587558025486899` | Design-system source, already reflected in the project theme |
 
-Editorial images in the same project (zebra gown, tuxedo, overcoat, blazer, jaguar textile, UX collage) are reference photography for later screens. They are not vendored in Phase 1.
+Landing photographs used by the approved screen are vendored under `public/stitch/`. The wordmark is the cropped lockup `logo-lockup.png`. The stock profile photograph from the screen is not used.
 
 Landing page sections, in the order of the approved HTML:
 
@@ -62,7 +62,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ### Phase 1 — Repository assessment and UI foundation
 
-- Status: AWAITING APPROVAL
+- Status: APPROVED
 - Scope: Inspect the repository and Stitch designs, record architecture, add design tokens and reusable primitives, write this status document, list missing credentials, and plan Phase 2.
 - Completed work:
   - Confirmed the repository had no application code, routes, database, or tests.
@@ -111,21 +111,65 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - Browser check against the dev server in headless Chrome: desktop 1440px and mobile 390px had no horizontal overflow. Choosing Women updated the audience status and `aria-pressed`. Choosing step 4 moved `aria-current`. The specimen favorite control announced that nothing was stored. Material Symbols Outlined loaded. The production build was run after these checks; the dev-only Next.js badge is absent from production.
 - Known issues: See the register below.
 - Missing credentials or external configuration: See the credentials section below.
-- Outstanding tasks: Approval of this phase. Phase 2 has not started.
-- Approval state and date: Awaiting explicit approval. Not approved.
+- Outstanding tasks: None in this phase.
+- Approval state and date: Approved on 25 October 2026 at 11:12 Europe/London, when the next phase was explicitly approved.
 
 ### Phase 2 — Public website and navigation
 
-- Status: NOT STARTED
-- Scope: Landing page, public navigation and footer, marketplace preview, featured designs, featured couturiers, responsive layout, SEO metadata, and public informational pages. Detailed plan is in Remaining work.
-- Completed work: None.
-- Files created or modified: None.
-- Database or configuration changes: None.
-- Tests and build results: None.
-- Known issues: Inherited from Phase 1.
-- Missing credentials: None required for labelled development content.
-- Outstanding tasks: The whole phase, after approval.
-- Approval state and date: Not approved.
+- Status: AWAITING APPROVAL
+- Scope: Landing page, public navigation and footer, marketplace preview, featured designs, featured couturiers, responsive layout, SEO metadata, and public informational pages.
+- Completed work:
+  - Replaced `/` with the light landing page in the approved section order: hero, fauna rail, four pillars, signature pieces, couturier spotlight, closing banner, footer.
+  - Moved the design-foundation review to `/foundation`.
+  - Added the sticky public header, an accessible menu below the desktop breakpoint, and the footer with legal links.
+  - Added public pages for the marketplace preview, couturiers, how it works, privacy, terms, and ethics.
+  - Added forthcoming destinations for animals, studio, wishlist, account, and notices so approved navigation has a real page. The animals page also shows the eight landing specimens.
+  - Vendored the landing photographs and the cropped wordmark. Sample prices, houses, counts, and fit figures stay labelled as illustrative. The newsletter form discards the address in the browser.
+  - Set English SEO titles and an Open Graph description. User-facing landing strings live in `src/content/site.ts` for Phase 9. Portuguese remains the planned default and was not invented here.
+- Files created or modified:
+  - `README.md`
+  - `app/layout.tsx`
+  - `app/page.tsx`
+  - `app/foundation/page.tsx`
+  - `app/marketplace/page.tsx`
+  - `app/couturiers/page.tsx`
+  - `app/how-it-works/page.tsx`
+  - `app/privacy/page.tsx`
+  - `app/terms/page.tsx`
+  - `app/ethics/page.tsx`
+  - `app/animals/page.tsx`
+  - `app/studio/page.tsx`
+  - `app/wishlist/page.tsx`
+  - `app/account/page.tsx`
+  - `app/notices/page.tsx`
+  - `src/content/site.ts`
+  - `src/content/site.test.ts`
+  - `src/components/layout/public-shell.tsx`
+  - `src/components/layout/site-header.tsx`
+  - `src/components/layout/site-footer.tsx`
+  - `src/components/public/editorial-image.tsx`
+  - `src/components/public/text-page.tsx`
+  - `src/components/landing/landing-page.tsx`
+  - `src/components/landing/hero.tsx`
+  - `src/components/landing/animal-rail.tsx`
+  - `src/components/landing/pillars.tsx`
+  - `src/components/landing/lookbook.tsx`
+  - `src/components/landing/couturier-spotlight.tsx`
+  - `src/components/landing/closing-banner.tsx`
+  - `src/components/landing/landing.test.tsx`
+  - `public/stitch/` (landing photographs and `logo-lockup.png`)
+  - `docs/IMPLEMENTATION_STATUS.md`
+- Database or configuration changes: None. No Supabase project, migration, storage bucket, or environment secret was created.
+- Tests and build results (25 October 2026, Europe/London):
+  - `npm test`: 15 tests passed (tokens, primitives, audience filter, landing markup, header routes, footer).
+  - `npx tsc --noEmit`: passed.
+  - `npx eslint .`: passed with no warnings.
+  - `npx next build`: passed. Static routes `/`, `/account`, `/animals`, `/couturiers`, `/ethics`, `/foundation`, `/how-it-works`, `/marketplace`, `/notices`, `/privacy`, `/studio`, `/terms`, `/wishlist`, and `/icon.svg`.
+  - Browser check against the dev server in headless Chrome: desktop 1440px and mobile 390px had no horizontal overflow. Women hid the other sample cards. Unisex showed the empty state. Marking a look announced that no wishlist was saved. Newsletter submit showed that the address was not stored. Marketplace states the three offer kinds, and Details lands on `#zebra-gown`. Mobile menu opened and reached Animal Catalog. The Paris stamp stays inside the 390px width. The dev-only Next.js badge is absent from production.
+- Known issues: See the register below.
+- Missing credentials or external configuration: None required for this labelled preview. The credentials table is unchanged.
+- Outstanding tasks: Explicit approval of this phase. Phase 3 has not started.
+- Approval state and date: Awaiting explicit approval. Not approved.
 
 ### Phase 3 — Animal catalogue and geographic discovery
 
@@ -178,7 +222,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2 plan, to be executed only after explicit approval:
+Phase 2 is implemented and awaiting approval. The plan that was executed:
 
 1. Re-read this document and the landing screen `bb5a18bbe54f4428aea65041113914bc`.
 2. Move the foundation review from `/` to `/foundation`.
@@ -193,6 +237,8 @@ Phase 2 plan, to be executed only after explicit approval:
 11. Verify desktop and mobile in the browser, then run tests, lint, typecheck, and the production build.
 12. Stop. Phase 3 stays closed until a separate approval.
 
+Phase 3 remains closed. Approval of Phase 2 is still required before any catalogue, map, or wildlife-provider work.
+
 Later phases, in order: 3 animal catalogue and map, 4 Studio journey, 5 AI providers, 6 auth and private gallery, 7 marketplace and manufacturing requests, 8 couturier and administrator workflows, 9 PWA, localisation, and production hardening.
 
 ## Known issues and decisions
@@ -200,8 +246,12 @@ Later phases, in order: 3 animal catalogue and map, 4 Studio journey, 5 AI provi
 - Screen roles and written brand hexes differ. Components use the screen roles: primary `#003527`, primary container `#064E3B`, secondary `#934B19`, tertiary `#511F00`. The written brand earth `#8B4513` and terracotta `#F97316` are available as `brand-earth` and `brand-terracotta`. Forest `#064E3B`, gold `#D4A72C`, cream `#F8F3E8`, and white match both sources.
 - The generated token `border-warm` is the invalid string `#E5DC Flora`. The stylesheet uses `border-warm-subtle` (`#E8DFC8`). Field borders use the DESIGN.md input colour `#D8CBB4`. Chip borders in the design prose use `#E2D9C5`; the landing chips themselves are fill-only, and the Chip primitive follows the landing chips.
 - Generated screen radii match Tailwind defaults (`rounded-2xl` 1rem, `rounded-3xl` 1.5rem, full pills). The DESIGN.md radius scale is larger and was not what the screens emitted. Primitives follow the screens.
-- Landing HTML applies `px-margin` (2.5rem) at every width. DESIGN.md also defines a 1rem mobile margin. The foundation review uses the mobile margin below the `md` breakpoint because the approved screens are desktop canvases. Phase 2 should keep that mobile margin unless a mobile screen specifies otherwise.
-- The landing wordmark is a remote raster. The Studio header builds the mark from a forest circle and the Material `spa` glyph. Phase 1 uses the Studio mark so the review does not depend on an expiring CDN URL. Phase 2 can archive the raster if it is still available.
+- Landing HTML applies `px-margin` (2.5rem) at every width. DESIGN.md also defines a 1rem mobile margin. Public pages use `px-margin-mobile` below the `md` breakpoint and `px-margin` from `md` up, because the approved screens are desktop canvases. The hero title uses the mobile display size below `md`.
+- The public header and footer use the cropped Stitch wordmark at `public/stitch/logo-lockup.png`. The foundation review still uses the Studio circle mark. The downloaded profile photograph is not shipped.
+- The approved landing navigation is hidden below the desktop canvas. Phase 2 adds a menu button below `xl` so the same destinations work on a phone. Create My Look, Wishlist, Notices, and Account are inside that menu.
+- Landing copy keeps the screen’s editorial headlines, including “520+ Certified Ateliers” and “Days avg. Paris delivery”. The adjacent disclaimer states that those figures are samples. Pillar and closing copy says a try-on and a couturier request are not guarantees, payment, or delivery.
+- The Unisex chip matches no sample card and shows an empty state. Girls and boys remain distinct choices for Phase 4.
+- There is no production canonical URL, so the root layout sets no `metadataBase` and ships no sitemap.
 - Studio Step 1 copy claims “99.4% Fit Accuracy” and precise anatomical mapping. That claim must not ship. The product must not promise identity preservation or perfect garment fidelity.
 - The landing audience chips are All Pieces, Women, Men, Kids & Youth, and Unisex. The product specification also asks for girls’ and boys’ clothing as distinct choices. Phase 4 Studio settings should offer those choices. Phase 2 should keep the landing labels from the approved screen.
 - Dark-mode landing and suggestions screens exist. The active theme stays light until a later phase audits dark tokens.
