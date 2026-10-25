@@ -37,7 +37,7 @@ export function HabitatPanel({ initial }: { initial: WildlifeReport }) {
         <label className="flex flex-col gap-space-xxs font-label-md text-label-md text-primary">
           Country filter
           <select
-            className="min-h-10 rounded-full bg-surface-container-lowest px-space-md py-space-xs font-body-md text-body-md text-neutral-dark shadow-sm"
+            className="min-h-11 w-full max-w-full rounded-full bg-surface-container-lowest px-space-md py-space-xs font-body-md text-body-md text-on-surface shadow-sm sm:max-w-xs"
             value={report.countryCode ?? ""}
             onChange={(event) => onCountry(event.target.value)}
           >

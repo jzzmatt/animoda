@@ -47,11 +47,11 @@ export function CouturierSpotlight() {
               <span className="mt-space-xxs block">{couturierSpotlight.headlineAccent}</span>
             </h2>
             <p className="mt-space-md max-w-lg font-body-lg text-body-lg text-on-surface-variant">{couturierSpotlight.body}</p>
-            <dl className="mt-space-xl grid grid-cols-3 gap-space-sm sm:gap-space-md">
+            <dl className="mt-space-xl grid grid-cols-1 gap-space-md min-[420px]:grid-cols-3">
               {couturierSpotlight.metrics.map((metric) => (
-                <div key={metric.label} className="flex flex-col">
+                <div key={metric.label} className="flex min-w-0 flex-col">
                   <dt className="sr-only">{metric.label}</dt>
-                  <dd className={cn("font-display-hero-mobile text-display-hero-mobile font-bold", metric.tone)}>
+                  <dd className={cn("font-headline-lg text-headline-lg font-bold sm:font-display-hero-mobile sm:text-display-hero-mobile", metric.tone)}>
                     {metric.value}
                   </dd>
                   <dd className="font-body-sm text-body-sm text-on-surface-variant">{metric.label}</dd>

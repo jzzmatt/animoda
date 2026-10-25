@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import { siteDescription, siteName } from "@/content/site";
 import "./globals.css";
 
@@ -35,8 +36,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" data-theme="light" className={`${inter.variable} ${playfair.variable}`}>
       <body>
+        <Script id="animoda-theme" strategy="beforeInteractive">
+          {`try{var t=localStorage.getItem("animoda-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}`}
+        </Script>
         {/* The approved Stitch screens use Material Symbols. next/font does not ship this icon font. */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link

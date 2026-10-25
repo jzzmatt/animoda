@@ -106,8 +106,8 @@ export function Lookbook({ initialAudience = "All Pieces", showExplore = true }:
                   </div>
                   <div className="flex flex-1 flex-col justify-between p-space-lg">
                     <div>
-                      <div className="mb-space-xxs flex items-center justify-between gap-space-sm text-body-sm text-on-surface-variant">
-                        <span className="font-label-caps text-secondary uppercase">{design.atelier}</span>
+                      <div className="mb-space-xxs flex flex-wrap items-center justify-between gap-x-space-sm gap-y-space-xxs text-body-sm text-on-surface-variant">
+                        <span className="min-w-0 font-label-caps text-secondary uppercase">{design.atelier}</span>
                         <span className="shrink-0 font-label-md font-bold text-primary">{design.priceLabel}</span>
                       </div>
                       <h3 className="font-headline-sm text-headline-sm text-primary">{design.title}</h3>
@@ -115,7 +115,7 @@ export function Lookbook({ initialAudience = "All Pieces", showExplore = true }:
                         {design.description}
                       </p>
                     </div>
-                    <div className="mt-space-md flex items-center gap-space-xs border-t border-border-warm-subtle/50 pt-space-sm">
+                    <div className="mt-space-md flex flex-wrap items-center gap-space-xs border-t border-border-warm-subtle/50 pt-space-sm">
                       <Link
                         href={routes.studio}
                         className="flex-1 rounded-full bg-primary py-space-xs text-center font-label-md text-label-md text-on-primary transition-colors hover:bg-primary-container"

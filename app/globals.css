@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /*
   Animoda tokens from Stitch project 11446106471838367658.
   Screen role colours follow the generated Tailwind theme.
@@ -166,6 +168,60 @@
   --color-brand-terracotta: #f97316;
   --color-field-border: #d8cbb4;
   --color-chip-border: #e2d9c5;
+  --color-accent: #003527;
+}
+
+/* Obsidian Atelier, Stitch design system assets/4576187f175d4c1e9d740a6ca318e505. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-primary: #e0e3e1;
+  --color-primary-container: #10b981;
+  --color-primary-fixed: #6ffbbe;
+  --color-primary-fixed-dim: #4edea3;
+  --color-on-primary: #002113;
+  --color-on-primary-container: #d8fff0;
+  --color-on-primary-fixed: #002113;
+  --color-on-primary-fixed-variant: #005236;
+  --color-inverse-primary: #006c49;
+  --color-secondary: #ebbe9b;
+  --color-secondary-container: #624227;
+  --color-secondary-fixed: #ffdcc2;
+  --color-secondary-fixed-dim: #ebbe9b;
+  --color-on-secondary: #2d1602;
+  --color-on-secondary-container: #dcb08d;
+  --color-tertiary: #f0c044;
+  --color-tertiary-container: #c99d21;
+  --color-on-tertiary: #251a00;
+  --color-golden-accent: #f0c044;
+  --color-accent: #4edea3;
+  --color-background: #101413;
+  --color-on-background: #e0e3e1;
+  --color-surface: #101413;
+  --color-surface-bright: #363a39;
+  --color-surface-dim: #101413;
+  --color-surface-container-lowest: #161f1c;
+  --color-surface-container-low: #111815;
+  --color-surface-container: #1c201f;
+  --color-surface-container-high: #272b2a;
+  --color-surface-container-highest: #323634;
+  --color-surface-variant: #323634;
+  --color-surface-cream: #111815;
+  --color-surface-subtle: #181c1b;
+  --color-on-surface: #e0e3e1;
+  --color-on-surface-variant: #bbcabf;
+  --color-inverse-surface: #e0e3e1;
+  --color-inverse-on-surface: #2d3130;
+  --color-outline: #86948a;
+  --color-outline-variant: #3c4a42;
+  --color-surface-tint: #4edea3;
+  --color-neutral-dark: #e0e3e1;
+  --color-border-warm-subtle: #3c4a42;
+  --color-field-border: #3c4a42;
+  --color-chip-border: #3c4a42;
+  --color-brand-earth: #ebbe9b;
+  --shadow-nav: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-atelier: 0 8px 24px -8px rgba(0, 0, 0, 0.55);
+  --shadow-atelier-hover: 0 16px 32px -8px rgba(0, 0, 0, 0.65);
 }
 
 @layer base {
@@ -177,6 +233,7 @@
   body {
     margin: 0;
     min-height: 100vh;
+    overflow-x: clip;
     background: var(--color-surface);
     color: var(--color-on-surface);
     font-family: var(--font-body-md);

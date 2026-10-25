@@ -57,5 +57,5 @@ export function OccurrenceMap({ points }: { points: OccurrencePoint[] }) {
     };
   }, [signature, points]);
 
-  return <div ref={container} className="h-80 w-full overflow-hidden rounded-3xl bg-surface-container" />;
+  return <div ref={container} className="h-64 w-full overflow-hidden rounded-3xl bg-surface-container sm:h-80" />;
 }

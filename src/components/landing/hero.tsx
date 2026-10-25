@@ -6,8 +6,8 @@ import { cn } from "@/lib/cn";
 
 export function Hero() {
   return (
-    <section className="relative w-full overflow-hidden bg-surface-cream pb-space-3xl">
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-15 mix-blend-multiply">
+    <section className="relative w-full overflow-x-clip bg-surface-cream pb-space-3xl">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-15 mix-blend-multiply dark:opacity-20 dark:mix-blend-screen">
         <EditorialImage src="/stitch/hero-texture.jpg" alt="" sizes="100vw" />
       </div>
       <div className="pointer-events-none absolute -top-32 right-1/4 h-[600px] w-[600px] rounded-full bg-primary-fixed/30 blur-3xl" />
@@ -55,7 +55,7 @@ export function Hero() {
                 priority
                 className="object-cover"
               />
-              <div className="absolute right-4 bottom-4 left-4 flex items-center justify-between gap-space-sm rounded-2xl bg-surface-cream/90 p-space-sm shadow-md backdrop-blur-md">
+              <div className="absolute right-3 bottom-3 left-3 flex flex-wrap items-center justify-between gap-space-sm rounded-2xl bg-surface-cream/90 p-space-sm shadow-md backdrop-blur-md sm:right-4 sm:bottom-4 sm:left-4">
                 <div className="flex min-w-0 items-center gap-space-sm">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary">
                     <Icon name="diamond" className="text-[20px]" />
@@ -72,7 +72,7 @@ export function Hero() {
                 </span>
               </div>
             </div>
-            <div className="absolute -top-4 -right-2 flex h-24 w-24 rotate-12 flex-col items-center justify-center rounded-full bg-primary-container p-2 text-center text-on-primary-container shadow-lg sm:-right-4">
+            <div className="absolute top-3 right-3 flex h-20 w-20 rotate-12 flex-col items-center justify-center rounded-full bg-primary-container p-2 text-center text-on-primary shadow-lg sm:top-4 sm:right-4 sm:h-24 sm:w-24">
               <span className="font-label-caps text-[9px] tracking-tighter uppercase">Haute Couture</span>
               <span className="font-headline-sm text-headline-sm leading-none font-bold text-pure-white">PARIS</span>
               <span className="font-label-sm text-[9px] text-golden-accent">Est. 2025</span>

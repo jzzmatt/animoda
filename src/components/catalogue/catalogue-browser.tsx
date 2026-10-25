@@ -58,8 +58,8 @@ export function CatalogueBrowser() {
         <p className="max-w-3xl font-body-sm text-body-sm text-on-surface-variant">{catalogueNote}</p>
         <p className="font-body-sm text-body-sm text-on-surface-variant">{catalogueAnimals.length} species in this catalogue.</p>
       </header>
-      <div className="grid items-start gap-gutter lg:grid-cols-12">
-        <aside className="flex flex-col gap-space-lg lg:col-span-3">
+      <div className="grid min-w-0 items-start gap-gutter lg:grid-cols-12">
+        <aside className="flex min-w-0 flex-col gap-space-lg lg:col-span-3">
           <TextField
             id="catalogue-search"
             label="Search the catalogue"
@@ -122,7 +122,7 @@ export function CatalogueBrowser() {
                 aria-pressed={query.color === color}
                 onClick={() => setQuery((current) => ({ ...current, color }))}
                 className={cn(
-                  "rounded-full px-space-md py-space-xxs font-label-md text-label-md",
+                  "min-h-11 rounded-full px-space-md py-space-xxs font-label-md text-label-md",
                   query.color === color ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant",
                 )}
               >
@@ -131,7 +131,7 @@ export function CatalogueBrowser() {
             ))}
           </fieldset>
         </aside>
-        <div className="flex flex-col gap-space-md lg:col-span-9">
+        <div className="flex min-w-0 flex-col gap-space-md lg:col-span-9">
           <div className="flex flex-wrap items-center justify-between gap-space-sm">
             <p role="status" className="font-body-sm text-body-sm text-on-surface-variant">
               {note} Showing {results.length} of {catalogueAnimals.length} curated species.
@@ -139,7 +139,7 @@ export function CatalogueBrowser() {
             <label className="flex items-center gap-space-xs font-label-md text-label-md text-primary">
               Sort by
               <select
-                className="rounded-full bg-surface-container-lowest px-space-md py-space-xxs font-body-sm text-body-sm"
+                className="min-h-11 max-w-full rounded-full bg-surface-container-lowest px-space-md py-space-xxs font-body-sm text-body-sm text-on-surface"
                 value={query.sort}
                 onChange={(event) => setQuery((current) => ({ ...current, sort: event.target.value as CatalogueSort }))}
               >

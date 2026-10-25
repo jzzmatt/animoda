@@ -11,6 +11,13 @@ describe("Animoda design tokens", () => {
     }
   });
 
+  it("keeps the Obsidian Atelier dark edition colours", () => {
+    expect(css).toContain("#101413");
+    expect(css).toContain("#4edea3");
+    expect(css).toContain("#10b981");
+    expect(css).toContain("#f0c044");
+  });
+
   it("keeps the written brand earth and terracotta hexes", () => {
     expect(css).toContain(brandColors.earth.toLowerCase());
     expect(css).toContain(brandColors.terracotta.toLowerCase());

@@ -16,6 +16,7 @@ export function EditorialImage({ src, alt, sizes, className, priority = false }:
       fill
       sizes={sizes}
       priority={priority}
+      quality={90}
       className={className ?? "object-cover"}
     />
   );

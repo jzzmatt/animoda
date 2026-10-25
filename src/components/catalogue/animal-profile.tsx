@@ -40,10 +40,10 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
         <span aria-hidden="true">/</span>
         <Link href={routes.animals} className="hover:text-primary">Animal Discovery</Link>
         <span aria-hidden="true">/</span>
-        <span className="text-primary">{wildlife.taxon.scientificName}</span>
+        <span className="min-w-0 break-words text-primary">{wildlife.taxon.scientificName}</span>
       </nav>
-      <header className="grid items-end gap-gutter lg:grid-cols-12">
-        <div className="lg:col-span-7">
+      <header className="grid min-w-0 items-end gap-gutter lg:grid-cols-12">
+        <div className="min-w-0 lg:col-span-7">
           <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Taxonomic record</p>
           <h1 className="mt-space-xs font-headline-xl-mobile text-headline-xl-mobile text-primary md:font-headline-xl md:text-headline-xl">
             {animal.commonName}
@@ -77,7 +77,7 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
           ? "This profile is marked for this visit. Animoda has no saved swatch list."
           : "Marking a profile stays in this visit. Animoda has no saved swatch list."}
       </p>
-      <div className="grid gap-gutter lg:grid-cols-12">
+      <div className="grid min-w-0 gap-gutter lg:grid-cols-12">
         <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface-container lg:col-span-5">
           <EditorialImage src={animal.image} alt={animal.alt} sizes="(min-width: 1024px) 40vw, 100vw" priority />
         </div>

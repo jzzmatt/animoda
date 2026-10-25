@@ -8,7 +8,7 @@ export function AnimalRail() {
   return (
     <section className="w-full bg-surface-container-low py-space-xl" aria-labelledby="fauna-title">
       <div className={cn("mx-auto max-w-7xl", pageGutter)}>
-        <div className="mb-space-md flex items-end justify-between gap-space-md">
+        <div className="mb-space-md flex flex-col items-start gap-space-sm sm:flex-row sm:items-end sm:justify-between">
           <div className="flex flex-wrap items-center gap-space-xs">
             <Icon name="pets" className="text-[22px] text-secondary" />
             <h2 id="fauna-title" className="font-headline-sm text-headline-sm text-primary">

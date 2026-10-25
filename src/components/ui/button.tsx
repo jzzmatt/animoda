@@ -7,7 +7,7 @@ import { Icon } from "./icon";
 
 export const buttonVariants = {
   primary:
-    "bg-primary text-on-primary shadow-md hover:bg-primary-container motion-safe:hover:-translate-y-0.5",
+    "bg-primary text-on-primary shadow-md hover:bg-primary-container motion-safe:hover:-translate-y-0.5 dark:bg-primary-container dark:hover:brightness-110",
   container:
     "bg-primary-container text-on-primary shadow-[0_2px_8px_rgba(6,78,59,0.15)] hover:bg-primary",
   surface:
