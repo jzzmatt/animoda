@@ -201,10 +201,10 @@ export function CatalogueBrowser() {
           <section className="rounded-3xl bg-surface-container-low p-space-xl">
             <h2 className="font-headline-sm text-headline-sm text-primary">Have a specific rare specimen in mind?</h2>
             <p className="mt-space-xs max-w-2xl font-body-md text-body-md text-on-surface-variant">
-              Uploading a wildlife photograph into the Studio is not open. The Studio path arrives in a later phase. This catalogue does not extract a pattern from a file you provide.
+              The studio asks for your own portrait, then uses a species from this catalogue. It does not extract a pattern from a wildlife file you provide.
             </p>
             <Link href={routes.studio} className="mt-space-md inline-flex items-center gap-space-xxs font-label-md text-label-md text-secondary">
-              Read the Studio notice
+              Open Studio
               <Icon name="arrow_forward" className="text-[16px]" />
             </Link>
           </section>

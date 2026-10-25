@@ -207,8 +207,8 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
             ))}
           </ul>
         )}
-        <Link href={routes.studio} className="inline-flex items-center gap-space-xxs font-label-md text-label-md text-secondary">
-          Studio notice
+        <Link href={`${routes.studio}?animal=${animal.slug}`} className="inline-flex items-center gap-space-xxs font-label-md text-label-md text-secondary">
+          Start a look from this animal
           <Icon name="arrow_forward" className="text-[16px]" />
         </Link>
       </section>

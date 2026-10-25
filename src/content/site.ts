@@ -172,7 +172,7 @@ export const processPillars = [
     icon: "palette",
     label: "Phase 02",
     title: "AI Fashion Studio",
-    body: "Choose a silhouette, audience, and mood. Animoda will suggest several distinct designs. Suggestions are concepts, not finished garments.",
+    body: "Choose who the look is for and a species from the catalogue. The studio shows sample directions. A concept provider is not connected yet.",
     href: routes.studio,
     action: "Open Studio",
   },
@@ -180,7 +180,7 @@ export const processPillars = [
     icon: "accessibility_new",
     label: "Phase 03",
     title: "Virtual Try-On",
-    body: "When the Studio opens, a try-on uses the design you select and your own photograph. The provider does not guarantee a perfect likeness.",
+    body: "The try-on step keeps the design you select beside your photograph. The try-on provider is not connected, so the two images stay separate.",
     href: routes.studio,
     action: "Try Fitting Room",
   },
@@ -195,11 +195,11 @@ export const processPillars = [
 ] as const;
 
 export const studioJourney = [
-  { label: "1. Photo", body: "Take or upload a photograph. The file stays private to you." },
-  { label: "2. Choose Animal", body: "Search by common or scientific name, or browse categories." },
-  { label: "3. AI Suggestions", body: "Review several designs, then select one." },
-  { label: "4. Try-On", body: "Generate a look that keeps the selected design as the visual reference." },
-  { label: "5. Couturier", body: "Save the result, or ask an approved couturier for a manufacturing quotation." },
+  { label: "1. Photo", body: "Add a photograph in this browser. It is not uploaded." },
+  { label: "2. Choose Animal", body: "Search the catalogue and choose who the look is for, including girls and boys." },
+  { label: "3. Suggestions", body: "Review sample directions for that animal, then select one. They are not a generated batch." },
+  { label: "4. Try-On", body: "The selected design stays the reference beside your photograph. A try-on provider is not connected." },
+  { label: "5. Couturier", body: "Save the visit, or note a manufacturing question. Nothing is sent, paid, or shipped." },
 ] as const;
 
 export const pageGutter = "px-margin-mobile md:px-margin";

@@ -36,7 +36,7 @@ Stitch screen inventory used as the UI source of truth:
 | Studio Step 1 — Your Photograph | `d0cd90ea87224048aa443ea17cdba487` | 4 |
 | Studio Step 2 — Choose Animal | `baea21b951dd44b9a329bd033ef1b951` | 4 |
 | AI Fashion Suggestions | `bd956874f6a24242a59f93f87cbe2476` | 4 |
-| AI Fashion Suggestions (Dark Mode) | `3b6bf4d9a4094ef8a63fb3ba25d90829` | Deferred with the light-mode decision |
+| AI Fashion Suggestions (Dark Mode) | `3b6bf4d9a4094ef8a63fb3ba25d90829` | 4. The same studio pages use the Obsidian Atelier tokens. |
 | Studio Step 4 — Your Personalized Look | `045753140aac4ea7b117287e04c0e3c4` | 4 |
 | Studio Step 5 — Next Steps & Couturier | `4439be6f0b954ffd91cdbb8125a045a6` | 4 for the review step; manufacturing detail continues in Phase 7 |
 | Animoda Haute Couture Platform (mobile, 390px) | `7eae1b92b5944d19b4246c6ecf10bc7b` | Reference only. The screenshot resource is empty. |
@@ -217,15 +217,32 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - Browser check in headless Chrome: desktop 1440px and mobile 390px had no horizontal overflow. Searching “viper” showed only the emerald tree boa. Marine Life showed the empty state. The plains zebra habitat tab loaded a live GBIF map, and the Democratic Republic of the Congo filter showed 14 occurrence coordinates with the native-range caution. The map worker loaded. The dev-only Next.js badge is absent from production.
 - Known issues: See the register below.
 - Missing credentials: None for GBIF or the map style. The other credentials are unchanged.
-- Outstanding tasks: Explicit approval of this phase. Phase 4 has not started.
-- Approval state and date: Awaiting explicit approval. Not approved.
+- Outstanding tasks: None in this phase.
+- Approval state and date: Approved on 25 October 2026 at 19:16 Europe/London, when the next phase was explicitly requested.
 
 ### Phase 4 — Simplified Animoda Studio
 
-- Status: NOT STARTED
+- Status: AWAITING APPROVAL
 - Scope: The five-step guided journey, session state, back navigation, validation, loading, and failure recovery. UI and workflow review before any real provider work.
-- Completed work: None.
-- Approval state and date: Not approved.
+- Completed work:
+  - Replaced the studio notice with the five Stitch steps: photograph, animal, sample directions, selected design, and next steps.
+  - Kept the visit in this browser. A portrait is not uploaded. Refresh can restore a compressed copy from session storage.
+  - Added audience choices for women, men, girls, boys, and unisex. Girls and boys receive only age-appropriate children’s directions.
+  - Sample directions come from the catalogue. Regenerating reports that a concept provider is not connected and leaves the list unchanged.
+  - The try-on step keeps the selected design beside the portrait. Requesting a preview loads, then reports that the try-on provider is not connected. Retrying returns the same result. The selected design does not change.
+  - Saving and a quotation note stay in this visit. Neither contacts a couturier, creates a price, nor arranges shipping.
+  - Removed the screen claims of 99.4% fit accuracy, biometric measurement, guaranteed ateliers, and sample prices from the journey.
+- Files created or modified: the studio routes under `app/studio/`, `src/components/studio/`, `src/studio/`, the catalogue and animal links into the studio, and this status document.
+- Database or configuration changes: None. No provider key, Supabase project, or uploaded portrait store was created.
+- Tests and build results (25 October 2026, about 19:25 Europe/London):
+  - `npm test`: 24 passed, including audience separation, step gates, and the disconnected try-on result.
+  - `npm run typecheck`: passed.
+  - `npm run lint`: passed.
+  - `npm run build`: passed. `/studio`, `/studio/animal`, `/studio/suggestions`, `/studio/look`, and `/studio/next` are static.
+  - Browser check: a first visit with no saved edition uses Obsidian Atelier. Uploading a photograph, choosing Women and plains zebra, and selecting the gown reaches the selected-design step. Regenerating reports that the concept provider is not connected. Requesting a try-on reports that the provider is not connected. Noting a quotation says no atelier received it. Girls see the children’s zebra direction and not the gown. Desktop 1440px and a 390px phone had no horizontal overflow.
+- Missing credentials: A concept provider and a try-on provider remain absent. They belong to Phase 5.
+- Outstanding tasks: Explicit approval of this phase. Phase 5 has not started.
+- Approval state and date: Awaiting explicit approval. Not approved.
 
 ### Phase 5 — Real AI integration
 
@@ -264,7 +281,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2 is approved. Phase 3 is implemented and awaiting approval. Phase 4, the Studio journey, stays closed until a separate approval.
+Phase 2 and Phase 3 are approved. Phase 4, the Studio journey, is implemented and awaiting approval. Phase 5, real AI providers, stays closed until a separate approval.
 
 The Phase 2 plan that was executed:
 
@@ -292,10 +309,10 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 - The public header and footer use the cropped Stitch wordmark at `public/stitch/logo-lockup.png`. The foundation review still uses the Studio circle mark. The downloaded profile photograph is not shipped.
 - The approved landing navigation is hidden below the desktop canvas. Phase 2 adds a menu button below `xl` so the same destinations work on a phone. Create My Look, Wishlist, Notices, and Account are inside that menu.
 - Landing copy keeps the screen’s editorial headlines, including “520+ Certified Ateliers” and “Days avg. Paris delivery”. The adjacent disclaimer states that those figures are samples. Pillar and closing copy says a try-on and a couturier request are not guarantees, payment, or delivery.
-- The Unisex chip matches no sample card and shows an empty state. Girls and boys remain distinct choices for Phase 4.
+- The Unisex chip on the landing lookbook matches no sample card and shows an empty state. The studio offers women, men, girls, boys, and unisex as separate choices. Girls and boys see only directions labelled for children or youth.
 - There is no production canonical URL, so the root layout sets no `metadataBase` and ships no sitemap.
-- Studio Step 1 copy claims “99.4% Fit Accuracy” and precise anatomical mapping. That claim must not ship. The product must not promise identity preservation or perfect garment fidelity.
-- The landing audience chips are All Pieces, Women, Men, Kids & Youth, and Unisex. The product specification also asks for girls’ and boys’ clothing as distinct choices. Phase 4 Studio settings should offer those choices. Phase 2 should keep the landing labels from the approved screen.
+- Studio Step 1 copy claims “99.4% Fit Accuracy” and precise anatomical mapping. Those claims do not ship. The studio does not measure a portrait or promise identity preservation.
+- The landing audience chips stay All Pieces, Women, Men, Kids & Youth, and Unisex, matching the approved landing screen. The studio offers women, men, girls, boys, and unisex as distinct choices.
 - The public site has two editions from Stitch. Light uses the Animoda Couture Ecosystem tokens. Dark uses Obsidian Atelier (`assets/4576187f175d4c1e9d740a6ca318e505`) and the dark landing screen `68edc16cca97489f95d3d46a0491fcd4`. The header toggle stores the choice as `animoda-theme`. The first visit uses the Obsidian Atelier edition. A script applies a saved choice before paint, and the document element allows that attribute to differ from the server HTML. Editorial photographs are the original Stitch files and are served at quality 90. Below the `lg` breakpoint the header keeps the wordmark, the edition toggle, and a menu; search and account sit inside that menu. Touch targets in the menu, filters, and newsletter are at least 44px.
 - The geographic explorer has no approved Stitch screen. Phase 3 uses the habitat tab on the animal profile: MapLibre, the catalogue type scale, and forest occurrence dots.
 - Map tiles use the keyless OpenFreeMap Liberty style, `https://tiles.openfreemap.org/styles/liberty`. The MapLibre worker is served from `public/maplibre-gl-worker.js` because the Next.js dev server did not load the package worker URL.
