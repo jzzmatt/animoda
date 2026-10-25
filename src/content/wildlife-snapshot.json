@@ -1,0 +1,4748 @@
+{
+  "retrievedAt": "2026-10-25T13:17:20Z",
+  "note": "Development snapshot from the public GBIF API. Animoda uses it when a live GBIF request fails. Occurrence points are records, not a native range.",
+  "species": {
+    "plains-zebra": {
+      "taxon": {
+        "usageKey": 2440892,
+        "scientificName": "Equus quagga Boddaert, 1785",
+        "canonicalName": "Equus quagga",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Perissodactyla",
+        "family": "Equidae",
+        "genus": "Equus"
+      },
+      "distributions": [
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "NEAR_THREATENED",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "BW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "NEAR_THREATENED",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "MZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "NEAR_THREATENED",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "NA",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "NEAR_THREATENED",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "SZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "NEAR_THREATENED",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "ZA",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "ZW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "NEAR_THREATENED",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": -28.220069,
+          "lng": 31.948322,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.134111,
+          "lng": 35.442006,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -18.951859,
+          "lng": 14.569006,
+          "country": "Namibia",
+          "countryCode": "NA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -33.438898,
+          "lng": 25.788381,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -19.22703,
+          "lng": 15.892997,
+          "country": "Namibia",
+          "countryCode": "NA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.72597,
+          "lng": 36.058096,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.083915,
+          "lng": 35.48157,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -18.994189,
+          "lng": 15.581232,
+          "country": "Namibia",
+          "countryCode": "NA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.141666,
+          "lng": 35.388836,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -19.116972,
+          "lng": 16.340224,
+          "country": "Namibia",
+          "countryCode": "NA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.4032,
+          "lng": 31.768742,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.823988,
+          "lng": 31.548899,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.822468,
+          "lng": 31.548996,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.99297,
+          "lng": 31.532398,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.819376,
+          "lng": 31.547504,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 4.863651,
+          "lng": 38.328668,
+          "country": "Ethiopia",
+          "countryCode": "ET",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.819215,
+          "lng": 31.546896,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.757732,
+          "lng": 36.711314,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.391981,
+          "lng": 28.363351,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -29.34555,
+          "lng": 29.711081,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.057196,
+          "lng": 35.572605,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.789704,
+          "lng": 30.897304,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.275947,
+          "lng": 27.803033,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -2.753373,
+          "lng": 34.831,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 0.093408,
+          "lng": 36.878902,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 25139,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 14,
+        "occurrences": [
+          {
+            "lat": -4.398213,
+            "lng": 15.292837,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": -8.948554,
+            "lng": 27.07111,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2025
+          },
+          {
+            "lat": -8.995931,
+            "lng": 27.104637,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2024
+          },
+          {
+            "lat": -4.282236,
+            "lng": 15.704166,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2022
+          },
+          {
+            "lat": -9.825513,
+            "lng": 24.653438,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2017
+          },
+          {
+            "lat": -9.316667,
+            "lng": 27.383333,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": null,
+            "year": 1948
+          },
+          {
+            "lat": -9.316667,
+            "lng": 27.383333,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": null,
+            "year": 1948
+          },
+          {
+            "lat": -9.316667,
+            "lng": 27.383333,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": "Royal Belgian Institute of Natural Sciences Collection",
+            "year": 1948
+          }
+        ]
+      }
+    },
+    "leopard": {
+      "taxon": {
+        "usageKey": 5219436,
+        "scientificName": "Panthera pardus (Linnaeus, 1758)",
+        "canonicalName": "Panthera pardus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Panthera"
+      },
+      "distributions": [
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Europe & Northern Asia (excluding China)",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Europe & Northern Asia (excluding China)",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "BW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "KZ",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "VULNERABLE",
+          "source": "Checklist of the mammals of Central Asia (Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan)"
+        },
+        {
+          "locality": null,
+          "country": "LS",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "MZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "NA",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "SZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "TJ",
+          "status": "DOUBTFUL",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "VULNERABLE",
+          "source": "Checklist of the mammals of Central Asia (Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan)"
+        },
+        {
+          "locality": null,
+          "country": "TM",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "VULNERABLE",
+          "source": "Checklist of the mammals of Central Asia (Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan)"
+        },
+        {
+          "locality": null,
+          "country": "TW",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "VULNERABLE",
+          "source": "Taiwan Wildlife Conservation List"
+        },
+        {
+          "locality": null,
+          "country": "TW",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "VULNERABLE",
+          "source": "Taiwanese IUCN species list"
+        },
+        {
+          "locality": null,
+          "country": "UZ",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "VULNERABLE",
+          "source": "Checklist of the mammals of Central Asia (Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan)"
+        },
+        {
+          "locality": null,
+          "country": "ZW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": -2.063368,
+          "lng": 34.523927,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.127343,
+          "lng": 72.98195,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.014949,
+          "lng": 72.824004,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.002179,
+          "lng": 72.957496,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -20.998752,
+          "lng": 16.762952,
+          "country": "Namibia",
+          "countryCode": "NA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.278292,
+          "lng": 72.979373,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -20.834329,
+          "lng": 16.783339,
+          "country": "Namibia",
+          "countryCode": "NA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -2.400238,
+          "lng": 34.932212,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.087999,
+          "lng": 72.830361,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 31.481504,
+          "lng": 76.642457,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.161395,
+          "lng": 72.923416,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.573594,
+          "lng": 35.202942,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": null,
+          "year": 2026
+        },
+        {
+          "lat": -2.418921,
+          "lng": 34.997357,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.05348,
+          "lng": 31.458402,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.014678,
+          "lng": 30.819701,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -4.155806,
+          "lng": 36.189678,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.122488,
+          "lng": 34.841106,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 6.298347,
+          "lng": 81.415935,
+          "country": "Sri Lanka",
+          "countryCode": "LK",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 6.301911,
+          "lng": 81.433993,
+          "country": "Sri Lanka",
+          "countryCode": "LK",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.215764,
+          "lng": 35.501933,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -2.406486,
+          "lng": 34.897105,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.297681,
+          "lng": 31.993314,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 20.440496,
+          "lng": 73.278306,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.187247,
+          "lng": 31.990279,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.071206,
+          "lng": 31.57463,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 10226,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 62,
+        "occurrences": [
+          {
+            "lat": 3.777061,
+            "lng": 29.137691,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2020
+          },
+          {
+            "lat": 3.673144,
+            "lng": 29.444167,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2018
+          },
+          {
+            "lat": 3.698193,
+            "lng": 29.450242,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2018
+          },
+          {
+            "lat": 3.653429,
+            "lng": 29.514076,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2018
+          },
+          {
+            "lat": 3.722369,
+            "lng": 29.523836,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2018
+          },
+          {
+            "lat": 3.786145,
+            "lng": 29.527965,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2017
+          },
+          {
+            "lat": 2.588042,
+            "lng": 25.122686,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2016
+          },
+          {
+            "lat": 3.609021,
+            "lng": 29.425665,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2016
+          }
+        ]
+      }
+    },
+    "african-elephant": {
+      "taxon": {
+        "usageKey": 2435350,
+        "scientificName": "Loxodonta africana (Blumenbach, 1797)",
+        "canonicalName": "Loxodonta africana",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Proboscidea",
+        "family": "Elephantidae",
+        "genus": "Loxodonta"
+      },
+      "distributions": [
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "ENDANGERED",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "BW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": "Arabuko-Sokoke forest",
+          "country": "KE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "Endangered Species from the Coastal Region of Kenya"
+        },
+        {
+          "locality": "Boni forest/National Reserve",
+          "country": "KE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "Endangered Species from the Coastal Region of Kenya"
+        },
+        {
+          "locality": "Dodori forest",
+          "country": "KE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "Endangered Species from the Coastal Region of Kenya"
+        },
+        {
+          "locality": "Shimba Hills",
+          "country": "KE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "Endangered Species from the Coastal Region of Kenya"
+        },
+        {
+          "locality": "Tana River Delta",
+          "country": "KE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "Endangered Species from the Coastal Region of Kenya"
+        },
+        {
+          "locality": "Witu forest reserve",
+          "country": "KE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "Endangered Species from the Coastal Region of Kenya"
+        },
+        {
+          "locality": null,
+          "country": "MZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "NA",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "SZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "ZW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": -24.921259,
+          "lng": 31.557271,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -19.14888,
+          "lng": 27.249077,
+          "country": "Zimbabwe",
+          "countryCode": "ZW",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.225623,
+          "lng": 27.050036,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 1.555205,
+          "lng": 34.805979,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.408846,
+          "lng": 31.357931,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.614348,
+          "lng": 31.410418,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -28.390643,
+          "lng": 31.890249,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.852238,
+          "lng": 31.420059,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.585607,
+          "lng": 31.239309,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.818634,
+          "lng": 31.528358,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.644155,
+          "lng": 31.527908,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.574321,
+          "lng": 35.98775,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.304806,
+          "lng": 29.9595,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.911403,
+          "lng": 31.460511,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -17.89349,
+          "lng": 25.913153,
+          "country": "Zimbabwe",
+          "countryCode": "ZW",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.600364,
+          "lng": 31.57775,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -2.741898,
+          "lng": 38.084716,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.187924,
+          "lng": 35.410255,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.16831,
+          "lng": 35.249041,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.784828,
+          "lng": 35.899186,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -19.033497,
+          "lng": 16.503267,
+          "country": "Namibia",
+          "countryCode": "NA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.844958,
+          "lng": 30.791034,
+          "country": "Rwanda",
+          "countryCode": "RW",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -15.83707,
+          "lng": 28.968622,
+          "country": "Zambia",
+          "countryCode": "ZM",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.388311,
+          "lng": 27.147999,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -33.322611,
+          "lng": 25.539648,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 25973,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 35,
+        "occurrences": [
+          {
+            "lat": 3.65336,
+            "lng": 29.401436,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2025
+          },
+          {
+            "lat": -0.72476,
+            "lng": 29.288576,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2024
+          },
+          {
+            "lat": 4.95,
+            "lng": 25.1,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": null,
+            "year": 1977
+          },
+          {
+            "lat": 4.95,
+            "lng": 25.1,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": "Royal Belgian Institute of Natural Sciences Collection",
+            "year": 1977
+          },
+          {
+            "lat": 0.483333,
+            "lng": 29.466667,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": null,
+            "year": 1954
+          },
+          {
+            "lat": 0.483333,
+            "lng": 29.466667,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": "Royal Belgian Institute of Natural Sciences Collection",
+            "year": 1954
+          },
+          {
+            "lat": -0.133333,
+            "lng": 29.6,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": null,
+            "year": 1953
+          },
+          {
+            "lat": -0.133333,
+            "lng": 29.6,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": "Royal Belgian Institute of Natural Sciences Collection",
+            "year": 1953
+          }
+        ]
+      }
+    },
+    "lion": {
+      "taxon": {
+        "usageKey": 5219404,
+        "scientificName": "Panthera leo (Linnaeus, 1758)",
+        "canonicalName": "Panthera leo",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Panthera"
+      },
+      "distributions": [
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "BW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "CO",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Colombia"
+        },
+        {
+          "locality": null,
+          "country": "EC",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "GRIIS Checklist of Introduced and Invasive Species - Ecuador"
+        },
+        {
+          "locality": "Witu forest reserve",
+          "country": "KE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "Endangered Species from the Coastal Region of Kenya"
+        },
+        {
+          "locality": null,
+          "country": "MZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "NA",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "SZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "ZW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": -24.907649,
+          "lng": 31.462346,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -32.35723,
+          "lng": 25.563539,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.196291,
+          "lng": 35.612309,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.981695,
+          "lng": 31.437652,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.821211,
+          "lng": 36.081052,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.087878,
+          "lng": 35.764644,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.802694,
+          "lng": 31.581901,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.615243,
+          "lng": 31.960007,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.693746,
+          "lng": 31.548705,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -3.136021,
+          "lng": 35.731679,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.828866,
+          "lng": 31.573804,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.248705,
+          "lng": 35.158216,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.481778,
+          "lng": 35.245475,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.378343,
+          "lng": 35.130048,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.344372,
+          "lng": 31.700056,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.253741,
+          "lng": 35.006436,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.221783,
+          "lng": 35.088302,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.471521,
+          "lng": 36.832878,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -1.214066,
+          "lng": 35.119238,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -2.563292,
+          "lng": 34.99105,
+          "country": "Tanzania, United Republic of",
+          "countryCode": "TZ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -25.031039,
+          "lng": 31.519709,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.738806,
+          "lng": 30.389014,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -24.713502,
+          "lng": 31.510866,
+          "country": "South Africa",
+          "countryCode": "ZA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 0.324583,
+          "lng": 37.04466,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 0.401068,
+          "lng": 36.966255,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 17109,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 56,
+        "occurrences": [
+          {
+            "lat": -0.865836,
+            "lng": 29.515054,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2024
+          },
+          {
+            "lat": 3.659134,
+            "lng": 29.525915,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2020
+          },
+          {
+            "lat": 3.813217,
+            "lng": 29.470154,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2020
+          },
+          {
+            "lat": 3.891365,
+            "lng": 29.481513,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2020
+          },
+          {
+            "lat": 3.846879,
+            "lng": 29.246519,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2019
+          },
+          {
+            "lat": 3.911395,
+            "lng": 29.314124,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2019
+          },
+          {
+            "lat": 3.752264,
+            "lng": 29.491857,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2019
+          },
+          {
+            "lat": 3.620211,
+            "lng": 29.385527,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2019
+          }
+        ]
+      }
+    },
+    "giraffe": {
+      "taxon": {
+        "usageKey": 2441205,
+        "scientificName": "Giraffa camelopardalis (Linnaeus, 1758)",
+        "canonicalName": "Giraffa camelopardalis",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Artiodactyla",
+        "family": "Giraffidae",
+        "genus": "Giraffa"
+      },
+      "distributions": [
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Africa",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "BW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "EC",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "GRIIS Checklist of Introduced and Invasive Species - Ecuador"
+        },
+        {
+          "locality": null,
+          "country": "MZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "NA",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "SZ",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        },
+        {
+          "locality": null,
+          "country": "ZW",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "South African National Species Checklist (Catalogue of Life in South Africa, COLSA)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": -0.765193,
+          "lng": 30.92211,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 2.304064,
+          "lng": 31.485269,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.557275,
+          "lng": 30.946494,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.747584,
+          "lng": 30.928691,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.648799,
+          "lng": 30.820079,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 0.663844,
+          "lng": 36.167444,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 8.397418,
+          "lng": 13.134443,
+          "country": "Cameroon",
+          "countryCode": "CM",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.412733,
+          "lng": 36.107311,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.512246,
+          "lng": 36.088275,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.43638,
+          "lng": 36.046965,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.36582,
+          "lng": 36.026763,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.597696,
+          "lng": 36.192849,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.638574,
+          "lng": 30.86388,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.696996,
+          "lng": 30.982016,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.796308,
+          "lng": 30.827875,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.483457,
+          "lng": 30.935517,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.551024,
+          "lng": 30.972435,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 2.256273,
+          "lng": 31.646451,
+          "country": "Uganda",
+          "countryCode": "UG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.599739,
+          "lng": 36.007496,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.405094,
+          "lng": 36.096527,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.462879,
+          "lng": 36.185161,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.576502,
+          "lng": 36.084439,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 10.861774,
+          "lng": 19.952002,
+          "country": "Chad",
+          "countryCode": "TD",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.398177,
+          "lng": 36.164907,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -0.366244,
+          "lng": 36.119122,
+          "country": "Kenya",
+          "countryCode": "KE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 5659,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 30,
+        "occurrences": [
+          {
+            "lat": 3.70128,
+            "lng": 29.397538,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": 4.039212,
+            "lng": 29.296718,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": 4.013918,
+            "lng": 29.351037,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": 3.605192,
+            "lng": 29.540209,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": 3.809855,
+            "lng": 29.592038,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": 3.877991,
+            "lng": 29.477647,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": 3.671346,
+            "lng": 29.451388,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2021
+          },
+          {
+            "lat": 3.852939,
+            "lng": 29.536771,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2020
+          }
+        ]
+      }
+    },
+    "indian-peacock": {
+      "taxon": {
+        "usageKey": 9451184,
+        "scientificName": "Pavo cristatus Linnaeus, 1758",
+        "canonicalName": "Pavo cristatus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Aves",
+        "order": "Galliformes",
+        "family": "Phasianidae",
+        "genus": "Pavo"
+      },
+      "distributions": [
+        {
+          "locality": "Oriental Region",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "IOC World Bird List, v"
+        },
+        {
+          "locality": "Oceania",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Oceania",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "AE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - United Arab Emirates"
+        },
+        {
+          "locality": null,
+          "country": "AT",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Austria"
+        },
+        {
+          "locality": "Austria",
+          "country": "AT",
+          "status": "ABSENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Austria",
+          "country": "AT",
+          "status": "ABSENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": null,
+          "country": "AU",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Australia"
+        },
+        {
+          "locality": "Belgium",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Waarnemingen.be / observations.be - List of species observed in Belgium"
+        },
+        {
+          "locality": "Flemish Region",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Waarnemingen.be / observations.be - List of species observed in Belgium"
+        },
+        {
+          "locality": "Walloon Region",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Waarnemingen.be / observations.be - List of species observed in Belgium"
+        },
+        {
+          "locality": "Belgium",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Checklist of alien birds of Belgium"
+        },
+        {
+          "locality": "Belgium",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Checklist of alien birds of Belgium"
+        },
+        {
+          "locality": "Belgium",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Belgium"
+        },
+        {
+          "locality": "Flemish Region",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Belgium"
+        },
+        {
+          "locality": "Walloon Region",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Belgium"
+        },
+        {
+          "locality": "Belgium",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "RINSE - Registry of non-native species in the Two Seas region countries (Great Britain, France, Belgium and the Netherlands)"
+        },
+        {
+          "locality": null,
+          "country": "CO",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Colombia"
+        },
+        {
+          "locality": null,
+          "country": "CY",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Cyprus"
+        },
+        {
+          "locality": null,
+          "country": "CZ",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Czechia"
+        },
+        {
+          "locality": null,
+          "country": "EC",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "GRIIS Checklist of Introduced and Invasive Species - Ecuador"
+        },
+        {
+          "locality": "Canary Is.",
+          "country": "ES",
+          "status": "DOUBTFUL",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Canary Is.",
+          "country": "ES",
+          "status": "DOUBTFUL",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": null,
+          "country": "FR",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - France"
+        },
+        {
+          "locality": "SAINT BARTHELEMY",
+          "country": "FR",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Saint Barthelemy"
+        },
+        {
+          "locality": "France",
+          "country": "FR",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "RINSE - Registry of non-native species in the Two Seas region countries (Great Britain, France, Belgium and the Netherlands)"
+        },
+        {
+          "locality": null,
+          "country": "GB",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - United Kingdom"
+        },
+        {
+          "locality": "Great Britain",
+          "country": "GB",
+          "status": "DOUBTFUL",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Great Britain",
+          "country": "GB",
+          "status": "DOUBTFUL",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Great Britain",
+          "country": "GB",
+          "status": "DOUBTFUL",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Great Britain",
+          "country": "GB",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "RINSE - Registry of non-native species in the Two Seas region countries (Great Britain, France, Belgium and the Netherlands)"
+        },
+        {
+          "locality": null,
+          "country": "IL",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Israel"
+        },
+        {
+          "locality": "Israel",
+          "country": "IL",
+          "status": "RARE",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Israel",
+          "country": "IL",
+          "status": "RARE",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": null,
+          "country": "IT",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Italy"
+        },
+        {
+          "locality": null,
+          "country": "JP",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Japan"
+        },
+        {
+          "locality": null,
+          "country": "LC",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "GRIIS Checklist of Introduced and Invasive Species - Saint Lucia"
+        },
+        {
+          "locality": null,
+          "country": "MH",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Marshall Islands"
+        },
+        {
+          "locality": null,
+          "country": "NC",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - New Caledonia, France"
+        },
+        {
+          "locality": "The Netherlands",
+          "country": "NL",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "RINSE - Registry of non-native species in the Two Seas region countries (Great Britain, France, Belgium and the Netherlands)"
+        },
+        {
+          "locality": null,
+          "country": "NO",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": null
+        },
+        {
+          "locality": null,
+          "country": "NZ",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - New Zealand"
+        },
+        {
+          "locality": "Madeira",
+          "country": "PT",
+          "status": "ABSENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Madeira",
+          "country": "PT",
+          "status": "ABSENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": null,
+          "country": "SX",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Checklist of terrestrial and marine species of Sint Maarten, Dutch Caribbean"
+        },
+        {
+          "locality": null,
+          "country": "UA",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "Checklist of vertebrates of Falz-Fein Biosphere Reserve \"Askania Nova\" (Kherson region, Ukraine)"
+        },
+        {
+          "locality": "Hawaii",
+          "country": "US",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Hawaii, United States (ver.2.0, 2022)"
+        },
+        {
+          "locality": "Vermont",
+          "country": "US",
+          "status": "PRESENT",
+          "establishmentMeans": "UNCERTAIN",
+          "threatStatus": null,
+          "source": "Checklist of Vermont Species"
+        },
+        {
+          "locality": null,
+          "country": "ZA",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "List of Alien Species in South Africa 2025"
+        },
+        {
+          "locality": null,
+          "country": "ZA",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "List of Alien Species in South Africa 2025"
+        },
+        {
+          "locality": null,
+          "country": "ZA",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - South Africa"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 50.92635,
+          "lng": 5.12519,
+          "country": "Belgium",
+          "countryCode": "BE",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "Waarnemingen.be - Non-native animal occurrences in Flanders and the Brussels Capital Region, Belgium",
+          "year": 2026
+        },
+        {
+          "lat": 17.454906,
+          "lng": 78.360978,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 48.410867,
+          "lng": -123.361574,
+          "country": "Canada",
+          "countryCode": "CA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.002118,
+          "lng": -82.343516,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 11.430077,
+          "lng": 77.745648,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 31.420429,
+          "lng": 76.733478,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 21.271639,
+          "lng": -157.818776,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 41.647281,
+          "lng": -4.728884,
+          "country": "Spain",
+          "countryCode": "ES",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 35.89595,
+          "lng": 14.448654,
+          "country": "Malta",
+          "countryCode": "MT",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 17.454561,
+          "lng": 78.360281,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 25.669647,
+          "lng": -80.28602,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 17.513088,
+          "lng": 78.299814,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 10.538997,
+          "lng": 76.186043,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.002118,
+          "lng": -82.343516,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 41.674294,
+          "lng": -83.388145,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 6.453183,
+          "lng": 80.888863,
+          "country": "Sri Lanka",
+          "countryCode": "LK",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 10.879178,
+          "lng": 79.093819,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 17.462231,
+          "lng": 78.388481,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 30.341097,
+          "lng": 78.112032,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 48.410804,
+          "lng": -123.36179,
+          "country": "Canada",
+          "countryCode": "CA",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 17.455303,
+          "lng": 78.363072,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -35.441563,
+          "lng": 138.330353,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 26.317812,
+          "lng": -80.236476,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 11.58666,
+          "lng": 77.721763,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 17.454772,
+          "lng": 78.360903,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 668989,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 2,
+        "occurrences": [
+          {
+            "lat": -4.261394,
+            "lng": 15.643726,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2022
+          },
+          {
+            "lat": 0.516667,
+            "lng": 25.2,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "OCCURRENCE",
+            "dataset": null,
+            "year": null
+          }
+        ]
+      }
+    },
+    "monarch-butterfly": {
+      "taxon": {
+        "usageKey": 5133088,
+        "scientificName": "Danaus plexippus (Linnaeus, 1758)",
+        "canonicalName": "Danaus plexippus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Arthropoda",
+        "class": "Insecta",
+        "order": "Lepidoptera",
+        "family": "Nymphalidae",
+        "genus": "Danaus"
+      },
+      "distributions": [
+        {
+          "locality": "Corvo",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "Faial",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "Flores",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "Graciosa",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "Pico",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "S\u00e3o Jorge",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "S\u00e3o Miguel",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "Santa Maria",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "Terceira",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Updated Checklist of Arthropods from Azores (Portugal)"
+        },
+        {
+          "locality": "North America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Oceania",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Casa de las Mariposas, Laboratorio de Agricultura Urbana",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Refugios urbanos para la Biodiversidad: ensamblaje de artr\u00f3podos en el Jard\u00edn Bot\u00e1nico de Medell\u00edn (Colombia)"
+        },
+        {
+          "locality": "Villavicencio",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Insectos de ocho Biodiverciudades de Colombia - Bioblitz 2022"
+        },
+        {
+          "locality": "San Andr\u00e9s y Providencia. Isla Magali Hill. Km 11 Circunvalar.",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Entomofauna de San Andr\u00e9s y Providencia recopilada a partir de literatura - Expedici\u00f3n Sea Flower Plus 2021"
+        },
+        {
+          "locality": "Europe",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "NOT_APPLICABLE",
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "European Union",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "NOT_APPLICABLE",
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Rionegro",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Lista de especies presentes en \u00e1reas protegidas regionales"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "AU",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Australia"
+        },
+        {
+          "locality": "Brabant province",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of the Lepidoptera of Belgium"
+        },
+        {
+          "locality": "Oost-Vlaanderen province",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of the Lepidoptera of Belgium"
+        },
+        {
+          "locality": "West-Vlaanderen province",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of the Lepidoptera of Belgium"
+        },
+        {
+          "locality": "Belgium",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Waarnemingen.be / observations.be - List of species observed in Belgium"
+        },
+        {
+          "locality": "Flemish Region",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Waarnemingen.be / observations.be - List of species observed in Belgium"
+        },
+        {
+          "locality": "Belgium",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Belgium"
+        },
+        {
+          "locality": "Flemish Region",
+          "country": "BE",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Belgium"
+        },
+        {
+          "locality": "Alberta",
+          "country": "CA",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Moths and Butterflies of the Prairies Ecozone in Canada"
+        },
+        {
+          "locality": "Manitoba",
+          "country": "CA",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Moths and Butterflies of the Prairies Ecozone in Canada"
+        },
+        {
+          "locality": "Saskatchewan",
+          "country": "CA",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Moths and Butterflies of the Prairies Ecozone in Canada"
+        },
+        {
+          "locality": null,
+          "country": "CO",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Lista de referencia de especies silvestres migratorias de la diversidad biol\u00f3gica continental y marino- costera de Colombia"
+        },
+        {
+          "locality": null,
+          "country": "CO",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Lista de fauna y flora observada en la Central del Guavio por medio de monitoreos participativos"
+        },
+        {
+          "locality": "Cuenca r\u00edo Coello: Com\u00fan en toda Colombia, en \u00e1reas abiertas hasta los 2500 msnm (Garc\u00eda \u2013 Robledo et al 2002). En la cuenca del r\u00edo Coello en las localidades de Mart\u00ednez (905 msnm) y Planadas (1641 msnm), Cuenca r\u00edo Lagunilla: Alto del Bledo (951 msnm) y Palma Pe\u00f1itas (1564 msnm)",
+          "country": "CO",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Fauna del Tolima presente en  las cuencas hidrogr\u00e1ficas de los r\u00edos Coello, Totare, Recio, Lagunilla, Amoy\u00e1, Anamich\u00fa, Mendarco, Prado y quebrada Guan\u00e1bano."
+        },
+        {
+          "locality": "Cyprus",
+          "country": "CY",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Checklist of introduced taxa in Cyprus"
+        },
+        {
+          "locality": null,
+          "country": "DK",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Denmark"
+        },
+        {
+          "locality": null,
+          "country": "DK",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": "NOT_APPLICABLE",
+          "source": "National Checklist of all species occurring in Denmark"
+        },
+        {
+          "locality": "Denmark",
+          "country": "DK",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": "NOT_APPLICABLE",
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Spain",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "NOT_EVALUATED",
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands, La Gomera",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands, Gran Canaria",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands, El Hierro",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands, La Palma",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands, Lanzorate",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands, Tenerife",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Islands, Fuerteventura",
+          "country": "ES",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Canary Is.",
+          "country": "ES",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Spain",
+          "country": "ES",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "France",
+          "country": "FR",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "United Kingdom",
+          "country": "GB",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Netherlands",
+          "country": "NL",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": "NOT_EVALUATED",
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Madeira Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial fungi, flora and fauna of Madeira and Selvagens archipelagos"
+        },
+        {
+          "locality": "Porto Santo island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial fungi, flora and fauna of Madeira and Selvagens archipelagos"
+        },
+        {
+          "locality": "Corvo Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "Faial Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "Flores Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "Graciosa Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "Pico Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "Santa Maria Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "S\u00e3o Jorge Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "S\u00e3o Miguel Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "Terceira Island",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "A list of the terrestrial and marine biota from the Azores"
+        },
+        {
+          "locality": "Portugal",
+          "country": "PT",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Sao Jorge",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Sao Miguel",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Terceira",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Faial",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Santa Maria",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Pico",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Flores",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Corvo",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores, Graciosa",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Madeira",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Madeira, Madeira",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Madeira, Porto Santo",
+          "country": "PT",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": "Azores",
+          "country": "PT",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Madeira",
+          "country": "PT",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Portugal",
+          "country": "PT",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "DAISIE - Inventory of alien invasive species in Europe"
+        },
+        {
+          "locality": "Sweden",
+          "country": "SE",
+          "status": "IRREGULAR",
+          "establishmentMeans": null,
+          "threatStatus": "NOT_APPLICABLE",
+          "source": "National checklists and red lists for European butterflies"
+        },
+        {
+          "locality": null,
+          "country": "SE",
+          "status": "IRREGULAR",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "NOT_APPLICABLE",
+          "source": "Dyntaxa. Svensk taxonomisk databas"
+        },
+        {
+          "locality": "Vermont",
+          "country": "US",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Checklist of the Butterflies (Papilionoidea) of Vermont, USA"
+        },
+        {
+          "locality": "Hawaii",
+          "country": "US",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Hawaii, United States (ver.2.0, 2022)"
+        },
+        {
+          "locality": "Vermont",
+          "country": "US",
+          "status": "PRESENT",
+          "establishmentMeans": "UNCERTAIN",
+          "threatStatus": null,
+          "source": "Checklist of Vermont Species"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 32.338998,
+          "lng": -110.982385,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "eButterfly",
+          "year": 2026
+        },
+        {
+          "lat": 30.613748,
+          "lng": -96.326076,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -21.17467,
+          "lng": 149.151061,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 34.153138,
+          "lng": -118.084818,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 33.856599,
+          "lng": -118.378687,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 33.46009,
+          "lng": -111.945138,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 21.294662,
+          "lng": -157.855928,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -33.899597,
+          "lng": 151.18428,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 21.275396,
+          "lng": -157.821921,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 35.324776,
+          "lng": -120.838867,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 26.179835,
+          "lng": -98.366493,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 27.823035,
+          "lng": -82.482978,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 32.73238,
+          "lng": -117.149253,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -27.293814,
+          "lng": 152.811302,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.180735,
+          "lng": -99.959541,
+          "country": "Mexico",
+          "countryCode": "MX",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -27.455295,
+          "lng": 152.97255,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 29.480113,
+          "lng": -98.47168,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 20.703605,
+          "lng": -103.391755,
+          "country": "Mexico",
+          "countryCode": "MX",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 29.425488,
+          "lng": -98.488608,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 34.231789,
+          "lng": -119.038151,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 37.519265,
+          "lng": -122.062666,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.69687,
+          "lng": -101.161017,
+          "country": "Mexico",
+          "countryCode": "MX",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 37.509815,
+          "lng": -122.043782,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 30.093945,
+          "lng": -84.243539,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 34.274161,
+          "lng": -119.158219,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 825812,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 1,
+        "occurrences": [
+          {
+            "lat": -1.54783,
+            "lng": 29.251941,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "PRESERVED_SPECIMEN",
+            "dataset": null,
+            "year": 2004
+          }
+        ]
+      }
+    },
+    "emperor-penguin": {
+      "taxon": {
+        "usageKey": 2481661,
+        "scientificName": "Aptenodytes forsteri G.R.Gray, 1844",
+        "canonicalName": "Aptenodytes forsteri",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Aves",
+        "order": "Sphenisciformes",
+        "family": "Spheniscidae",
+        "genus": "Aptenodytes"
+      },
+      "distributions": [
+        {
+          "locality": "Antarctica",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "IOC World Bird List, v"
+        },
+        {
+          "locality": "Antarctica/Southern Ocean",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Antarctica/Southern Ocean",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "NEAR_THREATENED",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": "Southern Ocean",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": null,
+          "country": "NO",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": null
+        },
+        {
+          "locality": "New Zealand Exclusive Economic Zone",
+          "country": "NZ",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": -69.930214,
+          "lng": -69.127709,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -67.306633,
+          "lng": -67.853341,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.322549,
+          "lng": -68.455681,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.546706,
+          "lng": -69.144056,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -77.630444,
+          "lng": 166.78412,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.656213,
+          "lng": -69.198684,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -68.646309,
+          "lng": -68.856056,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.817872,
+          "lng": -69.088468,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.699158,
+          "lng": -69.148366,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.679305,
+          "lng": -68.949269,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.739124,
+          "lng": -69.058539,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.882227,
+          "lng": -69.006454,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.842299,
+          "lng": -69.010113,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.971393,
+          "lng": -69.000668,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.695896,
+          "lng": -69.052947,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.909951,
+          "lng": -69.009431,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.792844,
+          "lng": -69.042128,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.918144,
+          "lng": -69.007927,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.595795,
+          "lng": -69.108916,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -77.786996,
+          "lng": 166.940254,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -67.0071,
+          "lng": -67.442701,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -77.315777,
+          "lng": 163.954789,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.761504,
+          "lng": -69.062476,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -69.902359,
+          "lng": -69.003372,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -73.389653,
+          "lng": 169.40249,
+          "country": "Antarctica",
+          "countryCode": "AQ",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 131674,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "tiger": {
+      "taxon": {
+        "usageKey": 5219416,
+        "scientificName": "Panthera tigris (Linnaeus, 1758)",
+        "canonicalName": "Panthera tigris",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Panthera"
+      },
+      "distributions": [
+        {
+          "locality": "Europe & Northern Asia (excluding China)",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Europe & Northern Asia (excluding China)",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Southern Asia",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "ENDANGERED",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "CO",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Colombia"
+        },
+        {
+          "locality": null,
+          "country": "EC",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "GRIIS Checklist of Introduced and Invasive Species - Ecuador"
+        },
+        {
+          "locality": null,
+          "country": "KZ",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Checklist of the mammals of Central Asia (Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan)"
+        },
+        {
+          "locality": null,
+          "country": "TJ",
+          "status": "ABSENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Checklist of the mammals of Central Asia (Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan)"
+        },
+        {
+          "locality": null,
+          "country": "UZ",
+          "status": "ABSENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Checklist of the mammals of Central Asia (Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 28.437124,
+          "lng": 80.73231,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 22.41689,
+          "lng": 78.161214,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 23.489009,
+          "lng": 81.01441,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 29.220251,
+          "lng": 79.057611,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 43.039792,
+          "lng": 131.540656,
+          "country": "Russian Federation",
+          "countryCode": "RU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.512564,
+          "lng": 79.849762,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 26.158722,
+          "lng": 76.437852,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 27.455098,
+          "lng": 84.420955,
+          "country": "Nepal",
+          "countryCode": "NP",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 23.203479,
+          "lng": 77.209529,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.547033,
+          "lng": 98.060714,
+          "country": "Indonesia",
+          "countryCode": "ID",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 29.231303,
+          "lng": 79.101998,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.262061,
+          "lng": 95.951691,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.583373,
+          "lng": 80.716785,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.572161,
+          "lng": 97.513761,
+          "country": "Indonesia",
+          "countryCode": "ID",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 26.14698,
+          "lng": 76.411308,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.588554,
+          "lng": 80.733238,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 23.491274,
+          "lng": 81.122702,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 29.527521,
+          "lng": 78.981379,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 43.106449,
+          "lng": 131.581417,
+          "country": "Russian Federation",
+          "countryCode": "RU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 29.40322,
+          "lng": 78.970087,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 43.187619,
+          "lng": 130.928189,
+          "country": "China",
+          "countryCode": "CN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 0.462517,
+          "lng": 102.993343,
+          "country": "Indonesia",
+          "countryCode": "ID",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 0.519212,
+          "lng": 102.958614,
+          "country": "Indonesia",
+          "countryCode": "ID",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 10.35043,
+          "lng": 76.88882,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": null,
+          "year": 2026
+        },
+        {
+          "lat": 25.935685,
+          "lng": 76.503254,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 5738,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "emerald-tree-boa": {
+      "taxon": {
+        "usageKey": 2464991,
+        "scientificName": "Corallus caninus (Linnaeus, 1758)",
+        "canonicalName": "Corallus caninus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Squamata",
+        "order": null,
+        "family": "Boidae",
+        "genus": "Corallus"
+      },
+      "distributions": [
+        {
+          "locality": "South America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Guyana, Suriname, French Guiana, E/S Venezuela (Bol\u00edvar, Amazonas), NE Brazil (north of the Rio Amazonas and north and east of the Rio Negro: Amap\u00e1, Par\u00e1, Roraima, Amazonas); elevation 0-200 m.",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Pac\u00ccfico; Caribe",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Informaci\u00f3n altitudinal y por departamentos de los anfibios y reptiles presentes en las regiones Caribe, Pac\u00edfico, Andes y Piedemonte Amaz\u00f3nico"
+        },
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "BR",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "BR",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "BR",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "BR",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "BR",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "GF",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "SR",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        },
+        {
+          "locality": null,
+          "country": "VE",
+          "status": "PRESENT",
+          "establishmentMeans": "NATIVE",
+          "threatStatus": "LEAST_CONCERN",
+          "source": "Lista Roja de la Fauna Venezolana 2015"
+        },
+        {
+          "locality": null,
+          "country": "VE",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Cat\u00e1logo Taxon\u00f4mico da Fauna do Brasil"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 4.632705,
+          "lng": -52.291608,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.32927,
+          "lng": -54.067691,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.329573,
+          "lng": -54.068779,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.328235,
+          "lng": -54.068437,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.329287,
+          "lng": -54.068621,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.725861,
+          "lng": -53.542539,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 4.617919,
+          "lng": -52.106352,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.067192,
+          "lng": -52.997853,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.743928,
+          "lng": -55.761623,
+          "country": "Suriname",
+          "countryCode": "SR",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 4.933756,
+          "lng": -55.18965,
+          "country": "Suriname",
+          "countryCode": "SR",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.140606,
+          "lng": -54.334753,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 4.612305,
+          "lng": -52.279843,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -2.674271,
+          "lng": -60.603894,
+          "country": "Brazil",
+          "countryCode": "BR",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.829999,
+          "lng": -52.649864,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.6145,
+          "lng": -53.211567,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 4.571807,
+          "lng": -52.21882,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.335771,
+          "lng": -53.955102,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.614514,
+          "lng": -53.211581,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 6.327993,
+          "lng": -59.039638,
+          "country": "Guyana",
+          "countryCode": "GY",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.341015,
+          "lng": -55.021409,
+          "country": "Suriname",
+          "countryCode": "SR",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 4.631817,
+          "lng": -58.714051,
+          "country": "Guyana",
+          "countryCode": "GY",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.189537,
+          "lng": -52.617298,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.073821,
+          "lng": -52.728655,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 3.795282,
+          "lng": -53.211762,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 5.436538,
+          "lng": -53.902415,
+          "country": "French Guiana",
+          "countryCode": "GF",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 258,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    }
+  }
+}

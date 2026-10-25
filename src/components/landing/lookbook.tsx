@@ -84,9 +84,12 @@ export function Lookbook({ initialAudience = "All Pieces", showExplore = true }:
                       className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
                     />
                     <div className="absolute top-4 left-4 flex max-w-[75%] flex-wrap gap-1">
-                      <span className="rounded-full bg-surface-cream/90 px-space-xs py-0.5 font-label-caps text-label-caps text-secondary uppercase backdrop-blur-sm">
+                      <Link
+                        href={`${routes.animals}/${design.speciesSlug}`}
+                        className="rounded-full bg-surface-cream/90 px-space-xs py-0.5 font-label-caps text-label-caps text-secondary uppercase backdrop-blur-sm"
+                      >
                         {design.species}
-                      </span>
+                      </Link>
                       <span className="rounded-full bg-primary-container px-space-xs py-0.5 font-label-caps text-label-caps text-on-primary uppercase">
                         {design.category}
                       </span>

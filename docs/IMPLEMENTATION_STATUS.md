@@ -168,15 +168,57 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - Browser check against the dev server in headless Chrome: desktop 1440px and mobile 390px had no horizontal overflow. Women hid the other sample cards. Unisex showed the empty state. Marking a look announced that no wishlist was saved. Newsletter submit showed that the address was not stored. Marketplace states the three offer kinds, and Details lands on `#zebra-gown`. Mobile menu opened and reached Animal Catalog. The Paris stamp stays inside the 390px width. The dev-only Next.js badge is absent from production.
 - Known issues: See the register below.
 - Missing credentials or external configuration: None required for this labelled preview. The credentials table is unchanged.
-- Outstanding tasks: Explicit approval of this phase. Phase 3 has not started.
-- Approval state and date: Awaiting explicit approval. Not approved.
+- Outstanding tasks: None in this phase.
+- Approval state and date: Approved on 25 October 2026 at 13:13 Europe/London, when the next phase was explicitly approved.
 
 ### Phase 3 — Animal catalogue and geographic discovery
 
-- Status: NOT STARTED
+- Status: AWAITING APPROVAL
 - Scope: Catalogue, search, filters, animal profile, fashion inspiration, geographic explorer, wildlife data, attribution, and a labelled development dataset if the live source is unavailable.
-- Completed work: None.
-- Approval state and date: Not approved.
+- Completed work:
+  - Replaced the Phase 2 notice at `/animals` with the light catalogue from the approved Animal Catalogue screen: search, class, region-tag, and colour filters, and species cards.
+  - Added a profile at `/animals/[slug]` from the approved Animal Detail screen: taxonomy, design reading, swatches, gallery, sample fashion directions, and a habitat tab.
+  - Wired taxonomy, distribution rows, and occurrence points to the public GBIF API. Each profile quotes the GBIF species page. A development snapshot captured on 25 October 2026 is used when a live request fails.
+  - Added a MapLibre occurrence map with the keyless OpenFreeMap Liberty style. A country filter, including the Democratic Republic of the Congo, filters occurrence records. The page states that a selected country does not mark a species as native. Plains zebra distribution rows do not list that country.
+  - Kept the landing “Viper” tile honest: the photograph is Corallus caninus, the emerald tree boa. The tiger lookbook species has a profile. Marine Life and Oceania are real empty states in this curated sample.
+  - Left Studio generation, accounts, and the live marketplace closed.
+- Files created or modified:
+  - `app/animals/page.tsx`
+  - `app/animals/[slug]/page.tsx`
+  - `app/api/wildlife/[slug]/route.ts`
+  - `src/content/catalogue.ts`
+  - `src/content/catalogue.test.ts`
+  - `src/content/wildlife-snapshot.json`
+  - `src/content/site.ts`
+  - `src/server/wildlife.ts`
+  - `src/components/catalogue/catalogue-browser.tsx`
+  - `src/components/catalogue/animal-profile.tsx`
+  - `src/components/catalogue/habitat-panel.tsx`
+  - `src/components/catalogue/occurrence-map.tsx`
+  - `src/components/landing/animal-rail.tsx`
+  - `src/components/landing/lookbook.tsx`
+  - `public/maplibre-gl-worker.js`
+  - `public/stitch/animal-penguin.jpg`
+  - `public/stitch/animal-zebra-savanna.jpg`
+  - `public/stitch/zebra-look-gown.jpg`
+  - `public/stitch/zebra-look-tuxedo.jpg`
+  - `public/stitch/zebra-look-kids.jpg`
+  - `public/stitch/zebra-look-trench.jpg`
+  - `package.json`
+  - `package-lock.json`
+  - `README.md`
+  - `docs/IMPLEMENTATION_STATUS.md`
+- Database or configuration changes: None. No Supabase project was created. GBIF and OpenFreeMap need no key.
+- Tests and build results (25 October 2026, Europe/London):
+  - `npm test`: 18 tests passed, including the plains-zebra country caution.
+  - `npm run typecheck`: passed.
+  - `npm run lint`: passed with no warnings.
+  - `npm run build`: passed. `/animals` is static. Ten species profiles are prerendered. `/api/wildlife/[slug]` stays dynamic.
+  - Browser check in headless Chrome: desktop 1440px and mobile 390px had no horizontal overflow. Searching “viper” showed only the emerald tree boa. Marine Life showed the empty state. The plains zebra habitat tab loaded a live GBIF map, and the Democratic Republic of the Congo filter showed 14 occurrence coordinates with the native-range caution. The map worker loaded. The dev-only Next.js badge is absent from production.
+- Known issues: See the register below.
+- Missing credentials: None for GBIF or the map style. The other credentials are unchanged.
+- Outstanding tasks: Explicit approval of this phase. Phase 4 has not started.
+- Approval state and date: Awaiting explicit approval. Not approved.
 
 ### Phase 4 — Simplified Animoda Studio
 
@@ -237,9 +279,9 @@ Phase 2 is implemented and awaiting approval. The plan that was executed:
 11. Verify desktop and mobile in the browser, then run tests, lint, typecheck, and the production build.
 12. Stop. Phase 3 stays closed until a separate approval.
 
-Phase 3 remains closed. Approval of Phase 2 is still required before any catalogue, map, or wildlife-provider work.
+Phase 3 is implemented and awaiting approval. Phase 4, the Studio journey, stays closed until a separate approval.
 
-Later phases, in order: 3 animal catalogue and map, 4 Studio journey, 5 AI providers, 6 auth and private gallery, 7 marketplace and manufacturing requests, 8 couturier and administrator workflows, 9 PWA, localisation, and production hardening.
+Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gallery, 7 marketplace and manufacturing requests, 8 couturier and administrator workflows, 9 PWA, localisation, and production hardening.
 
 ## Known issues and decisions
 
@@ -255,9 +297,12 @@ Later phases, in order: 3 animal catalogue and map, 4 Studio journey, 5 AI provi
 - Studio Step 1 copy claims “99.4% Fit Accuracy” and precise anatomical mapping. That claim must not ship. The product must not promise identity preservation or perfect garment fidelity.
 - The landing audience chips are All Pieces, Women, Men, Kids & Youth, and Unisex. The product specification also asks for girls’ and boys’ clothing as distinct choices. Phase 4 Studio settings should offer those choices. Phase 2 should keep the landing labels from the approved screen.
 - Dark-mode landing and suggestions screens exist. The active theme stays light until a later phase audits dark tokens.
-- The geographic explorer has no approved screen yet. Phase 3 needs an explicit MapLibre layout that still uses these tokens.
+- The geographic explorer has no approved Stitch screen. Phase 3 uses the habitat tab on the animal profile: MapLibre, the catalogue type scale, and forest occurrence dots.
+- Map tiles use the keyless OpenFreeMap Liberty style, `https://tiles.openfreemap.org/styles/liberty`. The MapLibre worker is served from `public/maplibre-gl-worker.js` because the Next.js dev server did not load the package worker URL.
+- Wildlife records come from the public GBIF API with no key. Occurrence points and distribution rows are quoted with their source. A country filter does not create a native-range polygon. The curated browse tags (Africa, Asia, and the rest) are labels on this sample, not range maps.
+- The landing photograph labelled Viper is catalogued as Corallus caninus. GBIF places that species in class Squamata. The Reptiles chip is the screen’s group name.
 - Material Symbols require a request to Google Fonts at runtime. A later phase can self-host the subset if offline icon rendering becomes a requirement.
-- No wildlife provider, map style, or AI provider is selected. GBIF is the likely public occurrence source because it needs no key; natural range must stay distinct from occurrences. The provider choice belongs to Phase 3 and Phase 5.
+- No AI provider is selected. That choice belongs to Phase 5.
 
 ## External credentials still required
 
@@ -268,7 +313,7 @@ Later phases, in order: 3 animal catalogue and map, 4 Studio journey, 5 AI provi
 | 6 | `SUPABASE_SERVICE_ROLE_KEY` | Absent. Server only. |
 | 5 | Fashion concept provider and API key | Provider not chosen. Server only. |
 | 5 | Virtual try-on provider and API key | Provider not chosen. Server only. |
-| 3 | Wildlife source | Public GBIF needs no key. iNaturalist token only if that source is chosen. |
-| 3 | MapLibre style | No tile-style URL or key chosen. |
+| 3 | Wildlife source | In use. Public GBIF, no key. A labelled snapshot covers a failed request. |
+| 3 | MapLibre style | In use. OpenFreeMap Liberty, no key. |
 
 No credential was invented or stored.

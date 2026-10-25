@@ -29,7 +29,7 @@ export function AnimalRail() {
         <ul className="flex gap-space-md overflow-x-auto overscroll-x-contain pt-space-xxs pb-space-sm">
           {animalInspirations.map((animal) => (
             <li key={animal.name} className="w-28 shrink-0">
-              <Link href={routes.animals} className="group flex flex-col items-center gap-space-xs text-center">
+              <Link href={`${routes.animals}/${animal.slug}`} className="group flex flex-col items-center gap-space-xs text-center">
                 <span className="relative h-24 w-24 overflow-hidden rounded-2xl bg-surface-container shadow-sm transition-all motion-safe:group-hover:-translate-y-1 motion-safe:group-hover:shadow-md">
                   <EditorialImage
                     src={animal.image}

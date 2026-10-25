@@ -39,6 +39,7 @@ export type FeaturedDesign = {
   id: string;
   audience: Exclude<Audience, "All Pieces" | "Unisex">;
   species: string;
+  speciesSlug: string;
   category: string;
   atelier: string;
   priceLabel: string;
@@ -53,6 +54,7 @@ export const featuredDesigns: FeaturedDesign[] = [
     id: "zebra-gown",
     audience: "Women",
     species: "Equus quagga",
+    speciesSlug: "plains-zebra",
     category: "Women · Formal",
     atelier: "Atelier Bantu · Luanda",
     priceLabel: "From $1,420",
@@ -66,6 +68,7 @@ export const featuredDesigns: FeaturedDesign[] = [
     id: "peacock-tuxedo",
     audience: "Men",
     species: "Pavo cristatus",
+    speciesSlug: "indian-peacock",
     category: "Men · Black Tie",
     atelier: "Maison de Crin · Paris",
     priceLabel: "From $2,100",
@@ -79,6 +82,7 @@ export const featuredDesigns: FeaturedDesign[] = [
     id: "tiger-bomber",
     audience: "Kids & Youth",
     species: "Panthera tigris",
+    speciesSlug: "tiger",
     category: "Kids · Casual",
     atelier: "Kisaasi Styles · Nairobi",
     priceLabel: "From $680",
@@ -99,48 +103,56 @@ export function designsForAudience(audience: Audience): FeaturedDesign[] {
 export const animalInspirations = [
   {
     name: "Zebra",
+    slug: "plains-zebra",
     meta: "Mammal · Africa",
     image: "/stitch/animal-zebra.jpg",
     alt: "Close-up of zebra stripes in warm natural light.",
   },
   {
     name: "Leopard",
+    slug: "leopard",
     meta: "Mammal · Africa",
     image: "/stitch/animal-leopard.jpg",
     alt: "Leopard rosettes on tawny fur in savannah light.",
   },
   {
     name: "Elephant",
+    slug: "african-elephant",
     meta: "Mammal · Africa",
     image: "/stitch/animal-elephant.jpg",
     alt: "Weathered elephant skin with deep grooves.",
   },
   {
     name: "Lion",
+    slug: "lion",
     meta: "Mammal · Africa",
     image: "/stitch/animal-lion.jpg",
     alt: "Male lion with an amber mane in golden-hour light.",
   },
   {
     name: "Giraffe",
+    slug: "giraffe",
     meta: "Mammal · Africa",
     image: "/stitch/animal-giraffe.jpg",
     alt: "Chestnut geometric patches of a giraffe.",
   },
   {
     name: "Peacock",
+    slug: "indian-peacock",
     meta: "Aves · Asia",
     image: "/stitch/animal-peacock.jpg",
     alt: "Iridescent peacock plumage with emerald, cobalt, and gold ocelli.",
   },
   {
     name: "Monarch",
+    slug: "monarch-butterfly",
     meta: "Insect · Global",
     image: "/stitch/animal-monarch.jpg",
     alt: "Orange monarch butterfly wing with black veins and white spots.",
   },
   {
     name: "Viper",
+    slug: "emerald-tree-boa",
     meta: "Reptile · Amazon",
     image: "/stitch/animal-viper.jpg",
     alt: "Glossy green scales of an emerald tree boa, shown in the landing design as a viper sample.",
