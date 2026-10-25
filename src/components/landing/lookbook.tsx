@@ -58,7 +58,10 @@ export function Lookbook({ initialAudience = "All Pieces", showExplore = true }:
             ))}
           </div>
         </div>
-        <p className="mb-space-lg max-w-3xl font-body-sm text-body-sm text-on-surface-variant">{illustrativeDisclaimer}</p>
+        <p className="mb-space-sm max-w-3xl font-body-sm text-body-sm text-on-surface-variant">{illustrativeDisclaimer}</p>
+        <p role="status" className="mb-space-lg font-body-sm text-body-sm text-on-surface-variant">
+          {note} Showing {designs.length} of {featuredDesigns.length} sample pieces.
+        </p>
         {designs.length === 0 ? (
           <p role="status" className="rounded-3xl bg-surface-container-lowest p-space-xl font-body-lg text-body-lg text-on-surface-variant">
             This preview has no unisex sample. All Pieces shows the women, men, and kids and youth samples.
@@ -129,9 +132,6 @@ export function Lookbook({ initialAudience = "All Pieces", showExplore = true }:
             })}
           </ul>
         )}
-        <p role="status" className="mt-space-md font-body-sm text-body-sm text-on-surface-variant">
-          {note} Showing {designs.length} of {featuredDesigns.length} sample pieces.
-        </p>
         {showExplore ? (
           <div className="mt-space-2xl text-center">
             <Link
