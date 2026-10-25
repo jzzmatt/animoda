@@ -180,7 +180,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - Added a profile at `/animals/[slug]` from the approved Animal Detail screen: taxonomy, design reading, swatches, gallery, sample fashion directions, and a habitat tab.
   - Wired taxonomy, distribution rows, and occurrence points to the public GBIF API. Each profile quotes the GBIF species page. A development snapshot captured on 25 October 2026 is used when a live request fails.
   - Added a MapLibre occurrence map with the keyless OpenFreeMap Liberty style. A country filter, including the Democratic Republic of the Congo, filters occurrence records. The page states that a selected country does not mark a species as native. Plains zebra distribution rows do not list that country.
-  - Kept the landing “Viper” tile honest: the photograph is Corallus caninus, the emerald tree boa. The tiger lookbook species has a profile. Marine Life and Oceania are real empty states in this curated sample.
+  - Kept the landing “Viper” tile honest: the photograph is Corallus caninus, the emerald tree boa. The tiger lookbook species has a profile. Marine Life and Oceania were real empty states in this curated sample. Marine Life was filled later; Oceania is still empty.
   - Left Studio generation, accounts, and the live marketplace closed.
 - Files created or modified:
   - `app/animals/page.tsx`
@@ -281,7 +281,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2 and Phase 3 are approved. Phase 4, the Studio journey, is implemented and awaiting approval. Phase 5, real AI providers, stays closed until a separate approval.
+Phase 2 and Phase 3 are approved. Phase 4, the Studio journey, is implemented and awaiting approval. Phase 5, real AI providers, stays closed until a separate approval. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups. That catalogue work does not start Phase 5.
 
 The Phase 2 plan that was executed:
 
@@ -318,6 +318,8 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 - Map tiles use the keyless OpenFreeMap Liberty style, `https://tiles.openfreemap.org/styles/liberty`. The MapLibre worker is served from `public/maplibre-gl-worker.js` because the Next.js dev server did not load the package worker URL.
 - Wildlife records come from the public GBIF API with no key. Occurrence points and distribution rows are quoted with their source. A country filter does not create a native-range polygon. The curated browse tags (Africa, Asia, and the rest) are labels on this sample, not range maps.
 - The landing photograph labelled Viper is catalogued as Corallus caninus. GBIF places that species in class Squamata. The Reptiles chip is the screen’s group name.
+- Marine Life lists the requested fishes. Pothos was removed from that chip. Halfmoon male betta is Betta splendens, a freshwater fish; halfmoon is a tail shape and male is the sex. Black moor, fantail, and shubunkin are varieties of the freshwater goldfish Carassius auratus and share GBIF usage key 4286942. Livebearers is the family Poeciliidae, and the photograph is one guppy. Mandarin fish on this card is the marine dragonet Synchiropus splendidus. The freshwater perch Siniperca chuatsi is a different species. Moorish idol is Zanclus cornutus. Picasso triggerfish is Rhinecanthus aculeatus. Rusty parrotfish is Scarus ferrugineus, not Scarus rubroviolaceus.
+- The supplied insect, reptile, and bird list is in those catalogue groups. Army green moth is the oleander hawk-moth, Daphnis nerii. Calligrapher beetle on this card is Calligrapha philadelphica. Thorny cricket is Cosmoderus femoralis; the photograph is a museum specimen of the related species Cosmoderus erinaceus because an openly licensed photograph of C. femoralis was not available. Rainbow bright chameleon is the panther chameleon, Furcifer pardalis. Phoenix rooster is a long-tailed breed of Gallus gallus, not a separate wild species. Majestic eagle is a descriptive label for the bald eagle, Haliaeetus leucocephalus. Ploughshare tortoise is Astrochelys yniphora, and GBIF places it in class Testudines while the catalogue chip is Reptiles. Victoria crowned pigeon uses the Oceania browse tag. Stock-photo search links from the list were not downloaded. Photographs are openly licensed Wikimedia Commons files, credited on the card. GBIF currently returns no class for the catalogue fishes, so the profile omits a blank class.
 - Material Symbols require a request to Google Fonts at runtime. A later phase can self-host the subset if offline icon rendering becomes a requirement.
 - No AI provider is selected. That choice belongs to Phase 5.
 
