@@ -29,7 +29,7 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeToggle() {
-  const theme = useSyncExternalStore(subscribe, readTheme, () => "light" as const);
+  const theme = useSyncExternalStore(subscribe, readTheme, () => "dark" as const);
 
   return (
     <div

@@ -38,13 +38,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       suppressHydrationWarning
       className={`${inter.variable} ${playfair.variable}`}
     >
       <body>
         <Script id="animoda-theme" strategy="beforeInteractive">
-          {`try{var t=localStorage.getItem("animoda-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}`}
+          {`try{var k="animoda-theme";var t=localStorage.getItem(k);if(t!=="dark"&&t!=="light"){t="dark";localStorage.setItem(k,t);}document.documentElement.dataset.theme=t;}catch(e){}`}
         </Script>
         {/* The approved Stitch screens use Material Symbols. next/font does not ship this icon font. */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
