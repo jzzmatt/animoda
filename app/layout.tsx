@@ -36,7 +36,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-theme="light" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      data-theme="light"
+      suppressHydrationWarning
+      className={`${inter.variable} ${playfair.variable}`}
+    >
       <body>
         <Script id="animoda-theme" strategy="beforeInteractive">
           {`try{var t=localStorage.getItem("animoda-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}`}
