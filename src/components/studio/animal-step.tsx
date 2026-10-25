@@ -35,7 +35,7 @@ export function AnimalStep() {
           Choose your animal muse
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          Choose an entry from this catalogue. The screen’s count of 248 species is illustrative. This visit uses the {catalogueAnimals.length} entries already published here, including one plant and one fish family.
+          Choose an entry from this catalogue. The screen’s count of 248 species is illustrative. This visit uses the {catalogueAnimals.length} entries already published here, including one fish family.
         </p>
       </header>
 

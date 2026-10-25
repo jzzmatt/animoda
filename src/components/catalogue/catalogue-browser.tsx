@@ -57,7 +57,7 @@ export function CatalogueBrowser() {
         </p>
         <p className="max-w-3xl font-body-sm text-body-sm text-on-surface-variant">{catalogueNote}</p>
         <p className="font-body-sm text-body-sm text-on-surface-variant">
-          {catalogueAnimals.length} catalogue entries. The Marine Life chip includes freshwater varieties, one fish family, and the houseplant pothos.
+          {catalogueAnimals.length} catalogue entries. The Marine Life chip includes freshwater varieties and one fish family.
         </p>
       </header>
       <div className="grid min-w-0 items-start gap-gutter lg:grid-cols-12">
