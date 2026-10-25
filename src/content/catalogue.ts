@@ -58,6 +58,9 @@ export type CatalogueAnimal = {
   icon: string;
   image: string;
   alt: string;
+  /** Credit for a photograph that is not part of the Stitch screen set. */
+  imageCredit?: string;
+  imageSourceUrl?: string;
   summary: string;
   designTitle: string;
   designBody: string;
@@ -425,6 +428,355 @@ export const catalogueAnimals: CatalogueAnimal[] = [
       },
     ],
   },
+  {
+    slug: "halfmoon-male-betta",
+    commonName: "Halfmoon male betta",
+    scientificName: "Betta splendens",
+    gbifUsageKey: 2393998,
+    group: "Marine Life",
+    region: "Asia",
+    color: "Amber Gold",
+    icon: "water",
+    image: "/catalogue/halfmoon-male-betta.jpg",
+    alt: "Orange halfmoon betta with a broad rounded tail. The source file title names this fish a male.",
+    imageCredit: "Photograph by Daniella Vereeken, CC BY 2.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:HM_Orange_M_Sarawut.jpg",
+    summary:
+      "Freshwater fish. Halfmoon names a tail shape, and male names the sex. The species is Betta splendens. The Marine Life chip is the browse group, not a claim that this fish is marine.",
+    designTitle: "Halfmoon fin",
+    designBody:
+      "A design reading of the rounded orange fin. GBIF accepts Betta splendens Regan, 1910, usage key 2393998. The Asia tag is a browse tag, not a native-range map.",
+    swatches: [
+      { name: "Fin orange", hex: "#E25B2A" },
+      { name: "Scale", hex: "#F08A4B" },
+      { name: "Water", hex: "#1A2430" },
+    ],
+    aliases: ["Halfmoon Male Betta Fish", "betta", "Siamese fighting fish"],
+    directions: [
+      {
+        id: "betta-fin",
+        audience: "Unisex",
+        setting: "Casual & Street",
+        title: "Pleated fin panel",
+        body: "A sample direction using a pleated orange panel. It is not a generated outfit.",
+        textile: "Silk organza",
+      },
+    ],
+  },
+  {
+    slug: "black-moor",
+    commonName: "Black moor",
+    scientificName: "Carassius auratus",
+    gbifUsageKey: 4286942,
+    group: "Marine Life",
+    region: "Asia",
+    color: "Monochrome",
+    icon: "water",
+    image: "/catalogue/black-moor.jpg",
+    alt: "Black telescope-eye goldfish, the black moor variety of Carassius auratus.",
+    imageCredit: "Photograph by KDBlackmore, public domain, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Black_Moor_Goldfish.jpg",
+    summary:
+      "Freshwater goldfish variety. Black moor is a telescope-eye form of Carassius auratus, not a separate species. The Marine Life chip is the browse group.",
+    designTitle: "Telescope bronze",
+    designBody:
+      "A design reading of the black body and bronze scale light. The same GBIF species, usage key 4286942, is shared with the fantail and the shubunkin. The Asia tag is a browse tag, not a native-range map.",
+    swatches: [
+      { name: "Moor", hex: "#1C1A18" },
+      { name: "Bronze", hex: "#8A6232" },
+      { name: "Eye gold", hex: "#C9862A" },
+    ],
+    aliases: ["black moor", "carassius auratus", "telescope goldfish"],
+    directions: [
+      {
+        id: "black-moor-coat",
+        audience: "Unisex",
+        setting: "Formal",
+        title: "Bronze-black coat",
+        body: "A sample direction for a dark coat with a bronze highlight. It is not a generated outfit.",
+        textile: "Wool satin",
+      },
+    ],
+  },
+  {
+    slug: "fantail",
+    commonName: "Fantail",
+    scientificName: "Carassius auratus",
+    gbifUsageKey: 4286942,
+    group: "Marine Life",
+    region: "Asia",
+    color: "Amber Gold",
+    icon: "water",
+    image: "/catalogue/fantail.jpg",
+    alt: "Orange fantail goldfish with a split tail, a variety of Carassius auratus.",
+    imageCredit: "Photograph by Pogrebnoj-Alexandroff, CC BY 3.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Goldfish_Fantail.jpg",
+    summary:
+      "Freshwater goldfish variety. Fantail names a double-tail form of Carassius auratus, the same species as the black moor and the shubunkin. It is not a marine fish.",
+    designTitle: "Split tail",
+    designBody:
+      "A design reading of the paired tail and the orange scale. GBIF usage key 4286942. The Asia tag is a browse tag, not a native-range map.",
+    swatches: [
+      { name: "Gold", hex: "#E7A31A" },
+      { name: "Orange", hex: "#F26B1D" },
+      { name: "Belly", hex: "#F6E2C4" },
+    ],
+    aliases: ["fantails", "fantail goldfish"],
+    directions: [
+      {
+        id: "fantail-panel",
+        audience: "Unisex",
+        setting: "Casual & Street",
+        title: "Split-hem panel",
+        body: "A sample direction using a split hem in orange and gold. It is not a generated outfit.",
+        textile: "Silk twill",
+      },
+    ],
+  },
+  {
+    slug: "shubunkin",
+    commonName: "Shubunkin",
+    scientificName: "Carassius auratus",
+    gbifUsageKey: 4286942,
+    group: "Marine Life",
+    region: "Asia",
+    color: "Mineral Slate",
+    icon: "water",
+    image: "/catalogue/shubunkin.jpg",
+    alt: "Calico goldfish with red, pale, and black patches and spotted fins, a shubunkin variety of Carassius auratus.",
+    imageCredit: "Photograph by Michelle Jo, CC BY-SA 3.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Shubunkin_Goldfish.JPG",
+    summary:
+      "Freshwater goldfish variety. Shubunkin names a calico form of Carassius auratus, not a separate species. The Marine Life chip is the browse group.",
+    designTitle: "Calico speckle",
+    designBody:
+      "A design reading of the red, pale, and black patches. The species record is the same GBIF usage key as the black moor and the fantail, 4286942. The Asia tag is a browse tag, not a native-range map.",
+    swatches: [
+      { name: "Calico red", hex: "#E23B2F" },
+      { name: "Ink", hex: "#1E1E1E" },
+      { name: "Pearl", hex: "#F4F1EA" },
+    ],
+    aliases: ["shubunkins"],
+    directions: [
+      {
+        id: "shubunkin-speckle",
+        audience: "Unisex",
+        setting: "Casual & Street",
+        title: "Speckled wrap",
+        body: "A sample direction using a pale ground with red and black specks. It is not a generated outfit.",
+        textile: "Printed cotton",
+      },
+    ],
+  },
+  {
+    slug: "livebearers",
+    commonName: "Livebearers",
+    scientificName: "Poeciliidae",
+    gbifUsageKey: 7659,
+    group: "Marine Life",
+    region: "Global",
+    color: "Mineral Slate",
+    icon: "water",
+    image: "/catalogue/livebearers.jpg",
+    alt: "A guppy, Poecilia reticulata, one member of the livebearer family Poeciliidae. This photograph is not every livebearer.",
+    imageCredit: "Photograph by Holger Krisp, CC BY 3.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Guppy_Poecilia_reticulata.jpg",
+    summary:
+      "A fish family, not one species. Poeciliidae includes guppies, mollies, platies, and swordtails. The photograph is one guppy, Poecilia reticulata. Many livebearers are freshwater. The Marine Life chip is the browse group.",
+    designTitle: "Family, not one species",
+    designBody:
+      "GBIF accepts Poeciliidae at family rank, usage key 7659. The card does not invent a single scientific name for every livebearer. The Global tag is a browse tag, not a native-range map.",
+    swatches: [
+      { name: "Olive", hex: "#8A8F6A" },
+      { name: "Tail", hex: "#2C3330" },
+      { name: "Leaf", hex: "#3E6B45" },
+    ],
+    aliases: ["livebearer", "guppy", "molly", "platy", "swordtail"],
+    directions: [
+      {
+        id: "livebearer-mesh",
+        audience: "Unisex",
+        setting: "Casual & Street",
+        title: "Fine mesh",
+        body: "A sample direction from the small scale pattern of the guppy photograph. It does not represent every fish in the family, and it is not a generated outfit.",
+        textile: "Fine cotton mesh",
+      },
+    ],
+  },
+  {
+    slug: "pothos",
+    commonName: "Pothos",
+    scientificName: "Epipremnum aureum",
+    gbifUsageKey: 2868323,
+    group: "Marine Life",
+    region: "Global",
+    color: "Emerald Blue",
+    icon: "potted_plant",
+    image: "/catalogue/pothos.jpg",
+    alt: "Variegated heart-shaped leaves of Epipremnum aureum, the plant called pothos. This is not a fish.",
+    imageCredit: "Photograph by Mokkie, CC BY-SA 3.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Money_Plant_(Epipremnum_aureum)_4.jpg",
+    summary:
+      "A plant, not a fish. Epipremnum aureum is a variegated aroid, often grown as a houseplant. It is filed under Marine Life because that was the requested browse group. It is not a marine animal.",
+    designTitle: "Variegated leaf",
+    designBody:
+      "A design reading of the green and cream leaf. GBIF places this species in kingdom Plantae, class Liliopsida, usage key 2868323. The Global tag is a browse tag, not a native-range map.",
+    swatches: [
+      { name: "Leaf", hex: "#3C8A3A" },
+      { name: "Variegation", hex: "#E6F0A8" },
+      { name: "Vine", hex: "#6B4A2A" },
+    ],
+    aliases: ["devil's ivy", "money plant", "golden pothos"],
+    directions: [
+      {
+        id: "pothos-leaf",
+        audience: "Unisex",
+        setting: "Casual & Street",
+        title: "Leaf print",
+        body: "A sample direction using a green and cream leaf print. It is a plant pattern, not an animal textile, and it is not a generated outfit.",
+        textile: "Printed linen",
+      },
+    ],
+  },
+  {
+    slug: "mandarin-fish",
+    commonName: "Mandarin fish",
+    scientificName: "Synchiropus splendidus",
+    gbifUsageKey: 2386640,
+    group: "Marine Life",
+    region: "Asia",
+    color: "Emerald Blue",
+    icon: "water",
+    image: "/catalogue/mandarin-fish.jpg",
+    alt: "Mandarin dragonet, Synchiropus splendidus, with blue and orange skin. This card is not the freshwater perch also called mandarin fish.",
+    imageCredit: "Photograph by Luc Viatour, CC BY-SA 3.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Synchiropus_splendidus_2_Luc_Viatour.jpg",
+    summary:
+      "A marine dragonet. Aquarium lists use Mandarin fish for Synchiropus splendidus. The freshwater perch Siniperca chuatsi is also called mandarin fish and is a different species. This card is the dragonet.",
+    designTitle: "Dragonet maze",
+    designBody:
+      "A design reading of the blue and orange skin. GBIF accepts Synchiropus splendidus (Herre, 1927), usage key 2386640. The Asia tag is a browse tag, not a native-range map.",
+    swatches: [
+      { name: "Dragonet blue", hex: "#1C4ED8" },
+      { name: "Orange", hex: "#E07A1F" },
+      { name: "Teal", hex: "#1AA6A6" },
+    ],
+    aliases: ["mandarin dragonet", "mandarinfish"],
+    directions: [
+      {
+        id: "mandarin-maze",
+        audience: "Unisex",
+        setting: "Formal",
+        title: "Maze embroidery",
+        body: "A sample direction using blue and orange embroidery. It is not a generated outfit.",
+        textile: "Silk embroidery",
+      },
+    ],
+  },
+  {
+    slug: "moorish-idol",
+    commonName: "Moorish idol",
+    scientificName: "Zanclus cornutus",
+    gbifUsageKey: 2374663,
+    group: "Marine Life",
+    region: "Global",
+    color: "Monochrome",
+    icon: "water",
+    image: "/catalogue/moorish-idol.jpg",
+    alt: "Moorish idol, Zanclus cornutus, with black, white, and yellow bands over a reef.",
+    imageCredit: "Photograph by Philippe Bourjon, CC BY-SA 3.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Idole_des_Maures_(Zanclus_cornutus).jpg",
+    summary: "A marine fish. The black, white, and yellow bands are the design reading. The Global browse tag is not a native-range map.",
+    designTitle: "Banded banner",
+    designBody:
+      "A design reading of the vertical bands and the trailing filament. GBIF accepts Zanclus cornutus (Linnaeus, 1758), usage key 2374663.",
+    swatches: [
+      { name: "Band black", hex: "#111111" },
+      { name: "Band white", hex: "#F7F4EE" },
+      { name: "Band yellow", hex: "#F0C044" },
+    ],
+    aliases: [],
+    directions: [
+      {
+        id: "idol-band",
+        audience: "Unisex",
+        setting: "Formal",
+        title: "Banded column",
+        body: "A sample direction for a black, white, and yellow banded column. It is not a generated outfit.",
+        textile: "Silk faille",
+      },
+    ],
+  },
+  {
+    slug: "picasso-triggerfish",
+    commonName: "Picasso triggerfish",
+    scientificName: "Rhinecanthus aculeatus",
+    gbifUsageKey: 2407235,
+    group: "Marine Life",
+    region: "Global",
+    color: "Mineral Slate",
+    icon: "water",
+    image: "/catalogue/picasso-triggerfish.jpg",
+    alt: "Picasso triggerfish, Rhinecanthus aculeatus, with pale blue lines on the face.",
+    imageCredit: "Photograph by Arpingstone, public domain, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Picasso.triggerfish.arp.jpg",
+    summary:
+      "A marine triggerfish, also called the lagoon triggerfish. The lines on the face are the design reading. The Global browse tag is not a native-range map.",
+    designTitle: "Face line",
+    designBody:
+      "A design reading of the pale lines across the face. GBIF accepts Rhinecanthus aculeatus (Linnaeus, 1758), usage key 2407235.",
+    swatches: [
+      { name: "Sand", hex: "#E6D7C3" },
+      { name: "Line", hex: "#1E6F8A" },
+      { name: "Charcoal", hex: "#3A3F44" },
+    ],
+    aliases: ["lagoon triggerfish", "picasso trigger"],
+    directions: [
+      {
+        id: "picasso-line",
+        audience: "Unisex",
+        setting: "Casual & Street",
+        title: "Drawn line",
+        body: "A sample direction using a few pale blue lines on a sand ground. It is not a generated outfit.",
+        textile: "Cotton canvas",
+      },
+    ],
+  },
+  {
+    slug: "rusty-parrotfish",
+    commonName: "Rusty parrotfish",
+    scientificName: "Scarus ferrugineus",
+    gbifUsageKey: 2393738,
+    group: "Marine Life",
+    region: "Global",
+    color: "Emerald Blue",
+    icon: "water",
+    image: "/catalogue/rusty-parrotfish.jpg",
+    alt: "Parrotfish photographed in the Red Sea and identified in the source file as Scarus ferrugineus, the rusty parrotfish.",
+    imageCredit: "Photograph by Diego Delso, CC BY-SA 4.0, via Wikimedia Commons.",
+    imageSourceUrl: "https://commons.wikimedia.org/wiki/File:Pez_loro_(Scarus_ferrugineus),_mar_Rojo,_Egipto,_2023-04-16,_DD_21.jpg",
+    summary:
+      "A marine parrotfish. This card is Scarus ferrugineus. It is not Scarus rubroviolaceus. The photograph is the Wikimedia file identified as Scarus ferrugineus in the Red Sea. The Global browse tag is not a native-range map.",
+    designTitle: "Scale lattice",
+    designBody:
+      "A design reading of the green and rose scale lattice in that photograph. GBIF accepts Scarus ferrugineus Forsskål, 1775, usage key 2393738.",
+    swatches: [
+      { name: "Scale green", hex: "#3E9A62" },
+      { name: "Rose", hex: "#C45B78" },
+      { name: "Teal fin", hex: "#1F8A8A" },
+    ],
+    aliases: ["rusty parrot fish"],
+    directions: [
+      {
+        id: "rusty-lattice",
+        audience: "Unisex",
+        setting: "Casual & Street",
+        title: "Scale lattice",
+        body: "A sample direction using a green ground with a rose lattice. It is not a generated outfit.",
+        textile: "Jacquard",
+      },
+    ],
+  },
 ];
 
 export type CatalogueQuery = {
@@ -496,4 +848,4 @@ export function filterDirections(animal: CatalogueAnimal, setting: (typeof direc
 export const mapStyleUrl = "https://tiles.openfreemap.org/styles/liberty";
 
 export const catalogueNote =
-  "Curated sample. The approved screen’s figures of 248 species and 1,420 looks are illustrative. Browse tags are not native ranges. Occurrence points come from GBIF and are not a range boundary.";
+  "Curated sample. The approved screen’s figures of 248 species and 1,420 looks are illustrative. Browse tags are not native ranges. Occurrence points come from GBIF and are not a range boundary. The Marine Life chip also holds freshwater varieties, the livebearer family, and the houseplant pothos. Each card names what the organism actually is.";

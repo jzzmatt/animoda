@@ -35,7 +35,7 @@ export function AnimalStep() {
           Choose your animal muse
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          Choose a species from this catalogue. The screen’s count of 248 species is illustrative. This visit uses the {catalogueAnimals.length} species already published here.
+          Choose an entry from this catalogue. The screen’s count of 248 species is illustrative. This visit uses the {catalogueAnimals.length} entries already published here, including one plant and one fish family.
         </p>
       </header>
 
@@ -93,7 +93,7 @@ export function AnimalStep() {
 
       {animals.length === 0 ? (
         <p role="status" className="rounded-xl bg-surface-container p-space-lg font-body-md text-on-surface-variant">
-          No species matches that search. Clear the text or choose another class.
+          No catalogue entry matches that search. Clear the text or choose another class.
         </p>
       ) : (
         <ul className="grid grid-cols-1 gap-gutter sm:grid-cols-2 xl:grid-cols-4">

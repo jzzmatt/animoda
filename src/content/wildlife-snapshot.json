@@ -1,6 +1,6 @@
 {
   "retrievedAt": "2026-10-25T13:17:20Z",
-  "note": "Development snapshot from the public GBIF API. Animoda uses it when a live GBIF request fails. Occurrence points are records, not a native range.",
+  "note": "Development snapshot from the public GBIF API. Animoda uses it when a live GBIF request fails. Occurrence points are records, not a native range. Marine Life browse entries were read from the public GBIF API on 25 October 2026. A shared Carassius auratus record is stored under the black moor, fantail, and shubunkin slugs. Livebearers uses the family Poeciliidae. Pothos is the plant Epipremnum aureum.",
   "species": {
     "plains-zebra": {
       "taxon": {
@@ -4739,6 +4739,1046 @@
         }
       ],
       "occurrenceCount": 258,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "halfmoon-male-betta": {
+      "taxon": {
+        "usageKey": 2393998,
+        "scientificName": "Betta splendens Regan, 1910",
+        "canonicalName": "Betta splendens",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Perciformes",
+        "family": "Osphronemidae",
+        "genus": "Betta"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "VULNERABLE",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": null,
+          "country": "AU",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Australia"
+        },
+        {
+          "locality": null,
+          "country": "BR",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Brazil"
+        },
+        {
+          "locality": null,
+          "country": "BR",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Dataset of Freshwater Invasive and Alien Species"
+        },
+        {
+          "locality": null,
+          "country": "CA",
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": null
+        },
+        {
+          "locality": null,
+          "country": "CA",
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Dataset of Freshwater Invasive and Alien Species"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 20.746769,
+          "lng": -103.514176,
+          "country": "Mexico",
+          "countryCode": "MX",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 16.704956,
+          "lng": 80.932907,
+          "country": "India",
+          "countryCode": "IN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 13.677916,
+          "lng": 100.596882,
+          "country": "Thailand",
+          "countryCode": "TH",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 13.600545,
+          "lng": 100.579321,
+          "country": "Thailand",
+          "countryCode": "TH",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 459,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "livebearers": {
+      "taxon": {
+        "usageKey": 7659,
+        "scientificName": "Poeciliidae",
+        "canonicalName": "Poeciliidae",
+        "rank": "FAMILY",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Cyprinodontiformes",
+        "family": "Poeciliidae",
+        "genus": ""
+      },
+      "distributions": [
+        {
+          "locality": null,
+          "country": "NO",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": null
+        },
+        {
+          "locality": null,
+          "country": "SE",
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Dyntaxa. Svensk taxonomisk databas"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 20.7594,
+          "lng": -155.98683,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 34.770929,
+          "lng": -87.439379,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 33.530481,
+          "lng": -104.460813,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 10.327818,
+          "lng": 106.351154,
+          "country": "Viet Nam",
+          "countryCode": "VN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 265122,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 1436,
+        "occurrences": [
+          {
+            "lat": -1.63922,
+            "lng": 29.160686,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2026
+          },
+          {
+            "lat": 1.370855,
+            "lng": 19.910947,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2025
+          },
+          {
+            "lat": 3.182228,
+            "lng": 29.539613,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2025
+          }
+        ]
+      }
+    },
+    "pothos": {
+      "taxon": {
+        "usageKey": 2868323,
+        "scientificName": "Epipremnum aureum (Linden & Andr\u00e9) G.S.Bunting",
+        "canonicalName": "Epipremnum aureum",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Plantae",
+        "phylum": "Tracheophyta",
+        "class": "Liliopsida",
+        "order": "Alismatales",
+        "family": "Araceae",
+        "genus": "Epipremnum"
+      },
+      "distributions": [
+        {
+          "locality": "East Africa",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Protected Areas - Global Register of Introduced and Invasive Species - Serengeti - Mara Ecosystem (Kenya, Tanzania)"
+        },
+        {
+          "locality": null,
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species \u2013 Ascension Island, Saint Helena, Ascension and Tristan da Cunha"
+        },
+        {
+          "locality": "Society Is.",
+          "country": null,
+          "status": null,
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Assam",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Bangladesh",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        },
+        {
+          "locality": "Bermuda",
+          "country": null,
+          "status": null,
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Catalogue of Life"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 28.078578,
+          "lng": -81.81952,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 23.706722,
+          "lng": 120.437528,
+          "country": "Chinese Taipei",
+          "countryCode": "TW",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 20.817274,
+          "lng": -156.124706,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -7.140625,
+          "lng": 110.870078,
+          "country": "Indonesia",
+          "countryCode": "ID",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 8220,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 1,
+        "occurrences": [
+          {
+            "lat": 1.400894,
+            "lng": 28.576443,
+            "country": "Congo, Democratic Republic of the",
+            "countryCode": "CD",
+            "basisOfRecord": "HUMAN_OBSERVATION",
+            "dataset": "iNaturalist research-grade observations",
+            "year": 2025
+          }
+        ]
+      }
+    },
+    "mandarin-fish": {
+      "taxon": {
+        "usageKey": 2386640,
+        "scientificName": "Synchiropus splendidus (Herre, 1927)",
+        "canonicalName": "Synchiropus splendidus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Perciformes",
+        "family": "Callionymidae",
+        "genus": "Synchiropus"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 7.34071,
+          "lng": 134.450545,
+          "country": "Palau",
+          "countryCode": "PW",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 13.700804,
+          "lng": 120.881537,
+          "country": "Philippines",
+          "countryCode": "PH",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 9.941554,
+          "lng": 123.368614,
+          "country": "Philippines",
+          "countryCode": "PH",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 9.186226,
+          "lng": 123.265841,
+          "country": "Philippines",
+          "countryCode": "PH",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 514,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "moorish-idol": {
+      "taxon": {
+        "usageKey": 2374663,
+        "scientificName": "Zanclus cornutus (Linnaeus, 1758)",
+        "canonicalName": "Zanclus cornutus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Perciformes",
+        "family": "Zanclidae",
+        "genus": "Zanclus"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": "Amplkia distribuci\u00f3n. Iindo-Pac\u00edfico, excepto Mar Rojo. Pac\u00edfico oriental tropical. Isla de Pascua",
+          "country": "CL",
+          "status": null,
+          "establishmentMeans": "NATIVE",
+          "threatStatus": null,
+          "source": "Lista sistem\u00e1tica actualizada de los peces de Chile"
+        },
+        {
+          "locality": "Kenyan Exclusive Economic Zone",
+          "country": "KE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "Chagos Archipelago",
+          "country": "MU",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "Mauritian Exclusive Economic Zone",
+          "country": "MU",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "East Pacific",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 21.873,
+          "lng": -159.457404,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.423555,
+          "lng": -155.911506,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 21.873117,
+          "lng": -159.454155,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 20.631755,
+          "lng": -156.49657,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 24327,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "picasso-triggerfish": {
+      "taxon": {
+        "usageKey": 2407235,
+        "scientificName": "Rhinecanthus aculeatus (Linnaeus, 1758)",
+        "canonicalName": "Rhinecanthus aculeatus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Tetraodontiformes",
+        "family": "Balistidae",
+        "genus": "Rhinecanthus"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": "Djiboutian Exclusive Economic Zone",
+          "country": "DJ",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "Kenyan Exclusive Economic Zone",
+          "country": "KE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "Watamu marine national park",
+          "country": "KE",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "Indo-West Pacific",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "French Exclusive Economic Zone (R\u00e9union)",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 21.584844,
+          "lng": -158.140023,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 19.926225,
+          "lng": -155.886947,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -20.139632,
+          "lng": 57.754127,
+          "country": "Mauritius",
+          "countryCode": "MU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 21.266742,
+          "lng": -157.692179,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 5810,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "rusty-parrotfish": {
+      "taxon": {
+        "usageKey": 2393738,
+        "scientificName": "Scarus ferrugineus Forssk\u00e5l, 1775",
+        "canonicalName": "Scarus ferrugineus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Perciformes",
+        "family": "Scaridae",
+        "genus": "Scarus"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": "Djiboutian Exclusive Economic Zone",
+          "country": "DJ",
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "Red Sea",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        },
+        {
+          "locality": "Somali Exclusive Economic Zone",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "World Register of Marine Species"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 27.850421,
+          "lng": 34.317544,
+          "country": "Egypt",
+          "countryCode": "EG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 27.914082,
+          "lng": 34.351413,
+          "country": "Egypt",
+          "countryCode": "EG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.55436,
+          "lng": 34.521313,
+          "country": "Egypt",
+          "countryCode": "EG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 28.55436,
+          "lng": 34.521313,
+          "country": "Egypt",
+          "countryCode": "EG",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 983,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "black-moor": {
+      "taxon": {
+        "usageKey": 4286942,
+        "scientificName": "Carassius auratus (Linnaeus, 1758)",
+        "canonicalName": "Carassius auratus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Cypriniformes",
+        "family": "Cyprinidae",
+        "genus": "Carassius"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": "Reunion",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": null
+        },
+        {
+          "locality": null,
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Gran Canaria, Islas Canarias, Spain"
+        },
+        {
+          "locality": "Caribbean",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Middle America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "North America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 45.531205,
+          "lng": -122.681617,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 45.173808,
+          "lng": 5.742242,
+          "country": "France",
+          "countryCode": "FR",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -36.247345,
+          "lng": 142.3938,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 39.80298,
+          "lng": 116.248515,
+          "country": "China",
+          "countryCode": "CN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 78822,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "fantail": {
+      "taxon": {
+        "usageKey": 4286942,
+        "scientificName": "Carassius auratus (Linnaeus, 1758)",
+        "canonicalName": "Carassius auratus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Cypriniformes",
+        "family": "Cyprinidae",
+        "genus": "Carassius"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": "Reunion",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": null
+        },
+        {
+          "locality": null,
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Gran Canaria, Islas Canarias, Spain"
+        },
+        {
+          "locality": "Caribbean",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Middle America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "North America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 45.531205,
+          "lng": -122.681617,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 45.173808,
+          "lng": 5.742242,
+          "country": "France",
+          "countryCode": "FR",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -36.247345,
+          "lng": 142.3938,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 39.80298,
+          "lng": 116.248515,
+          "country": "China",
+          "countryCode": "CN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 78822,
+      "democraticRepublicOfTheCongo": {
+        "occurrenceCount": 0,
+        "occurrences": []
+      }
+    },
+    "shubunkin": {
+      "taxon": {
+        "usageKey": 4286942,
+        "scientificName": "Carassius auratus (Linnaeus, 1758)",
+        "canonicalName": "Carassius auratus",
+        "rank": "SPECIES",
+        "status": "ACCEPTED",
+        "matchType": "EXACT",
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "",
+        "order": "Cypriniformes",
+        "family": "Cyprinidae",
+        "genus": "Carassius"
+      },
+      "distributions": [
+        {
+          "locality": "Global",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": "LEAST_CONCERN",
+          "source": "The IUCN Red List of Threatened Species"
+        },
+        {
+          "locality": "Reunion",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": null
+        },
+        {
+          "locality": null,
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": "INTRODUCED",
+          "threatStatus": null,
+          "source": "Global Register of Introduced and Invasive Species - Gran Canaria, Islas Canarias, Spain"
+        },
+        {
+          "locality": "Caribbean",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "Middle America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        },
+        {
+          "locality": "North America",
+          "country": null,
+          "status": "PRESENT",
+          "establishmentMeans": null,
+          "threatStatus": null,
+          "source": "Integrated Taxonomic Information System (ITIS)"
+        }
+      ],
+      "occurrences": [
+        {
+          "lat": 45.531205,
+          "lng": -122.681617,
+          "country": "United States of America",
+          "countryCode": "US",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 45.173808,
+          "lng": 5.742242,
+          "country": "France",
+          "countryCode": "FR",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": -36.247345,
+          "lng": 142.3938,
+          "country": "Australia",
+          "countryCode": "AU",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        },
+        {
+          "lat": 39.80298,
+          "lng": 116.248515,
+          "country": "China",
+          "countryCode": "CN",
+          "basisOfRecord": "HUMAN_OBSERVATION",
+          "dataset": "iNaturalist research-grade observations",
+          "year": 2026
+        }
+      ],
+      "occurrenceCount": 78822,
       "democraticRepublicOfTheCongo": {
         "occurrenceCount": 0,
         "occurrences": []

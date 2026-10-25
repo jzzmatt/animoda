@@ -53,10 +53,12 @@ export function CatalogueBrowser() {
           Animal Discovery
         </h1>
         <p className="max-w-3xl font-body-lg text-body-lg text-on-surface-variant">
-          Explore the natural textures, color systems, and structural forms of the curated species to inspire bespoke fashion.
+          Explore the natural textures, color systems, and structural forms in this catalogue to inspire bespoke fashion.
         </p>
         <p className="max-w-3xl font-body-sm text-body-sm text-on-surface-variant">{catalogueNote}</p>
-        <p className="font-body-sm text-body-sm text-on-surface-variant">{catalogueAnimals.length} species in this catalogue.</p>
+        <p className="font-body-sm text-body-sm text-on-surface-variant">
+          {catalogueAnimals.length} catalogue entries. The Marine Life chip includes freshwater varieties, one fish family, and the houseplant pothos.
+        </p>
       </header>
       <div className="grid min-w-0 items-start gap-gutter lg:grid-cols-12">
         <aside className="flex min-w-0 flex-col gap-space-lg lg:col-span-3">
@@ -134,7 +136,7 @@ export function CatalogueBrowser() {
         <div className="flex min-w-0 flex-col gap-space-md lg:col-span-9">
           <div className="flex flex-wrap items-center justify-between gap-space-sm">
             <p role="status" className="font-body-sm text-body-sm text-on-surface-variant">
-              {note} Showing {results.length} of {catalogueAnimals.length} curated species.
+              {note} Showing {results.length} of {catalogueAnimals.length} catalogue entries.
             </p>
             <label className="flex items-center gap-space-xs font-label-md text-label-md text-primary">
               Sort by
@@ -153,7 +155,7 @@ export function CatalogueBrowser() {
           </div>
           {results.length === 0 ? (
             <p className="rounded-3xl bg-surface-container-lowest p-space-xl font-body-lg text-body-lg text-on-surface-variant">
-              This curated sample has no species for that search or filter.
+              This curated sample has no entry for that search or filter.
             </p>
           ) : (
             <ul className="grid grid-cols-1 gap-gutter sm:grid-cols-2 xl:grid-cols-3">
@@ -185,6 +187,17 @@ export function CatalogueBrowser() {
                       </div>
                       <p className="font-body-sm text-body-sm text-secondary">{animal.scientificName}</p>
                       <p className="flex-1 font-body-md text-body-md text-on-surface-variant">{animal.summary}</p>
+                      {animal.imageCredit ? (
+                        <p className="font-body-sm text-body-sm text-on-surface-variant">
+                          {animal.imageSourceUrl ? (
+                            <a className="underline" href={animal.imageSourceUrl}>
+                              {animal.imageCredit}
+                            </a>
+                          ) : (
+                            animal.imageCredit
+                          )}
+                        </p>
+                      ) : null}
                       <p className="font-label-caps text-label-caps text-on-surface-variant uppercase">
                         {animal.group} · {animal.region} tag · {animal.color}
                       </p>

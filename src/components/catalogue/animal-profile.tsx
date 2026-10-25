@@ -49,7 +49,8 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
             {animal.commonName}
           </h1>
           <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-            {wildlife.taxon.scientificName} · GBIF {wildlife.taxon.rank.toLowerCase() || "species"} · {wildlife.taxon.className}
+            {wildlife.taxon.scientificName} · GBIF {wildlife.taxon.rank.toLowerCase() || "record"}
+            {wildlife.taxon.className ? ` · ${wildlife.taxon.className}` : ""}
           </p>
           {animal.aliases.length > 0 ? (
             <p className="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
@@ -78,8 +79,21 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
           : "Marking a profile stays in this visit. Animoda has no saved swatch list."}
       </p>
       <div className="grid min-w-0 gap-gutter lg:grid-cols-12">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface-container lg:col-span-5">
-          <EditorialImage src={animal.image} alt={animal.alt} sizes="(min-width: 1024px) 40vw, 100vw" priority />
+        <div className="lg:col-span-5">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface-container">
+            <EditorialImage src={animal.image} alt={animal.alt} sizes="(min-width: 1024px) 40vw, 100vw" priority />
+          </div>
+          {animal.imageCredit ? (
+            <p className="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+              {animal.imageSourceUrl ? (
+                <a className="underline" href={animal.imageSourceUrl}>
+                  {animal.imageCredit}
+                </a>
+              ) : (
+                animal.imageCredit
+              )}
+            </p>
+          ) : null}
         </div>
         <div className="flex flex-col gap-space-md lg:col-span-7">
           <p className="font-label-caps text-label-caps text-secondary uppercase">Design reading</p>
@@ -136,15 +150,21 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
         ))}
       </div>
       <section id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" hidden={tab !== "overview"} className="scroll-mt-24">
-        <p className="max-w-3xl font-body-lg text-body-lg text-on-surface-variant">
+        <p className="max-w-3xl font-body-lg text-body-lg text-on-surface-variant">{animal.summary}</p>
+        <p className="mt-space-sm max-w-3xl font-body-md text-body-md text-on-surface-variant">
           Taxonomy is the GBIF species match for {animal.scientificName}, usage key {wildlife.taxon.usageKey}, match type {wildlife.taxon.matchType}. Source of this view: {wildlife.source === "gbif" ? "live GBIF" : "the development snapshot"}.
         </p>
       </section>
       <section id="panel-gallery" role="tabpanel" aria-labelledby="tab-gallery" hidden={tab !== "gallery"} className="scroll-mt-24">
         <ul className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((image) => (
-            <li key={image.src} className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-surface-container">
-              <EditorialImage src={image.src} alt={image.alt} sizes="(min-width: 1024px) 30vw, 100vw" />
+            <li key={image.src}>
+              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-surface-container">
+                <EditorialImage src={image.src} alt={image.alt} sizes="(min-width: 1024px) 30vw, 100vw" />
+              </div>
+              {animal.imageCredit ? (
+                <p className="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">{animal.imageCredit}</p>
+              ) : null}
             </li>
           ))}
         </ul>
