@@ -329,7 +329,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 - Valid species silhouettes after: 14 files, shown on 16 catalogue entries.
 - Missing assets or licensing blockers: 21 scientific names. Betta splendens is CC BY-NC 3.0 and Pavo cristatus is CC BY-NC-SA 3.0, so those files were not copied. Giraffa camelopardalis and Poeciliidae have no exact reusable vector. The other 17 names have no PhyloPic node. No silhouette was invented.
 - Files and assets: `src/components/catalogue/animal-silhouette.tsx`, `src/content/silhouettes.ts`, `src/content/silhouettes.json`, `src/content/silhouettes.test.tsx`, `public/silhouettes/*.svg`, and the catalogue, profile, and studio surfaces that render the component.
-- Tests and build results (26 October 2026, about 14:35 Europe/London):
+- Tests and build results (26 October 2026, about 14:34 Africa/Luanda):
   - `npm test`: 42 passed, including zebra and leopard resolving different files, the shared goldfish silhouette, the giraffe fallback, an external address being ignored, and coverage of 16 of 37 animals.
   - `npm run typecheck`: passed.
   - `npm run lint`: passed.
