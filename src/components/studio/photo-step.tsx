@@ -7,9 +7,7 @@ import { pageGutter } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { photoRejection } from "@/studio/session";
 import { useStudio } from "@/studio/studio-provider";
-import { FramingPracticesDialog } from "./framing-practices-dialog";
-
-type PhotoIntent = "camera" | "upload" | "drop";
+import { FramingPracticesPanel } from "./framing-practices-panel";
 
 async function compressPhoto(file: File): Promise<string> {
   const bitmap = await createImageBitmap(file);
@@ -37,8 +35,6 @@ export function PhotoStep() {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [preparing, setPreparing] = useState(false);
-  const [guidance, setGuidance] = useState<PhotoIntent | null>(null);
-  const droppedFile = useRef<File | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -91,32 +87,6 @@ export function PhotoStep() {
     }
   }
 
-  function requestGuidance(intent: PhotoIntent, file?: File) {
-    droppedFile.current = intent === "drop" ? (file ?? null) : null;
-    setGuidance(intent);
-  }
-
-  function cancelGuidance() {
-    droppedFile.current = null;
-    setGuidance(null);
-  }
-
-  function confirmGuidance() {
-    const intent = guidance;
-    const file = droppedFile.current;
-    droppedFile.current = null;
-    setGuidance(null);
-    if (intent === "upload") {
-      uploadRef.current?.click();
-      return;
-    }
-    if (intent === "drop") {
-      void acceptFile(file ?? undefined);
-      return;
-    }
-    void openCamera();
-  }
-
   function captureFrame() {
     const video = videoRef.current;
     if (!video || video.videoWidth === 0) {
@@ -156,8 +126,8 @@ export function PhotoStep() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 items-start gap-space-xl lg:grid-cols-12">
-        <div className="flex flex-col gap-space-md lg:col-span-7">
+      <div className="grid grid-cols-1 items-start gap-space-xl lg:grid-cols-2">
+        <div className="order-3 flex flex-col gap-space-md lg:order-none lg:col-start-1 lg:row-start-2">
           <div className="rounded-xl bg-surface-container-lowest p-space-md shadow-xl">
             <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-lg bg-surface-container">
               {stream ? (
@@ -190,7 +160,7 @@ export function PhotoStep() {
                 ) : null}
                 <button
                   type="button"
-                  onClick={() => requestGuidance("upload")}
+                  onClick={() => uploadRef.current?.click()}
                   className="inline-flex min-h-11 items-center gap-space-xxs rounded-full bg-surface-container px-space-md font-label-md text-label-md text-on-surface"
                 >
                   <Icon name="sync_alt" className="text-[18px]" />
@@ -222,7 +192,7 @@ export function PhotoStep() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-space-lg lg:col-span-5">
+        <div className="order-1 flex flex-col gap-space-lg lg:order-none lg:col-start-1 lg:row-start-1">
           <section className="flex flex-col gap-space-md rounded-xl bg-surface-container-lowest p-space-xl shadow-md">
             <div>
               <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Select method</p>
@@ -231,7 +201,7 @@ export function PhotoStep() {
             </div>
             <button
               type="button"
-              onClick={() => requestGuidance("camera")}
+              onClick={() => void openCamera()}
               className="flex min-h-11 items-start gap-space-md rounded-xl bg-surface-container-low p-space-md text-left hover:bg-surface-container"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-golden-accent">
@@ -249,13 +219,13 @@ export function PhotoStep() {
               onDragOver={(event) => event.preventDefault()}
               onDrop={(event) => {
                 event.preventDefault();
-                requestGuidance("drop", event.dataTransfer.files[0]);
+                void acceptFile(event.dataTransfer.files[0]);
               }}
-              onClick={() => requestGuidance("upload")}
+              onClick={() => uploadRef.current?.click()}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
                   event.preventDefault();
-                  requestGuidance("upload");
+                  uploadRef.current?.click();
                 }
               }}
               role="button"
@@ -293,20 +263,9 @@ export function PhotoStep() {
             ) : null}
           </section>
 
-          <section className="rounded-xl bg-surface-container-lowest p-space-xl shadow-md">
-            <h2 className="font-title-md text-title-md text-primary">Framing practices</h2>
-            <p className="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
-              Review stance, light, framing, and gaze before a photograph is captured or uploaded.
-            </p>
-            <button
-              type="button"
-              onClick={() => requestGuidance("camera")}
-              className="mt-space-md inline-flex min-h-11 items-center gap-space-xxs rounded-full bg-surface-container px-space-md font-label-md text-label-md text-on-surface"
-            >
-              <Icon name="photo_camera" className="text-[18px]" />
-              Open framing practices
-            </button>
-          </section>
+        </div>
+        <div className="order-2 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2">
+          <FramingPracticesPanel />
         </div>
       </div>
 
@@ -322,7 +281,6 @@ export function PhotoStep() {
           <Button disabled>Continue to animal selection</Button>
         )}
       </div>
-      <FramingPracticesDialog open={guidance !== null} onCancel={cancelGuidance} onTakePhoto={confirmGuidance} />
     </div>
   );
 }
