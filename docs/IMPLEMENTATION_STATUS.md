@@ -322,11 +322,21 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 - Tests (26 October 2026, about 17:32 Africa/Luanda): `npm test` 64 passed. `npm run typecheck` passed. `npm run lint` passed. `npm run build` passed. The emerald tree boa profile is a static page and its build output includes the three stored image paths. No browser automation. No deployment.
 - Approval state and date: Not approved. Phase 6.2 has not started.
 
+### Phase 6.2 — Remaining catalogue samples
+
+- Status: VERIFIED, awaiting approval. The approved Emerald tree boa samples were left in place. The other catalogue animals now have three stored styles each.
+- Catalogue: 37 animals. Expected samples: 111. Completed with a verified Storage object: 111. Pending: 0. Failed: 0. Duplicates: 0.
+- One sample, Picasso bug casual streetwear, failed on the first pass with `sample_failed` and succeeded on the resume. The resume skipped the 110 samples that were already stored.
+- Model: `gpt-image-2.5-sunburst`. New samples use prompt version `catalogue-1`. The three boa samples remain `boa-pilot-1`.
+- Display: every catalogue animal profile shows its three stored styles. A missing file shows an unavailable state and is not labelled as a generated image.
+- Verification (26 October 2026, about 18:16 Africa/Luanda): 111 completed rows, 37 animals, no duplicates, and every public object returned a PNG signature. `npm test` 63 passed. Typecheck, lint, and the production build passed. The zebra and Picasso bug pages include their stored image paths. No browser automation. No deployment.
+- Approval state and date: Not approved. Phase 6C has not started.
+
 ### Phase 6B — Permanent AI fashion samples
 
-- Status: NOT STARTED
-- Scope: Generate three images for every catalogue animal (Formal Couture, Casual & Streetwear, Youth Couture), store the bytes in `animoda-fashion-samples`, and show those stored images in the catalogue. Expected count is the current catalogue length times 3, which is 111 while the catalogue has 37 animals. The persistence check succeeded. Generation has not been run.
-- Completed work: The idempotent skip and resume rules are unit-tested. No generation batch, prompt sender, or catalogue image replacement was added.
+- Status: COVERED BY PHASE 6.1 AND PHASE 6.2
+- Scope: Generate three images for every catalogue animal (Formal Couture, Casual & Streetwear, Youth Couture), store the bytes in `animoda-fashion-samples`, and show those stored images in the catalogue. Expected count is 111 for the current 37 animals.
+- Completed work: Phase 6.1 stored the Emerald tree boa. Phase 6.2 stored the remaining animals. All 111 objects were read back as PNG files.
 - Approval state and date: Not approved.
 
 ### Phase 6C — User authentication and private gallery
@@ -381,7 +391,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 stored three Emerald tree boa samples and is awaiting approval. Phase 6.2 and Phase 6C have not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 and Phase 6.2 stored 111 fashion samples, three for each of the 37 catalogue animals. Phase 6C has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 

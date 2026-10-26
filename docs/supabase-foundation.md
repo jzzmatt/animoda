@@ -29,4 +29,4 @@ A temporary `phase6a-probe` row was written with the secret key and then removed
 - After the PNG was uploaded and the row was marked completed, the publishable key returned that row and the public URL returned the same 70 bytes.
 - Deleting the row removed the job. The file was removed. The table, the job table, and the bucket were empty again.
 
-The temporary probe was removed. Phase 6.1 later stored three completed Emerald tree boa samples in this bucket. `FASHION_SAMPLE_ADMIN_TOKEN` is still absent, so `GET /api/admin/fashion-samples` stays closed. Phase 6.2 has not started.
+The temporary probe was removed. The bucket now holds 111 completed catalogue samples, three styles for each of the 37 animals. `FASHION_SAMPLE_ADMIN_TOKEN` is still absent, so `GET /api/admin/fashion-samples` stays closed. Phase 6C has not started.

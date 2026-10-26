@@ -183,6 +183,9 @@ async function storeOneSample(input: {
     return { animalId: animal.slug, style, action: "completed", id, imagePath: path, errorCode: null };
   } catch (error) {
     const errorCode = safeCode(error);
+    const raw = error instanceof Error ? error.message : "sample_failed";
+    const redacted = raw.replace(/sb_[a-z]+_[A-Za-z0-9._-]+/g, "[key]").replace(/sk-[A-Za-z0-9_-]+/g, "[key]").slice(0, 160);
+    console.log(`error ${animal.slug} ${style} ${redacted}`);
     await supabase.from("animal_fashion_samples").update({ generation_status: "failed", error_code: errorCode }).eq("id", id).eq("animal_id", animal.slug);
     await supabase.from("fashion_sample_jobs").update({ status: "failed", error_code: errorCode, finished_at: new Date().toISOString() }).eq("sample_id", id).eq("status", "generating");
     return { animalId: animal.slug, style, action: "failed", id, imagePath: null, errorCode };
