@@ -122,7 +122,7 @@ export function PhotoStep() {
           Add your portrait
         </h1>
         <p className="mt-space-xs max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
-          Upload a clear photograph or take one with your camera. Animoda keeps it in this browser for the visit. It is not uploaded, and it is not measured.
+          Upload a clear photograph or take one with your camera. Animoda keeps it in this browser for the visit. It is not measured. A try-on request can send it to OpenAI on the server, and it is not published.
         </p>
       </header>
 

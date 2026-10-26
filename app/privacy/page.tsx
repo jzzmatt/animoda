@@ -17,9 +17,11 @@ export default function PrivacyPage() {
           <p>Marking a look on the lookbook stays on that page for the visit. There is no account and no saved wishlist.</p>
         </TextSection>
         <TextSection title="Photographs and try-on">
-          <p>This preview does not ask for a photograph and does not send an image to a provider.</p>
           <p>
-            When the Studio opens, a photograph and a selected design may be processed by the configured AI provider. That processing will be described before you continue, and a result will not be published without your consent.
+            The studio can keep a photograph in this browser. A concept request sends the selected animal and garment description to OpenAI. It does not send the photograph. A try-on request sends that photograph and the selected design to OpenAI on the server so it can make a visualization.
+          </p>
+          <p>
+            The result is an AI visualization, not a guaranteed representation of a finished garment, its measurements, or its fit. Photographs and try-on images are not published. They stay in server memory for this process and are not a private gallery.
           </p>
         </TextSection>
         <TextSection title="What Animoda does not do here">

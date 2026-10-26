@@ -40,7 +40,7 @@ export function LookStep() {
           Your selected design
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          {direction.title} stays the reference for {animal.commonName} ({animal.scientificName}). A try-on request starts a server job. With no try-on key configured, the job is a labelled mock and no composite is made.
+          {direction.title} stays the reference for {animal.commonName} ({animal.scientificName}). A try-on request sends this photograph and that design to OpenAI on the server. The result is an AI visualization, not a guaranteed representation of the finished garment, its measurements, or its fit.
         </p>
       </header>
 
@@ -77,7 +77,7 @@ export function LookStep() {
       <section className="rounded-xl bg-surface-container p-space-lg">
         <h2 className="font-title-md text-title-md text-primary">Try-on preview</h2>
         <p className="mt-space-xs font-body-md text-on-surface-variant">
-          Requesting a preview does not change the selected design and does not upload the photograph. The preview above stays the catalogue photograph.
+          Requesting a preview does not change the selected design. The photograph is sent only for this visualization and is not published. An unchanged photograph is not treated as a successful try-on.
         </p>
         <div className="mt-space-md flex flex-wrap gap-space-sm">
           <Button onClick={requestPreview} disabled={jobState.pending}>
@@ -92,6 +92,16 @@ export function LookStep() {
         <div className="mt-space-sm">
           <StudioJobNotice job={jobState.job} pending={jobState.pending} />
         </div>
+        {jobState.job?.composite ? (
+          <figure className="mt-space-md overflow-hidden rounded-2xl bg-surface-container-lowest">
+            {/* The try-on is a visit-scoped server image. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={jobState.job.composite} alt="AI visualization of the selected outfit on your photograph" className="aspect-[3/4] w-full object-cover" />
+            <figcaption className="p-space-md font-body-sm text-body-sm text-on-surface-variant">
+              AI visualization. This is not a guaranteed representation of the finished garment, and it does not measure fit or confirm that the garment can be made.
+            </figcaption>
+          </figure>
+        ) : null}
       </section>
 
       {related.length > 0 ? (
