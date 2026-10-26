@@ -4,15 +4,21 @@ export const studioJobUnreachableMessage =
 export type StudioJobKind = "concept" | "try-on";
 export type StudioJobStatus = "queued" | "running" | "succeeded" | "failed";
 
+export type StudioJobImage = {
+  directionId: string;
+  href: string;
+};
+
 export type StudioJobView = {
   id: string | null;
   kind: StudioJobKind | null;
   status: StudioJobStatus;
-  mode: "mock" | "key-without-provider" | null;
+  mode: "openai" | "demo" | "unconfigured" | null;
   label: string;
   referenceDirectionId: string | null;
   directionIds: string[];
-  composite: null;
+  images: StudioJobImage[];
+  composite: string | null;
   message: string;
   quota: { kind: StudioJobKind; used: number; limit: number; remaining: number } | null;
 };
@@ -24,6 +30,7 @@ export type StudioJobPollInput = {
   audience: string;
   directionId: string | null;
   setting?: string | null;
+  portraitDataUrl?: string | null;
   intervalMs?: number;
   timeoutMs?: number;
   fetchImpl?: typeof fetch;
@@ -46,6 +53,7 @@ function failedView(input: StudioJobPollInput, message: string, quota: StudioJob
     label: quota ? "Visit quota" : "Studio job",
     referenceDirectionId: input.directionId,
     directionIds: [],
+    images: [],
     composite: null,
     message,
     quota,
@@ -72,14 +80,32 @@ function viewFromPayload(value: unknown, input: StudioJobPollInput): StudioJobVi
     id: typeof record.id === "string" ? record.id : null,
     kind: record.kind === "concept" || record.kind === "try-on" ? record.kind : input.kind,
     status: record.status as StudioJobStatus,
-    mode: record.mode === "mock" || record.mode === "key-without-provider" ? record.mode : null,
+    mode: record.mode === "openai" || record.mode === "demo" || record.mode === "unconfigured" ? record.mode : null,
     label: typeof record.label === "string" ? record.label : "Studio job",
     referenceDirectionId: typeof record.referenceDirectionId === "string" ? record.referenceDirectionId : input.directionId,
     directionIds,
-    composite: null,
+    images: readImages(record.images),
+    composite: sameOriginImage(record.composite),
     message: record.message,
     quota: readQuota(record.quota),
   };
+}
+
+function sameOriginImage(value: unknown): string | null {
+  if (typeof value !== "string" || !value.startsWith("/api/studio/jobs/")) return null;
+  if (value.includes("..") || value.includes("://") || value.includes("data:")) return null;
+  return value;
+}
+
+function readImages(value: unknown): StudioJobImage[] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((item) => {
+    if (!item || typeof item !== "object") return [];
+    const record = item as Record<string, unknown>;
+    const href = sameOriginImage(record.href);
+    if (!href || typeof record.directionId !== "string") return [];
+    return [{ directionId: record.directionId, href }];
+  });
 }
 
 async function readJson(response: Response): Promise<unknown> {
@@ -95,7 +121,7 @@ function wait(ms: number) {
 }
 
 export async function pollStudioJob(input: StudioJobPollInput): Promise<StudioJobView> {
-  const payload = {
+  const payload: Record<string, unknown> = {
     visitId: input.visitId,
     kind: input.kind,
     animalSlug: input.animalSlug,
@@ -103,9 +129,10 @@ export async function pollStudioJob(input: StudioJobPollInput): Promise<StudioJo
     directionId: input.directionId,
     setting: input.setting ?? null,
   };
+  if (input.kind === "try-on" && input.portraitDataUrl) payload.portrait = input.portraitDataUrl;
   const body = JSON.stringify(payload);
-  if (body.includes("data:image")) {
-    return failedView(input, "This browser did not send the photograph. The selected design remains the reference.");
+  if (input.kind !== "try-on" && body.includes("data:image")) {
+    return failedView(input, "This browser did not send the photograph with a concept request. The selected design remains the reference.");
   }
   const fetchImpl = input.fetchImpl ?? fetch;
   const intervalMs = input.intervalMs ?? 200;

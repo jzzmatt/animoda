@@ -29,6 +29,7 @@ export function SuggestionsStep() {
   if (!animal) return <BlockedStep needed="animal" />;
   const selectedId = keptDirectionId(studio.directionId, jobState.job);
   const directions = sampleDirections(animal, studio.audience, setting);
+  const generated = new Map((jobState.job?.images ?? []).map((image) => [image.directionId, image.href]));
 
   const regenerate = () => {
     void jobState.start({ animalSlug: animal.slug, directionId: selectedId, setting });
@@ -37,12 +38,12 @@ export function SuggestionsStep() {
   return (
     <div className={cn("mx-auto flex w-full max-w-7xl flex-col gap-space-xl py-space-xl", pageGutter)}>
       <header className="max-w-3xl">
-        <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Step 3 of 5 · Sample directions</p>
+        <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Step 3 of 5 · Fashion concepts</p>
         <h1 className="mt-space-xs font-headline-xl-mobile text-headline-xl-mobile text-primary md:font-headline-lg md:text-headline-lg">
-          Sample directions for {studio.audience.toLowerCase()} — {animal.commonName}
+          Concepts for {studio.audience.toLowerCase()} — {animal.commonName}
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          These cards are the catalogue directions for {animal.scientificName}. Regenerating starts a server job. With no concept key configured, the job is a labelled mock and this list stays the catalogue. Select one design to carry forward.
+          These cards start from the catalogue directions for {animal.scientificName}. Regenerate asks OpenAI for a new concept inspired by the animal. Until that image arrives, the catalogue photograph stays in place. Select one design to carry forward.
         </p>
       </header>
 
@@ -93,6 +94,7 @@ export function SuggestionsStep() {
             <DirectionCard
               key={direction.id}
               direction={direction}
+              generatedHref={generated.get(direction.id) ?? null}
               selected={selectedId === direction.id}
               onSelect={() => studio.setDirection(direction.id)}
             />
@@ -118,16 +120,24 @@ export function SuggestionsStep() {
 
 function DirectionCard({
   direction,
+  generatedHref,
   selected,
   onSelect,
 }: {
   direction: SampleDirection;
+  generatedHref: string | null;
   selected: boolean;
   onSelect: () => void;
 }) {
   return (
     <li className={cn("flex flex-col overflow-hidden rounded-3xl bg-surface-container-lowest shadow-sm", selected && "ring-2 ring-golden-accent")}>
-      {direction.image && direction.alt ? (
+      {generatedHref ? (
+        <div className="relative aspect-[3/4] bg-surface-container">
+          {/* The concept is a visit-scoped server image, not a static catalogue file. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={generatedHref} alt={`OpenAI concept for ${direction.title}`} className="h-full w-full object-cover" />
+        </div>
+      ) : direction.image && direction.alt ? (
         <div className="relative aspect-[3/4] bg-surface-container">
           <EditorialImage src={direction.image} alt={direction.alt} sizes="(min-width: 1280px) 30vw, 100vw" />
         </div>
@@ -137,7 +147,9 @@ function DirectionCard({
         </div>
       )}
       <div className="flex flex-1 flex-col gap-space-xs p-space-lg">
-        <p className="font-label-caps text-label-caps text-secondary uppercase">{direction.audience}</p>
+        <p className="font-label-caps text-label-caps text-secondary uppercase">
+          {generatedHref ? "OpenAI visualization" : direction.audience}
+        </p>
         <h2 className="font-title-md text-title-md text-primary">{direction.title}</h2>
         <p className="font-body-md text-body-md text-on-surface-variant">{direction.body}</p>
         <p className="font-body-sm text-body-sm text-on-surface-variant">Textile note: {direction.textile}</p>

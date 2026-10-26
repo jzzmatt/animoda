@@ -21,7 +21,7 @@
   - Use Material Symbols Outlined, the icon set in the approved screens. `next/font` does not ship that family, so the root layout loads the same Google Fonts stylesheet the screens use.
   - The foundation review now lives at `/foundation`. The public landing page is `/`.
   - Keep product localisation for Phase 9. This foundation review is in English, matching the approved screens. Portuguese remains the planned default language.
-  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists the later names only. Phase 5 reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` on the server only. Empty values run a labelled mock. A set value does not call a provider, because none has been chosen.
+  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists later names with empty or non-secret placeholders. Phase 5 reads `OPENAI_API_KEY` and the optional `OPENAI_IMAGE_MODEL` on the server only. A missing key fails the job with a configuration message. `ANIMODA_IMAGE_PROVIDER=demo` is an explicit labelled demo and does not call OpenAI.
 
 ## Approved design mapping
 
@@ -240,51 +240,57 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - `npm run lint`: passed.
   - `npm run build`: passed. `/studio`, `/studio/animal`, `/studio/suggestions`, `/studio/look`, and `/studio/next` are static.
   - Browser check: a first visit with no saved edition uses Obsidian Atelier. Uploading a photograph, choosing Women and plains zebra, and selecting the gown reaches the selected-design step. Regenerating reports that the concept provider is not connected. Requesting a try-on reports that the provider is not connected. Noting a quotation says no atelier received it. Girls see the children’s zebra direction and not the gown. Desktop 1440px and a 390px phone had no horizontal overflow.
-- Missing credentials: A concept provider and a try-on provider were absent when this phase shipped. Phase 5 reads those server names.
+- Missing credentials: A concept provider and a try-on provider were absent when this phase shipped. Phase 5 now uses OpenAI through server environment variables.
 - Outstanding tasks: None in this phase.
 - Approval state and date: Approved on 26 October 2026 at 04:52 Europe/London, when the next phase was explicitly requested.
 
 ### Phase 5 — Real AI integration
 
-- Status: APPROVED
-- Scope: Concept provider, try-on provider, server credentials, job lifecycle, quotas, selected-design reference preservation, and a labelled mock when credentials are absent.
+- Status: AWAITING APPROVAL
+- Scope: OpenAI as the only image provider for fashion concepts and virtual try-on, with a modular provider boundary, server credentials, job lifecycle, quotas, and an explicit labelled demo. The earlier labelled-mock job lifecycle was approved on 26 October 2026 at 05:38 Europe/London. This revision replaces that mock with OpenAI and waits for approval. Phase 6 has not started.
 - Completed work:
-  - Added server routes `POST /api/studio/jobs` and `GET /api/studio/jobs/[id]`. A job is queued, then running, then succeeded or failed. Records live in the server process. A restart clears them.
-  - The server reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` and does not return or log the values. Both are empty, so each accepted job is a labelled mock. A non-empty key fails that job with “Provider not chosen” and sends no request, because no provider API has been chosen.
-  - A concept job returns the catalogue direction ids for the animal, audience, and silhouette. It does not add a design. The selected direction id is echoed and is not replaced. Girls and boys still receive only children’s directions.
-  - A try-on job returns no composite. The route rejects a photograph. The portrait stays in this browser. The selected catalogue photograph remains the reference on the page.
-  - Each visit may run 8 concept jobs and 8 try-on jobs. The counters are process memory, not an account quota. One visit cannot read another visit’s job.
-  - Regenerating and requesting a preview show the job label, status, id, and remaining count. Saving and a quotation note stay in this visit.
+  - Kept `POST /api/studio/jobs` and `GET /api/studio/jobs/[id]`. Added `GET /api/studio/jobs/[id]/image` for a visit-scoped generated image. Records live in the server process. A restart clears them. There is no durable private store in this phase.
+  - OpenAI is the image provider, through `src/server/fashion-image-provider.ts` and the official `openai` package. Concepts use image generation, or image editing when a catalogue reference file exists. Try-on uses image editing with the photograph and the selected garment. The model is `OPENAI_IMAGE_MODEL`, defaulting to `gpt-image-2.5-sunburst`. The call does not send `response_format` or `input_fidelity`. The server checks `models.retrieve` once per process before generating.
+  - A missing `OPENAI_API_KEY` fails the job as Configuration. No image request is sent, quota is not spent, and no image is invented. The retired names `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` are ignored. `ANIMODA_IMAGE_PROVIDER=demo` is the only labelled demo, and it does not call OpenAI or invent an image.
+  - A concept job can return up to two generated images for the current catalogue directions. The selected direction id is not replaced. Girls and boys still receive only children’s directions, and the prompt asks for age-appropriate covered clothing. Animal markings are a creative reference, not animal-skin material.
+  - A try-on accepts a JPG, PNG, or WebP data URL up to 8MB, with edges from 64 to 4096, and only on the try-on request. The photograph is not stored on the job after the call. An unchanged photograph or garment is discarded. The page says the result is an AI visualization, not a guaranteed finished garment, measurement, or fit.
+  - Generated bytes are served only to the same visit, with `Cache-Control: private, no-store`. One visit cannot read another visit’s job or image. Each visit may run 8 concept jobs and 8 try-on jobs in process memory.
+  - The client waits up to 180 seconds. Same-origin job image paths are shown. External URLs and data URLs in a job response are dropped.
 - Files created or modified:
   - `app/api/studio/jobs/route.ts`
   - `app/api/studio/jobs/[id]/route.ts`
+  - `app/api/studio/jobs/[id]/image/route.ts`
   - `src/server/studio-jobs.ts`
   - `src/server/studio-jobs.test.ts`
+  - `src/server/fashion-image-provider.ts`
+  - `src/server/fashion-image-provider.test.ts`
+  - `src/server/portrait-input.ts`
+  - `src/server/portrait-input.test.ts`
+  - `src/server/client-boundary.test.ts`
   - `src/studio/jobs-client.ts`
   - `src/studio/jobs-client.test.ts`
   - `src/studio/use-studio-job.ts`
-  - `src/studio/session.ts`
-  - `src/studio/session.test.ts`
-  - `src/studio/studio-store.ts`
   - `src/components/studio/suggestions-step.tsx`
   - `src/components/studio/look-step.tsx`
-  - `src/components/studio/studio-job-notice.tsx`
-  - `src/content/site.ts`
-  - `app/studio/suggestions/page.tsx`
-  - `app/studio/look/page.tsx`
+  - `app/privacy/page.tsx`
+  - `next.config.ts`
+  - `package.json`
+  - `package-lock.json`
   - `.env.example`
   - `README.md`
   - `docs/IMPLEMENTATION_STATUS.md`
-- Database or configuration changes: None. No provider account, Supabase project, or portrait store was created. The two Phase 5 keys remain empty.
-- Tests and build results (26 October 2026, Europe/London):
-  - `npm test`: 36 passed, including the mock lifecycle, the unchanged selected design, the absent composite, the key-without-provider failure, and the visit quota.
+- Database or configuration changes: None. No Supabase project, storage bucket, or production deploy. `OPENAI_API_KEY` is not in this environment, so the live model was not called and account availability is not confirmed.
+- Tests and build results (26 October 2026, about 09:10 Europe/London):
+  - `npm test`: 47 passed. Coverage includes portrait validation, the missing-key failure, the explicit labelled demo, mocked OpenAI concept and try-on bytes, an unchanged try-on being discarded, a missing model, a rate-limit message that does not keep a key, visit isolation for the image route, and a client-source scan that rejects `OPENAI_API_KEY` and the OpenAI SDK import.
   - `npm run typecheck`: passed.
   - `npm run lint`: passed.
-  - `npm run build`: passed. `/api/studio/jobs` and `/api/studio/jobs/[id]` are dynamic. The studio pages stay static.
-  - Browser check in the visible Chrome window, Obsidian Atelier, about 05:16 Europe/London: uploading a photograph, choosing Women and plains zebra, and selecting the gown reaches the sample directions. Regenerating shows “Labelled mock · Succeeded”, leaves the two catalogue cards, and keeps the gown selected. The try-on request shows the same labelled success, says no composite was made, and the portrait and the catalogue gown stay separate images. The job requests carry the visit, the animal, the audience, and the selected design. Desktop width and a 390px layout had no horizontal overflow.
-- Missing credentials: No concept provider and no try-on provider are chosen. The server keys are absent, so the labelled mock is what runs.
-- Outstanding tasks: None in this phase.
-- Approval state and date: Approved on 26 October 2026 at 05:38 Europe/London. Phase 6 has not started.
+  - `npm run build`: passed. `/api/studio/jobs`, `/api/studio/jobs/[id]`, and `/api/studio/jobs/[id]/image` are dynamic. The studio pages stay static.
+  - The production client chunks do not contain `OPENAI_API_KEY`. A substring `sk-` appears only inside the CSS property `mask-type`.
+  - Browser check against the local server, Obsidian Atelier, about 09:22 Europe/London: uploading a photograph, choosing Women and plains zebra, and regenerating shows “Configuration · Failed” and “Set OPENAI_API_KEY. No image request was sent”. The catalogue gown and trench stay. No OpenAI visualization is shown. The try-on request shows the same configuration failure, leaves the portrait and the selected gown separate, and does not show a try-on image. Quota stays at 8 of 8 because a missing key does not spend a job. Desktop and a 390px width had no horizontal overflow. Framing practices stay beside the photo controls. A live OpenAI image was not requested, because this environment has no `OPENAI_API_KEY`.
+- Required account configuration: Create an OpenAI API key with access to image generation. Set `OPENAI_API_KEY` on the server. Confirm `gpt-image-2.5-sunburst` is available to that account, including any organization verification and billing the Image API requires. The first live job calls `models.retrieve` and fails closed if the model is missing. Do not put the key in `NEXT_PUBLIC_*` or in the repository.
+- Known limitations: Images and the in-flight photograph exist only in process memory. A restart deletes them. There is no retention job beyond evicting old visits from that memory. The try-on does not measure the body and does not confirm that a garment can be made. Quality is `medium` for concepts and `high` for try-on, both at `1024x1536` JPEG. At most two concepts are requested per job. The integration is not treated as operational until a key is present and `models.retrieve` succeeds for the configured model.
+- Outstanding tasks: Approval of this revision. A live check against the OpenAI account once a key is configured. Phase 6 private storage is not part of this work.
+- Approval state and date: The labelled-mock slice was approved on 26 October 2026 at 05:38 Europe/London. The OpenAI provider revision is awaiting approval. Phase 6 has not started.
 
 ### Phase 6 — Authentication, database, and private gallery
 
@@ -316,7 +322,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6, authentication and the private gallery, has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, and Phase 4 are approved. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 5 now uses OpenAI for concepts and try-on and is awaiting approval of that revision. Phase 6, authentication and the private gallery, has not started. Without `OPENAI_API_KEY`, a studio job fails with a configuration message and does not invent an image. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 
@@ -356,7 +362,7 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 - Marine Life lists the requested fishes. Pothos was removed from that chip. Halfmoon male betta is Betta splendens, a freshwater fish; halfmoon is a tail shape and male is the sex. Black moor, fantail, and shubunkin are varieties of the freshwater goldfish Carassius auratus and share GBIF usage key 4286942. Livebearers is the family Poeciliidae, and the photograph is one guppy. Mandarin fish on this card is the marine dragonet Synchiropus splendidus. The freshwater perch Siniperca chuatsi is a different species. Moorish idol is Zanclus cornutus. Picasso triggerfish is Rhinecanthus aculeatus. Rusty parrotfish is Scarus ferrugineus, not Scarus rubroviolaceus.
 - The supplied insect, reptile, and bird list is in those catalogue groups. Army green moth is the oleander hawk-moth, Daphnis nerii. Calligrapher beetle on this card is Calligrapha philadelphica. Thorny cricket is Cosmoderus femoralis; the photograph is a museum specimen of the related species Cosmoderus erinaceus because an openly licensed photograph of C. femoralis was not available. Rainbow bright chameleon is the panther chameleon, Furcifer pardalis. Phoenix rooster is a long-tailed breed of Gallus gallus, not a separate wild species. Majestic eagle is a descriptive label for the bald eagle, Haliaeetus leucocephalus. Ploughshare tortoise is Astrochelys yniphora, and GBIF places it in class Testudines while the catalogue chip is Reptiles. Victoria crowned pigeon uses the Oceania browse tag. Stock-photo search links from the list were not downloaded. Photographs are openly licensed Wikimedia Commons files, credited on the card. GBIF currently returns no class for the catalogue fishes, so the profile omits a blank class.
 - Material Symbols require a request to Google Fonts at runtime. A later phase can self-host the subset if offline icon rendering becomes a requirement.
-- No concept provider and no try-on provider are chosen. `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` are server-only and empty. An empty value runs a labelled mock job. A set value fails the job and sends no request. The portrait stays in the browser. A job does not replace the selected catalogue design. The visit quota is process memory, not an account quota.
+- OpenAI is the only image provider in this revision. `OPENAI_API_KEY` is server-only and absent here, so the integration is not operational. `OPENAI_IMAGE_MODEL` defaults to `gpt-image-2.5-sunburst`. A missing key fails the job and sends no request. `ANIMODA_IMAGE_PROVIDER=demo` is an explicit labelled demo. The portrait stays in the browser until a try-on request. A job does not replace the selected catalogue design. Generated images stay in process memory and are not published. The visit quota is process memory, not an account quota. The try-on is a visualization, not a measurement or a manufacturing specification.
 
 ## External credentials still required
 
@@ -365,8 +371,9 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 | 6 | `NEXT_PUBLIC_SUPABASE_URL` | Absent |
 | 6 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Absent |
 | 6 | `SUPABASE_SERVICE_ROLE_KEY` | Absent. Server only. |
-| 5 | `FASHION_CONCEPT_API_KEY` | Absent. Server only. An empty value runs the labelled mock. A value does not call a provider, because none is chosen. |
-| 5 | `VIRTUAL_TRY_ON_API_KEY` | Absent. Server only. An empty value runs the labelled mock. A value does not call a provider, because none is chosen. |
+| 5 | `OPENAI_API_KEY` | Absent. Server only. A missing value fails the job and sends no request. |
+| 5 | `OPENAI_IMAGE_MODEL` | Optional. Defaults to `gpt-image-2.5-sunburst` when empty. Availability to the account is not confirmed until a key is set. |
+| 5 | `ANIMODA_IMAGE_PROVIDER` | Unset. Set to `demo` only for an explicit labelled demo that does not call OpenAI. |
 | 3 | Wildlife source | In use. Public GBIF, no key. A labelled snapshot covers a failed request. |
 | 3 | MapLibre style | In use. OpenFreeMap Liberty, no key. |
 

@@ -23,6 +23,9 @@ export function useStudioJob(kind: StudioJobKind) {
         audience: studio.audience,
         directionId: input.directionId,
         setting: input.setting ?? null,
+        portraitDataUrl: kind === "try-on" ? studio.photoDataUrl : null,
+        timeoutMs: 180_000,
+        intervalMs: 1000,
         onUpdate: setJob,
       });
       setJob(result);
@@ -35,6 +38,7 @@ export function useStudioJob(kind: StudioJobKind) {
         label: "Studio job",
         referenceDirectionId: input.directionId,
         directionIds: [],
+        images: [],
         composite: null,
         message: studioJobUnreachableMessage,
         quota: null,

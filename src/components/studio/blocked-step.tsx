@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 const blocks = {
   photo: {
     title: "Add a portrait first",
-    body: "The later steps use the photograph from this visit. It stays in this browser and is not uploaded.",
+    body: "The later steps use the photograph from this visit. It stays in this browser until a try-on request, and it is not published.",
     href: "/studio",
     action: "Go to your photograph",
   },
