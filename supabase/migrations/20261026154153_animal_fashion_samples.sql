@@ -120,6 +120,8 @@ create trigger fashion_sample_jobs_touch_updated_at
   before update on public.fashion_sample_jobs
   for each row execute function public.touch_updated_at();
 
+revoke all on function public.touch_updated_at() from public, anon, authenticated;
+
 alter table public.animal_fashion_samples enable row level security;
 alter table public.fashion_sample_jobs enable row level security;
 
@@ -136,5 +138,5 @@ create policy animal_fashion_samples_public_read_completed
 create policy animoda_fashion_samples_public_read
   on storage.objects
   for select
-  to anon, authenticated
+  to public
   using (bucket_id = 'animoda-fashion-samples');

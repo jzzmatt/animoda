@@ -1,12 +1,14 @@
 # Supabase foundation
 
-Phase 6A prepares permanent storage for catalogue fashion samples. The migration in `supabase/migrations/20261026154153_animal_fashion_samples.sql` is in version control and has not been applied. This repository has no Animoda project URL or server key. The connected Supabase account has other applications, and those databases were not changed.
+Phase 6A prepares permanent storage for catalogue fashion samples. The migration in `supabase/migrations/20261026154153_animal_fashion_samples.sql` is in version control and has not been applied. This repository has no Animoda project URL or server key.
+
+The requested project `slkvjqzcvrxlvqvieqpp` is not available to the connected Supabase account. Project, table, and migration reads for that reference returned a permission error on 26 October 2026. It does not appear in the account's project list. The databases that are available belong to other applications and were not changed. No new project was created.
 
 ## Access model
 
 `animoda-fashion-samples` is a public bucket for approved catalogue images only. A public URL is required so the catalogue can show an image after a refresh without minting a new signed URL. The PostgreSQL column `image_path` is the source of truth. `image_url` is only a cached copy of the public URL and can be rebuilt from the path.
 
-Anonymous and authenticated clients can read rows whose `generation_status` is `completed`. They cannot insert, update, or delete those rows. The bucket has a public read policy and no write policy for browser roles. The server uploads with `SUPABASE_SERVICE_ROLE_KEY`, which bypasses row level security and must never be sent to the browser.
+Anonymous and authenticated clients can read rows whose `generation_status` is `completed`. They cannot insert, update, or delete those rows. The bucket has a public read policy for the `public` role and no write policy for browser roles. The server uploads with `SUPABASE_SERVICE_ROLE_KEY`, which bypasses row level security and must never be sent to the browser.
 
 User portraits and virtual try-on results stay out of this bucket. Phase 6C will use a separate private store.
 
@@ -16,7 +18,7 @@ Object paths look like `animals/{animal_id}/{style}/{sample_id}.png`. `animal_id
 
 ## What is still required
 
-Create or choose an Animoda Supabase project, then set these names in the gitignored `.env` file. Do not put the values in `.env.example` or in chat.
+Grant this account access to project `slkvjqzcvrxlvqvieqpp`, or set these names in the gitignored `.env` file. Do not put the values in `.env.example` or in chat.
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` for later browser reads of completed rows

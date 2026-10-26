@@ -295,14 +295,14 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - Added `supabase/migrations/20261026154153_animal_fashion_samples.sql`.
   - Added a server-only Supabase client, the sample path and report rules, and `GET /api/admin/fashion-samples`.
   - The report route requires `FASHION_SAMPLE_ADMIN_TOKEN`. Without Supabase configuration it returns `supabase_not_configured` and does not call a database.
-- Database or configuration changes: None were applied. The connected Supabase account has `jzzmatt's Project`, `budgetExpenser`, `agroconnect`, `azulset`, `ReLivroApps`, and `afri3apps`. None is an Animoda project, so those databases and buckets were left untouched. No new Supabase project was created. `.env` has no `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, or `SUPABASE_SERVICE_ROLE_KEY`.
+- Database or configuration changes: None were applied. The requested project `slkvjqzcvrxlvqvieqpp` returned a permission error for project, table, and migration reads on 26 October 2026, and it is not in this account's project list. The connected account can see `jzzmatt's Project`, `budgetExpenser`, `agroconnect`, `azulset`, `ReLivroApps`, and `afri3apps`. Those databases and buckets were left untouched. No new Supabase project was created. `.env` has no `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, or `SUPABASE_SERVICE_ROLE_KEY`.
 - Tests and build results (26 October 2026, about 16:44 Africa/Luanda):
   - `npm test`: 58 passed. The new cases cover the 37-animal catalogue expecting 111 samples, skip and resume rules, a completed row without a stored object, duplicate rows, the migration text, the empty Supabase configuration, and the admin route refusing an unauthorised or unconfigured call.
   - `npm run typecheck`: passed.
   - `npm run lint`: passed.
   - `npm run build`: passed. `GET /api/admin/fashion-samples` is dynamic. The public pages stay static.
   - No browser was used. No OpenAI image was requested. No Storage object was uploaded or read back.
-- Missing configuration: an Animoda Supabase project, then the three Supabase names above and `FASHION_SAMPLE_ADMIN_TOKEN` in the gitignored `.env`. See `docs/supabase-foundation.md`.
+- Missing configuration: access to project `slkvjqzcvrxlvqvieqpp`, then `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, and `FASHION_SAMPLE_ADMIN_TOKEN` in the gitignored `.env`. Do not paste those values into chat. See `docs/supabase-foundation.md`.
 - Approval state and date: Not approved.
 
 ### Phase 6B — Permanent AI fashion samples
@@ -364,7 +364,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is written and blocked on an Animoda Supabase project. The migration has not been applied. Phase 6B and Phase 6C have not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is written and blocked because project `slkvjqzcvrxlvqvieqpp` is not accessible to the connected account. The migration has not been applied. Phase 6B and Phase 6C have not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 
