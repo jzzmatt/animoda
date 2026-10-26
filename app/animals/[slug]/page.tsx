@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { AnimalProfile } from "@/components/catalogue/animal-profile";
 import { PublicShell } from "@/components/layout/public-shell";
 import { animalBySlug, catalogueAnimals } from "@/content/catalogue";
+import { loadStoredFashionSamples } from "@/server/fashion-samples/load-pilot";
 import { loadWildlife } from "@/server/wildlife";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -25,10 +26,10 @@ export default async function AnimalDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const animal = animalBySlug(slug);
   if (!animal) notFound();
-  const wildlife = await loadWildlife(slug);
+  const [wildlife, storedSamples] = await Promise.all([loadWildlife(slug), loadStoredFashionSamples(slug)]);
   return (
     <PublicShell>
-      <AnimalProfile animal={animal} wildlife={wildlife} />
+      <AnimalProfile animal={animal} wildlife={wildlife} storedSamples={storedSamples} />
     </PublicShell>
   );
 }

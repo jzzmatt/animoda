@@ -21,7 +21,7 @@
   - Use Material Symbols Outlined, the icon set in the approved screens. `next/font` does not ship that family, so the root layout loads the same Google Fonts stylesheet the screens use.
   - The foundation review now lives at `/foundation`. The public landing page is `/`.
   - Keep product localisation for Phase 9. This foundation review is in English, matching the approved screens. Portuguese remains the planned default language.
-  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists the later names only. Phase 5 reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` on the server only. Empty values run a labelled mock. A set value does not call a provider, because none has been chosen.
+  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists the later names only. Phase 5 reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` on the server only. Empty values run a labelled mock. A set value does not call a provider, because none has been chosen. Phase 6A reads `SUPABASE_URL` and `SUPABASE_SECRET_KEY`, or `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, on the server. The secret key is never a `NEXT_PUBLIC_` value.
 
 ## Approved design mapping
 
@@ -286,10 +286,63 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 - Outstanding tasks: None in this phase.
 - Approval state and date: Approved on 26 October 2026 at 05:38 Europe/London. Phase 6 has not started.
 
-### Phase 6 — Authentication, database, and private gallery
+### Phase 6A — Supabase foundation
+
+- Status: VERIFIED, awaiting approval. The migration is applied on project `slkvjqzcvrxlvqvieqpp`. A stored image was written and read back, then the probe was removed.
+- Scope: Supabase configuration, the `animal_fashion_samples` and `fashion_sample_jobs` tables, the public `animoda-fashion-samples` bucket, row level security, server-side service access, and a protected completeness report. No image generation and no user accounts.
+- Access model: The bucket is public so an approved catalogue image can load from its stored path after a refresh. `image_path` is the source of truth. `image_url` is only a cached public URL. Browser roles can select completed rows and cannot write them. The bucket has no browser write policy. The server secret uploads from the server. Portraits and try-on results are excluded.
+- Completed work:
+  - Added `supabase/migrations/20261026154153_animal_fashion_samples.sql`.
+  - Added a server-only Supabase client, the sample path and report rules, and `GET /api/admin/fashion-samples`.
+  - The server accepts `SUPABASE_URL` and `SUPABASE_SECRET_KEY` as well as the earlier names. A publishable key is rejected as the server credential.
+  - The report route requires `FASHION_SAMPLE_ADMIN_TOKEN`. That name is still absent.
+- Database or configuration changes: The migration was applied in the Animoda SQL editor. On 26 October 2026 at about 17:15 Africa/Luanda the secret key found `animal_fashion_samples` and `fashion_sample_jobs` in the Data API, both empty. The public bucket remains. A temporary probe row and PNG were saved, read back by the publishable key and the public URL, and then removed. Invalid style, a duplicate animal and style, a completed row without a path, and browser writes were all rejected. The publishable key cannot read jobs. MCP login for this project still requires authentication. No other project was changed.
+- Tests and build results (26 October 2026, about 16:55 Africa/Luanda, code unchanged at the live check):
+  - `npm test`: 60 passed, including the dashboard credential names and rejection of a publishable key.
+  - `npm run typecheck`: passed.
+  - `npm run lint`: passed.
+  - `npm run build` was not rerun. No browser was used. No OpenAI image was requested.
+  - Live check at about 17:15 Africa/Luanda: 0 sample rows, 0 jobs, and an empty bucket after the probe was removed. Expected catalogue samples remain 111.
+- Missing configuration: `FASHION_SAMPLE_ADMIN_TOKEN` is still absent, so the report route stays closed. See `docs/supabase-foundation.md`.
+- Approval state and date: Not approved.
+
+### Phase 6.1 — Emerald tree boa pilot
+
+- Status: VERIFIED, awaiting approval. Three real images were generated for `emerald-tree-boa` only, stored, and read back. No other animal was processed.
+- Catalogue record: Emerald tree boa, `Corallus caninus`, slug `emerald-tree-boa`.
+- Supabase: The existing project and migration were reused. No new migration was created. MCP access to this project still returns a permission error, so the pilot used the server secret key.
+- Storage bucket: `animoda-fashion-samples`, public read, server write. Each object was retrieved from its public URL and checked as a PNG.
+- Generated images: 3. Permanently stored and verified: 3. A second run skipped all three and did not call image generation again.
+- Styles:
+  - Formal Couture, `formal`, completed. `animals/emerald-tree-boa/formal/5d76449f-ff18-4952-a79d-7ed0f84becde.png`
+  - Casual & Streetwear, `casual_street`, completed. `animals/emerald-tree-boa/casual_street/e4351352-0b11-4660-a88c-92d3d40ae613.png`
+  - Youth Couture, `youth_couture`, completed. `animals/emerald-tree-boa/youth_couture/36135fa4-6106-49fd-9b16-7a0e88ffbda9.png`
+- Model and prompt version: `gpt-image-2.5-sunburst`, `boa-pilot-1`. Quality `medium`, size `1024x1536`, PNG.
+- Display: The emerald tree boa profile shows the three stored samples. Other animal pages do not query or show this section. Written catalogue directions remain separate and are not labelled as generated images.
+- Tests (26 October 2026, about 17:32 Africa/Luanda): `npm test` 64 passed. `npm run typecheck` passed. `npm run lint` passed. `npm run build` passed. The emerald tree boa profile is a static page and its build output includes the three stored image paths. No browser automation. No deployment.
+- Approval state and date: Not approved. Phase 6.2 has not started.
+
+### Phase 6.2 — Remaining catalogue samples
+
+- Status: VERIFIED, awaiting approval. The approved Emerald tree boa samples were left in place. The other catalogue animals now have three stored styles each.
+- Catalogue: 37 animals. Expected samples: 111. Completed with a verified Storage object: 111. Pending: 0. Failed: 0. Duplicates: 0.
+- One sample, Picasso bug casual streetwear, failed on the first pass with `sample_failed` and succeeded on the resume. The resume skipped the 110 samples that were already stored.
+- Model: `gpt-image-2.5-sunburst`. New samples use prompt version `catalogue-1`. The three boa samples remain `boa-pilot-1`.
+- Display: every catalogue animal profile shows its three stored styles. A missing file shows an unavailable state and is not labelled as a generated image.
+- Verification (26 October 2026, about 18:16 Africa/Luanda): 111 completed rows, 37 animals, no duplicates, and every public object returned a PNG signature. `npm test` 63 passed. Typecheck, lint, and the production build passed. The zebra and Picasso bug pages include their stored image paths. No browser automation. No deployment.
+- Approval state and date: Not approved. Phase 6C has not started.
+
+### Phase 6B — Permanent AI fashion samples
+
+- Status: COVERED BY PHASE 6.1 AND PHASE 6.2
+- Scope: Generate three images for every catalogue animal (Formal Couture, Casual & Streetwear, Youth Couture), store the bytes in `animoda-fashion-samples`, and show those stored images in the catalogue. Expected count is 111 for the current 37 animals.
+- Completed work: Phase 6.1 stored the Emerald tree boa. Phase 6.2 stored the remaining animals. All 111 objects were read back as PNG files.
+- Approval state and date: Not approved.
+
+### Phase 6C — User authentication and private gallery
 
 - Status: NOT STARTED
-- Scope: Supabase Auth, profiles, migrations, RLS, private photo storage, My Creations, deletion, and quotas.
+- Scope: Supabase Auth, profiles, private photo storage, My Creations, deletion, and quotas. This waits until Phase 6A and Phase 6B are working and approved.
 - Completed work: None.
 - Approval state and date: Not approved.
 
@@ -338,7 +391,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6, authentication and the private gallery, has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 and Phase 6.2 stored 111 fashion samples, three for each of the 37 catalogue animals. Phase 6C has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 
