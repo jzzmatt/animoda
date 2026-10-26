@@ -281,6 +281,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - `npm run typecheck`: passed.
   - `npm run lint`: passed.
   - `npm run build`: passed. `/api/studio/jobs` and `/api/studio/jobs/[id]` are dynamic. The studio pages stay static.
+  - Browser check in the visible Chrome window, Obsidian Atelier, about 05:16 Europe/London: uploading a photograph, choosing Women and plains zebra, and selecting the gown reaches the sample directions. Regenerating shows “Labelled mock · Succeeded”, leaves the two catalogue cards, and keeps the gown selected. The try-on request shows the same labelled success, says no composite was made, and the portrait and the catalogue gown stay separate images. The job requests carry the visit, the animal, the audience, and the selected design. Desktop width and a 390px layout had no horizontal overflow.
 - Missing credentials: No concept provider and no try-on provider are chosen. The server keys are absent, so the labelled mock is what runs.
 - Outstanding tasks: Explicit approval of this phase. Phase 6 has not started.
 - Approval state and date: Awaiting explicit approval. Not approved.
