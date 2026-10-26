@@ -1,8 +1,8 @@
 # Supabase foundation
 
-Phase 6A prepares permanent storage for catalogue fashion samples. The migration in `supabase/migrations/20261026154153_animal_fashion_samples.sql` is in version control and has not been applied to Postgres.
+Phase 6A prepares permanent storage for catalogue fashion samples. The migration in `supabase/migrations/20261026154153_animal_fashion_samples.sql` is in version control. It was applied in the Animoda SQL editor and then checked through the server secret key on 26 October 2026.
 
-The gitignored `.env` now points at `https://slkvjqzcvrxlvqvieqpp.supabase.co` with `SUPABASE_PUBLISHABLE_KEY` and `SUPABASE_SECRET_KEY`. The server reads those dashboard names as well as `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. The secret key reaches the Data API and Storage. It cannot run SQL, and the Supabase management connection still has no permission on this project, so the migration was not applied. The other projects on that management account were not changed.
+The gitignored `.env` points at `https://slkvjqzcvrxlvqvieqpp.supabase.co` with `SUPABASE_PUBLISHABLE_KEY` and `SUPABASE_SECRET_KEY`. The server reads those dashboard names as well as `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. The MCP login for this project still requires authentication, so the check used the secret key rather than the management connection.
 
 ## Access model
 
@@ -16,12 +16,17 @@ Object paths look like `animals/{animal_id}/{style}/{sample_id}.png`. `animal_id
 
 `fashion_sample_jobs` records server-side attempts. Browser roles have no privileges on it. One sample can have only one pending or generating job.
 
-## What was verified on 26 October 2026
+## What was verified on 26 October 2026 at about 17:15 Africa/Luanda
 
-The secret key listed the project, created the public bucket `animoda-fashion-samples`, uploaded a one-pixel PNG, and read those same bytes back from the public object URL. The probe object was then removed. An authenticated download afterwards reports that the object is gone. The bucket remains, with a 10 MB limit and PNG, JPEG, and WebP allowed. `public.animal_fashion_samples` is not in the schema cache. No catalogue image was generated.
+Both tables are in the Data API and both are empty. The public bucket `animoda-fashion-samples` is present, limited to 10 MB, and allows PNG, JPEG, and WebP. Its root is empty.
 
-## What is still required
+A temporary `phase6a-probe` row was written with the secret key and then removed. The checks were:
 
-Apply `supabase/migrations/20261026154153_animal_fashion_samples.sql` in the Animoda SQL editor, or add a database password or personal access token to the gitignored `.env` under a server-only name. Do not paste secrets into chat. The bucket insert is safe to run again.
+- An unknown style was rejected.
+- A second row for the same animal and style was rejected by the unique constraint.
+- A completed row without an image path was rejected.
+- The publishable key could not see the pending row, could not insert, and could not read `fashion_sample_jobs`.
+- After the PNG was uploaded and the row was marked completed, the publishable key returned that row and the public URL returned the same 70 bytes.
+- Deleting the row removed the job. The file was removed. The table, the job table, and the bucket were empty again.
 
-`FASHION_SAMPLE_ADMIN_TOKEN` is still absent, so the report route stays closed. `OPENAI_API_KEY` is present and was not used. Phase 6B waits until a sample row can be saved and its stored object read back.
+No catalogue image was generated. `FASHION_SAMPLE_ADMIN_TOKEN` is still absent, so `GET /api/admin/fashion-samples` stays closed. `OPENAI_API_KEY` was not used. Phase 6B has not started.
