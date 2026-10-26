@@ -21,7 +21,7 @@
   - Use Material Symbols Outlined, the icon set in the approved screens. `next/font` does not ship that family, so the root layout loads the same Google Fonts stylesheet the screens use.
   - The foundation review now lives at `/foundation`. The public landing page is `/`.
   - Keep product localisation for Phase 9. This foundation review is in English, matching the approved screens. Portuguese remains the planned default language.
-  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists the later names only.
+  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists the later names only. Phase 5 reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` on the server only. Empty values run a labelled mock. A set value does not call a provider, because none has been chosen.
 
 ## Approved design mapping
 
@@ -222,7 +222,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ### Phase 4 — Simplified Animoda Studio
 
-- Status: AWAITING APPROVAL
+- Status: APPROVED
 - Scope: The five-step guided journey, session state, back navigation, validation, loading, and failure recovery. UI and workflow review before any real provider work.
 - Completed work:
   - Replaced the studio notice with the five Stitch steps: photograph, animal, sample directions, selected design, and next steps.
@@ -240,16 +240,50 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - `npm run lint`: passed.
   - `npm run build`: passed. `/studio`, `/studio/animal`, `/studio/suggestions`, `/studio/look`, and `/studio/next` are static.
   - Browser check: a first visit with no saved edition uses Obsidian Atelier. Uploading a photograph, choosing Women and plains zebra, and selecting the gown reaches the selected-design step. Regenerating reports that the concept provider is not connected. Requesting a try-on reports that the provider is not connected. Noting a quotation says no atelier received it. Girls see the children’s zebra direction and not the gown. Desktop 1440px and a 390px phone had no horizontal overflow.
-- Missing credentials: A concept provider and a try-on provider remain absent. They belong to Phase 5.
-- Outstanding tasks: Explicit approval of this phase. Phase 5 has not started.
-- Approval state and date: Awaiting explicit approval. Not approved.
+- Missing credentials: A concept provider and a try-on provider were absent when this phase shipped. Phase 5 reads those server names.
+- Outstanding tasks: None in this phase.
+- Approval state and date: Approved on 26 October 2026 at 04:52 Europe/London, when the next phase was explicitly requested.
 
 ### Phase 5 — Real AI integration
 
-- Status: NOT STARTED
+- Status: AWAITING APPROVAL
 - Scope: Concept provider, try-on provider, server credentials, job lifecycle, quotas, selected-design reference preservation, and a labelled mock when credentials are absent.
-- Completed work: None.
-- Approval state and date: Not approved.
+- Completed work:
+  - Added server routes `POST /api/studio/jobs` and `GET /api/studio/jobs/[id]`. A job is queued, then running, then succeeded or failed. Records live in the server process. A restart clears them.
+  - The server reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` and does not return or log the values. Both are empty, so each accepted job is a labelled mock. A non-empty key fails that job with “Provider not chosen” and sends no request, because no provider API has been chosen.
+  - A concept job returns the catalogue direction ids for the animal, audience, and silhouette. It does not add a design. The selected direction id is echoed and is not replaced. Girls and boys still receive only children’s directions.
+  - A try-on job returns no composite. The route rejects a photograph. The portrait stays in this browser. The selected catalogue photograph remains the reference on the page.
+  - Each visit may run 8 concept jobs and 8 try-on jobs. The counters are process memory, not an account quota. One visit cannot read another visit’s job.
+  - Regenerating and requesting a preview show the job label, status, id, and remaining count. Saving and a quotation note stay in this visit.
+- Files created or modified:
+  - `app/api/studio/jobs/route.ts`
+  - `app/api/studio/jobs/[id]/route.ts`
+  - `src/server/studio-jobs.ts`
+  - `src/server/studio-jobs.test.ts`
+  - `src/studio/jobs-client.ts`
+  - `src/studio/jobs-client.test.ts`
+  - `src/studio/use-studio-job.ts`
+  - `src/studio/session.ts`
+  - `src/studio/session.test.ts`
+  - `src/studio/studio-store.ts`
+  - `src/components/studio/suggestions-step.tsx`
+  - `src/components/studio/look-step.tsx`
+  - `src/components/studio/studio-job-notice.tsx`
+  - `src/content/site.ts`
+  - `app/studio/suggestions/page.tsx`
+  - `app/studio/look/page.tsx`
+  - `.env.example`
+  - `README.md`
+  - `docs/IMPLEMENTATION_STATUS.md`
+- Database or configuration changes: None. No provider account, Supabase project, or portrait store was created. The two Phase 5 keys remain empty.
+- Tests and build results (26 October 2026, Europe/London):
+  - `npm test`: 36 passed, including the mock lifecycle, the unchanged selected design, the absent composite, the key-without-provider failure, and the visit quota.
+  - `npm run typecheck`: passed.
+  - `npm run lint`: passed.
+  - `npm run build`: passed. `/api/studio/jobs` and `/api/studio/jobs/[id]` are dynamic. The studio pages stay static.
+- Missing credentials: No concept provider and no try-on provider are chosen. The server keys are absent, so the labelled mock is what runs.
+- Outstanding tasks: Explicit approval of this phase. Phase 6 has not started.
+- Approval state and date: Awaiting explicit approval. Not approved.
 
 ### Phase 6 — Authentication, database, and private gallery
 
@@ -281,7 +315,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2 and Phase 3 are approved. Phase 4, the Studio journey, is implemented and awaiting approval. Phase 5, real AI providers, stays closed until a separate approval. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups. That catalogue work does not start Phase 5.
+Phase 2, Phase 3, and Phase 4 are approved. Phase 5, the studio job path, is implemented and awaiting approval. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. Phase 6 has not started. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 
@@ -321,7 +355,7 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 - Marine Life lists the requested fishes. Pothos was removed from that chip. Halfmoon male betta is Betta splendens, a freshwater fish; halfmoon is a tail shape and male is the sex. Black moor, fantail, and shubunkin are varieties of the freshwater goldfish Carassius auratus and share GBIF usage key 4286942. Livebearers is the family Poeciliidae, and the photograph is one guppy. Mandarin fish on this card is the marine dragonet Synchiropus splendidus. The freshwater perch Siniperca chuatsi is a different species. Moorish idol is Zanclus cornutus. Picasso triggerfish is Rhinecanthus aculeatus. Rusty parrotfish is Scarus ferrugineus, not Scarus rubroviolaceus.
 - The supplied insect, reptile, and bird list is in those catalogue groups. Army green moth is the oleander hawk-moth, Daphnis nerii. Calligrapher beetle on this card is Calligrapha philadelphica. Thorny cricket is Cosmoderus femoralis; the photograph is a museum specimen of the related species Cosmoderus erinaceus because an openly licensed photograph of C. femoralis was not available. Rainbow bright chameleon is the panther chameleon, Furcifer pardalis. Phoenix rooster is a long-tailed breed of Gallus gallus, not a separate wild species. Majestic eagle is a descriptive label for the bald eagle, Haliaeetus leucocephalus. Ploughshare tortoise is Astrochelys yniphora, and GBIF places it in class Testudines while the catalogue chip is Reptiles. Victoria crowned pigeon uses the Oceania browse tag. Stock-photo search links from the list were not downloaded. Photographs are openly licensed Wikimedia Commons files, credited on the card. GBIF currently returns no class for the catalogue fishes, so the profile omits a blank class.
 - Material Symbols require a request to Google Fonts at runtime. A later phase can self-host the subset if offline icon rendering becomes a requirement.
-- No AI provider is selected. That choice belongs to Phase 5.
+- No concept provider and no try-on provider are chosen. `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` are server-only and empty. An empty value runs a labelled mock job. A set value fails the job and sends no request. The portrait stays in the browser. A job does not replace the selected catalogue design. The visit quota is process memory, not an account quota.
 
 ## External credentials still required
 
@@ -330,8 +364,8 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 | 6 | `NEXT_PUBLIC_SUPABASE_URL` | Absent |
 | 6 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Absent |
 | 6 | `SUPABASE_SERVICE_ROLE_KEY` | Absent. Server only. |
-| 5 | Fashion concept provider and API key | Provider not chosen. Server only. |
-| 5 | Virtual try-on provider and API key | Provider not chosen. Server only. |
+| 5 | `FASHION_CONCEPT_API_KEY` | Absent. Server only. An empty value runs the labelled mock. A value does not call a provider, because none is chosen. |
+| 5 | `VIRTUAL_TRY_ON_API_KEY` | Absent. Server only. An empty value runs the labelled mock. A value does not call a provider, because none is chosen. |
 | 3 | Wildlife source | In use. Public GBIF, no key. A labelled snapshot covers a failed request. |
 | 3 | MapLibre style | In use. OpenFreeMap Liberty, no key. |
 

@@ -172,7 +172,7 @@ export const processPillars = [
     icon: "palette",
     label: "Phase 02",
     title: "AI Fashion Studio",
-    body: "Choose who the look is for and a species from the catalogue. The studio shows sample directions. A concept provider is not connected yet.",
+    body: "Choose who the look is for and a species from the catalogue. The studio shows sample directions. Regenerating starts a server job. With no concept key configured, that job is a labelled mock and the directions stay the catalogue.",
     href: routes.studio,
     action: "Open Studio",
   },
@@ -180,7 +180,7 @@ export const processPillars = [
     icon: "accessibility_new",
     label: "Phase 03",
     title: "Virtual Try-On",
-    body: "The try-on step keeps the design you select beside your photograph. The try-on provider is not connected, so the two images stay separate.",
+    body: "The try-on step keeps the design you select beside your photograph. With no try-on key configured, the preview job is a labelled mock. The photograph stays in the browser and no composite is made.",
     href: routes.studio,
     action: "Try Fitting Room",
   },
@@ -197,8 +197,8 @@ export const processPillars = [
 export const studioJourney = [
   { label: "1. Photo", body: "Add a photograph in this browser. It is not uploaded." },
   { label: "2. Choose Animal", body: "Search the catalogue and choose who the look is for, including girls and boys." },
-  { label: "3. Suggestions", body: "Review sample directions for that animal, then select one. They are not a generated batch." },
-  { label: "4. Try-On", body: "The selected design stays the reference beside your photograph. A try-on provider is not connected." },
+  { label: "3. Suggestions", body: "Review catalogue directions for that animal, then select one. A labelled mock job leaves the list unchanged when no concept key is configured." },
+  { label: "4. Try-On", body: "The selected design stays the reference beside your photograph. A labelled mock job makes no composite when no try-on key is configured." },
   { label: "5. Couturier", body: "Save the visit, or note a manufacturing question. Nothing is sent, paid, or shipped." },
 ] as const;
 

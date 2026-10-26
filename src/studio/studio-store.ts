@@ -3,6 +3,7 @@ import {
   audienceMatches,
   clearStoredDraft,
   emptyDraft,
+  newVisitId,
   readStoredDraft,
   writeStoredDraft,
   type StudioAudience,
@@ -33,6 +34,7 @@ export function ensureStudioLoaded(animal: string | null) {
   loaded = true;
   const stored = readStoredDraft();
   if (!stored.animalSlug && animal && animalBySlug(animal)) stored.animalSlug = animal;
+  if (!stored.visitId) stored.visitId = newVisitId();
   publish(stored, true);
 }
 
@@ -92,6 +94,6 @@ export const studioActions = {
   reset() {
     clearStoredDraft();
     loaded = true;
-    publish(emptyDraft(), true);
+    publish({ ...emptyDraft(), visitId: newVisitId() }, true);
   },
 };
