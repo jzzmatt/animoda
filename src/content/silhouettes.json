@@ -1,0 +1,232 @@
+{
+  "retrieved": "2026-10-26",
+  "source": "PhyloPic API build 560. Each file is an exact scientific-name match. Non-commercial licenses were not saved.",
+  "records": [
+    {
+      "scientificName": "Aptenodytes forsteri",
+      "src": "/silhouettes/f2e02022-2700-484d-a66d-b2a900030371.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/f2e02022-2700-484d-a66d-b2a900030371",
+      "width": 980,
+      "height": 1536
+    },
+    {
+      "scientificName": "Ara macao",
+      "src": "/silhouettes/0d19238f-25ca-42a5-a1e2-d108defb75f1.svg",
+      "attribution": "Myriam_Ramirez",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/0d19238f-25ca-42a5-a1e2-d108defb75f1",
+      "width": 731,
+      "height": 1536
+    },
+    {
+      "scientificName": "Asio flammeus",
+      "src": "/silhouettes/f27a377e-5dfb-44cb-9f42-6e05dd557a75.svg",
+      "attribution": "Andy Wilson",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/f27a377e-5dfb-44cb-9f42-6e05dd557a75",
+      "width": 1536,
+      "height": 492
+    },
+    {
+      "scientificName": "Carassius auratus",
+      "src": "/silhouettes/abcb9d2c-db21-4b63-b8e7-b770b11ad288.svg",
+      "attribution": "Fidji Berio",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/abcb9d2c-db21-4b63-b8e7-b770b11ad288",
+      "width": 1536,
+      "height": 736
+    },
+    {
+      "scientificName": "Danaus plexippus",
+      "src": "/silhouettes/e2cdafc4-2e97-45e3-8799-1a965fc24d85.svg",
+      "attribution": "Andy Wilson",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/e2cdafc4-2e97-45e3-8799-1a965fc24d85",
+      "width": 1536,
+      "height": 885
+    },
+    {
+      "scientificName": "Equus quagga",
+      "src": "/silhouettes/81caf94e-5cbe-4e5e-8101-545abea2bfc0.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/81caf94e-5cbe-4e5e-8101-545abea2bfc0",
+      "width": 1536,
+      "height": 1073
+    },
+    {
+      "scientificName": "Eunectes murinus",
+      "src": "/silhouettes/3bc382f7-f157-4462-b28d-2d30f5a6ba96.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/3bc382f7-f157-4462-b28d-2d30f5a6ba96",
+      "width": 161,
+      "height": 1536
+    },
+    {
+      "scientificName": "Gekko gecko",
+      "src": "/silhouettes/53749ec9-3339-4ffc-b4a8-aa39917648f4.svg",
+      "attribution": "B Neale",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/53749ec9-3339-4ffc-b4a8-aa39917648f4",
+      "width": 887,
+      "height": 1536
+    },
+    {
+      "scientificName": "Haliaeetus leucocephalus",
+      "src": "/silhouettes/80064052-3255-4b19-9125-5a0c79dec5bf.svg",
+      "attribution": "Andy Wilson",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/80064052-3255-4b19-9125-5a0c79dec5bf",
+      "width": 1536,
+      "height": 655
+    },
+    {
+      "scientificName": "Loxodonta africana",
+      "src": "/silhouettes/51c89c19-6ef1-4d8e-8de6-2a4b6e8f66c8.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/51c89c19-6ef1-4d8e-8de6-2a4b6e8f66c8",
+      "width": 814,
+      "height": 1536
+    },
+    {
+      "scientificName": "Macroglossum stellatarum",
+      "src": "/silhouettes/35c476a1-cc50-439e-8dde-79d956e2b693.svg",
+      "attribution": "John Curtis (vectorized by T. Michael Keesey)",
+      "license": "Public Domain Mark 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/35c476a1-cc50-439e-8dde-79d956e2b693",
+      "width": 1536,
+      "height": 885
+    },
+    {
+      "scientificName": "Panthera leo",
+      "src": "/silhouettes/76a5e7ce-53fa-46ae-af9e-fabd8b863dcf.svg",
+      "attribution": "Margot Michaud",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/76a5e7ce-53fa-46ae-af9e-fabd8b863dcf",
+      "width": 1536,
+      "height": 1149
+    },
+    {
+      "scientificName": "Panthera pardus",
+      "src": "/silhouettes/9f33e613-944c-483d-8275-cc59a1b470c2.svg",
+      "attribution": "Margot Michaud",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/9f33e613-944c-483d-8275-cc59a1b470c2",
+      "width": 1536,
+      "height": 767
+    },
+    {
+      "scientificName": "Panthera tigris",
+      "src": "/silhouettes/135296df-6e7a-4c02-bd22-85ca4aefcc85.svg",
+      "attribution": "Margot Michaud",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/135296df-6e7a-4c02-bd22-85ca4aefcc85",
+      "width": 1536,
+      "height": 894
+    }
+  ],
+  "missing": [
+    {
+      "scientificName": "Astrochelys yniphora",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Betta splendens",
+      "reason": "PhyloPic has an exact image, but it is not reusable here (https://creativecommons.org/licenses/by-nc/3.0/)."
+    },
+    {
+      "scientificName": "Calligrapha philadelphica",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Corallus caninus",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Cosmoderus femoralis",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Daphnis nerii",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Erebus macrops",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Furcifer pardalis",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Gallus gallus",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Giraffa camelopardalis",
+      "reason": "PhyloPic has no exact reusable vector silhouette for this name."
+    },
+    {
+      "scientificName": "Goura victoria",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Horama panthalon",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Pavo cristatus",
+      "reason": "PhyloPic has an exact image, but it is not reusable here (https://creativecommons.org/licenses/by-nc-sa/3.0/)."
+    },
+    {
+      "scientificName": "Poeciliidae",
+      "reason": "PhyloPic has no exact reusable vector silhouette for this name."
+    },
+    {
+      "scientificName": "Python regius",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Rhinecanthus aculeatus",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Scarus ferrugineus",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Sphaerocoris annulus",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Synchiropus splendidus",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Tangara chilensis",
+      "reason": "No PhyloPic node matched this scientific name."
+    },
+    {
+      "scientificName": "Zanclus cornutus",
+      "reason": "No PhyloPic node matched this scientific name."
+    }
+  ]
+}

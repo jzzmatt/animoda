@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
 import { EditorialImage } from "@/components/public/editorial-image";
 import { Icon } from "@/components/ui/icon";
 import { animalBySlug, directionSettings, type SampleDirection } from "@/content/catalogue";
@@ -93,6 +94,8 @@ export function SuggestionsStep() {
             <DirectionCard
               key={direction.id}
               direction={direction}
+              commonName={animal.commonName}
+              scientificName={animal.scientificName}
               selected={selectedId === direction.id}
               onSelect={() => studio.setDirection(direction.id)}
             />
@@ -118,10 +121,14 @@ export function SuggestionsStep() {
 
 function DirectionCard({
   direction,
+  commonName,
+  scientificName,
   selected,
   onSelect,
 }: {
   direction: SampleDirection;
+  commonName: string;
+  scientificName: string;
   selected: boolean;
   onSelect: () => void;
 }) {
@@ -132,8 +139,9 @@ function DirectionCard({
           <EditorialImage src={direction.image} alt={direction.alt} sizes="(min-width: 1280px) 30vw, 100vw" />
         </div>
       ) : (
-        <div className="flex aspect-[3/4] items-end bg-surface-container p-space-md">
-          <p className="font-body-sm text-body-sm text-on-surface-variant">No photograph is published for this direction.</p>
+        <div className="flex aspect-[3/4] flex-col justify-between p-space-md">
+          <AnimalSilhouette scientificName={scientificName} commonName={commonName} />
+          <p className="font-body-sm text-body-sm text-on-surface-variant">No garment photograph is published for this direction. The outline is the species silhouette, not the garment.</p>
         </div>
       )}
       <div className="flex flex-1 flex-col gap-space-xs p-space-lg">

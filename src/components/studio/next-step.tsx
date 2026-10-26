@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
 import { EditorialImage } from "@/components/public/editorial-image";
 import { animalBySlug } from "@/content/catalogue";
 import { pageGutter, routes } from "@/content/site";
@@ -40,7 +41,9 @@ export function NextStep() {
         <div className="relative min-h-40 bg-surface-container">
           {direction.image && direction.alt ? (
             <EditorialImage src={direction.image} alt="" sizes="200px" />
-          ) : null}
+          ) : (
+            <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} className="h-full" />
+          )}
         </div>
         <div className="flex flex-col gap-space-xxs p-space-lg">
           <p className="font-label-caps text-label-caps text-secondary uppercase">{direction.audience}</p>
