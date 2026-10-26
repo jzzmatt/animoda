@@ -7,13 +7,9 @@ import { pageGutter } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { photoRejection } from "@/studio/session";
 import { useStudio } from "@/studio/studio-provider";
+import { FramingPracticesDialog } from "./framing-practices-dialog";
 
-const practices = [
-  { title: "Upright stance", body: "Stand straight with relaxed shoulders." },
-  { title: "Frontal light", body: "Avoid harsh backlighting or heavy cast shadows." },
-  { title: "Full torso view", body: "Keep the waistline and collarbones in the frame." },
-  { title: "Neutral gaze", body: "A direct gaze makes the collar area easier to see." },
-];
+type PhotoIntent = "camera" | "upload" | "drop";
 
 async function compressPhoto(file: File): Promise<string> {
   const bitmap = await createImageBitmap(file);
@@ -41,6 +37,8 @@ export function PhotoStep() {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [preparing, setPreparing] = useState(false);
+  const [guidance, setGuidance] = useState<PhotoIntent | null>(null);
+  const droppedFile = useRef<File | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -91,6 +89,32 @@ export function PhotoStep() {
     } catch {
       setError("The camera did not open. You can upload a photograph instead.");
     }
+  }
+
+  function requestGuidance(intent: PhotoIntent, file?: File) {
+    droppedFile.current = intent === "drop" ? (file ?? null) : null;
+    setGuidance(intent);
+  }
+
+  function cancelGuidance() {
+    droppedFile.current = null;
+    setGuidance(null);
+  }
+
+  function confirmGuidance() {
+    const intent = guidance;
+    const file = droppedFile.current;
+    droppedFile.current = null;
+    setGuidance(null);
+    if (intent === "upload") {
+      uploadRef.current?.click();
+      return;
+    }
+    if (intent === "drop") {
+      void acceptFile(file ?? undefined);
+      return;
+    }
+    void openCamera();
   }
 
   function captureFrame() {
@@ -166,7 +190,7 @@ export function PhotoStep() {
                 ) : null}
                 <button
                   type="button"
-                  onClick={() => uploadRef.current?.click()}
+                  onClick={() => requestGuidance("upload")}
                   className="inline-flex min-h-11 items-center gap-space-xxs rounded-full bg-surface-container px-space-md font-label-md text-label-md text-on-surface"
                 >
                   <Icon name="sync_alt" className="text-[18px]" />
@@ -207,7 +231,7 @@ export function PhotoStep() {
             </div>
             <button
               type="button"
-              onClick={openCamera}
+              onClick={() => requestGuidance("camera")}
               className="flex min-h-11 items-start gap-space-md rounded-xl bg-surface-container-low p-space-md text-left hover:bg-surface-container"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-golden-accent">
@@ -225,13 +249,13 @@ export function PhotoStep() {
               onDragOver={(event) => event.preventDefault()}
               onDrop={(event) => {
                 event.preventDefault();
-                void acceptFile(event.dataTransfer.files[0]);
+                requestGuidance("drop", event.dataTransfer.files[0]);
               }}
-              onClick={() => uploadRef.current?.click()}
+              onClick={() => requestGuidance("upload")}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
                   event.preventDefault();
-                  uploadRef.current?.click();
+                  requestGuidance("upload");
                 }
               }}
               role="button"
@@ -271,19 +295,17 @@ export function PhotoStep() {
 
           <section className="rounded-xl bg-surface-container-lowest p-space-xl shadow-md">
             <h2 className="font-title-md text-title-md text-primary">Framing practices</h2>
-            <ul className="mt-space-md grid grid-cols-1 gap-space-xs sm:grid-cols-2">
-              {practices.map((practice, index) => (
-                <li key={practice.title} className="flex items-start gap-space-xs rounded-lg bg-surface p-space-sm">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-label-sm text-label-sm font-bold text-primary">
-                    {index + 1}
-                  </span>
-                  <span>
-                    <span className="block font-label-md text-label-md text-primary">{practice.title}</span>
-                    <span className="block font-body-sm text-body-sm text-on-surface-variant">{practice.body}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+              Review stance, light, framing, and gaze before a photograph is captured or uploaded.
+            </p>
+            <button
+              type="button"
+              onClick={() => requestGuidance("camera")}
+              className="mt-space-md inline-flex min-h-11 items-center gap-space-xxs rounded-full bg-surface-container px-space-md font-label-md text-label-md text-on-surface"
+            >
+              <Icon name="photo_camera" className="text-[18px]" />
+              Open framing practices
+            </button>
           </section>
         </div>
       </div>
@@ -300,6 +322,7 @@ export function PhotoStep() {
           <Button disabled>Continue to animal selection</Button>
         )}
       </div>
+      <FramingPracticesDialog open={guidance !== null} onCancel={cancelGuidance} onTakePhoto={confirmGuidance} />
     </div>
   );
 }
