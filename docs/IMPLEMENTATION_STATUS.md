@@ -314,9 +314,31 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 - Completed work: None.
 - Approval state and date: Not approved.
 
+## Catalogue silhouette correction
+
+- Status: AWAITING APPROVAL
+- Root cause: The catalogue had no species-silhouette assets or shared resolver. Fashion direction photographs existed for the plains zebra (four of five directions) and the tiger (one direction). Only the plains zebra had a direction in Formal, Casual & Street, and Youth Couture. The other 35 animals had a written direction and no outline, so their silhouette frames stayed empty. There was no zebra-only render branch; the data was simply incomplete. Fashion photographs and animal thumbnails were left as they were.
+- Completed work:
+  - Added `AnimalSilhouette`, which resolves a local SVG from the scientific name. A new animal does not need a new conditional in that component.
+  - Saved exact PhyloPic matches whose licenses allow reuse (CC0 or Public Domain Mark). Non-commercial files were not saved. Black moor, fantail, and shubunkin share the Carassius auratus silhouette because they are varieties of that species.
+  - A missing or failed file shows “No silhouette is published for {name}”. It does not substitute the zebra outline, a material icon, or another animal’s photograph.
+  - The catalogue, animal profile, studio animal step, and direction frames without a garment photograph show the silhouette. Zebra garment photographs still render on their direction cards.
+  - In development, the catalogue states silhouette coverage for the whole catalogue.
+- Animals audited: 37 catalogue entries, 35 scientific names.
+- Valid species silhouettes before: 0.
+- Valid species silhouettes after: 14 files, shown on 16 catalogue entries.
+- Missing assets or licensing blockers: 21 scientific names. Betta splendens is CC BY-NC 3.0 and Pavo cristatus is CC BY-NC-SA 3.0, so those files were not copied. Giraffa camelopardalis and Poeciliidae have no exact reusable vector. The other 17 names have no PhyloPic node. No silhouette was invented.
+- Files and assets: `src/components/catalogue/animal-silhouette.tsx`, `src/content/silhouettes.ts`, `src/content/silhouettes.json`, `src/content/silhouettes.test.tsx`, `public/silhouettes/*.svg`, and the catalogue, profile, and studio surfaces that render the component.
+- Tests and build results (26 October 2026, about 14:35 Europe/London):
+  - `npm test`: 42 passed, including zebra and leopard resolving different files, the shared goldfish silhouette, the giraffe fallback, an external address being ignored, and coverage of 16 of 37 animals.
+  - `npm run typecheck`: passed.
+  - `npm run lint`: passed.
+  - `npm run build`: passed. Animal profile pages stay static. Silhouette files are served from `public/silhouettes`.
+- Approval state: Awaiting approval. Phase 6 has not started, and this correction was not deployed.
+
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6, authentication and the private gallery, has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6, authentication and the private gallery, has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 

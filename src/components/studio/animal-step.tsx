@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
 import { EditorialImage } from "@/components/public/editorial-image";
 import { catalogueAnimals, catalogueGroups, filterCatalogue, type CatalogueGroup } from "@/content/catalogue";
 import { pageGutter } from "@/content/site";
@@ -117,6 +118,7 @@ export function AnimalStep() {
                     <span className="font-label-caps text-label-caps text-secondary uppercase">{animal.group}</span>
                     <span className="font-title-md text-title-md text-primary">{animal.commonName}</span>
                     <span className="font-body-sm text-body-sm text-on-surface-variant">{animal.scientificName}</span>
+                    <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} className="max-w-40" />
                     <span className="mt-space-xs flex flex-wrap gap-space-xxs">
                       {animal.swatches.slice(0, 4).map((swatch) => (
                         <span key={swatch.hex} className="inline-flex items-center gap-space-xxs font-label-sm text-label-sm text-on-surface-variant">

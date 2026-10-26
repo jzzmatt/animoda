@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
 import { EditorialImage } from "@/components/public/editorial-image";
 import { Icon } from "@/components/ui/icon";
 import { HabitatPanel } from "@/components/catalogue/habitat-panel";
@@ -113,6 +114,10 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
               ))}
             </ul>
           </div>
+          <div>
+            <p className="font-label-caps text-label-caps text-secondary uppercase">Species silhouette</p>
+            <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} className="mt-space-sm max-w-xs" />
+          </div>
           <dl className="grid grid-cols-2 gap-space-sm font-body-sm text-body-sm text-on-surface-variant sm:grid-cols-3">
             <div>
               <dt className="font-label-caps text-label-caps uppercase">Kingdom</dt>
@@ -216,7 +221,12 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
                   <div className="relative aspect-[3/4] bg-surface-container">
                     <EditorialImage src={direction.image} alt={direction.alt} sizes="(min-width: 1280px) 25vw, 100vw" />
                   </div>
-                ) : null}
+                ) : (
+                  <div className="flex aspect-[3/4] flex-col justify-between p-space-md">
+                    <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} />
+                    <p className="font-body-sm text-body-sm text-on-surface-variant">No garment photograph is published for this direction. The outline is the species silhouette, not the garment.</p>
+                  </div>
+                )}
                 <div className="flex flex-1 flex-col gap-space-xs p-space-lg">
                   <p className="font-label-caps text-label-caps text-secondary uppercase">{direction.audience}</p>
                   <h3 className="font-title-md text-title-md text-primary">{direction.title}</h3>

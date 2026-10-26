@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
 import { EditorialImage } from "@/components/public/editorial-image";
+import { silhouetteCoverage } from "@/content/silhouettes";
 import { Icon } from "@/components/ui/icon";
 import { TextField } from "@/components/ui/text-field";
 import {
@@ -32,6 +34,7 @@ export function CatalogueBrowser() {
   const [marked, setMarked] = useState<string[]>([]);
   const [note, setNote] = useState("No species is marked.");
   const results = useMemo(() => filterCatalogue(catalogueAnimals, query), [query]);
+  const coverage = silhouetteCoverage(catalogueAnimals);
 
   function toggle(animal: CatalogueAnimal) {
     const active = marked.includes(animal.slug);
@@ -153,6 +156,11 @@ export function CatalogueBrowser() {
               </select>
             </label>
           </div>
+          {process.env.NODE_ENV === "development" ? (
+            <p className="font-body-sm text-body-sm text-on-surface-variant">
+              Silhouette coverage: {coverage.valid} of {coverage.total} catalogue animals. Missing: {coverage.missing.join(", ")}.
+            </p>
+          ) : null}
           {results.length === 0 ? (
             <p className="rounded-3xl bg-surface-container-lowest p-space-xl font-body-lg text-body-lg text-on-surface-variant">
               This curated sample has no entry for that search or filter.
@@ -186,6 +194,7 @@ export function CatalogueBrowser() {
                         <h2 className="font-headline-sm text-headline-sm text-primary">{animal.commonName}</h2>
                       </div>
                       <p className="font-body-sm text-body-sm text-secondary">{animal.scientificName}</p>
+                      <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} className="max-w-40" />
                       <p className="flex-1 font-body-md text-body-md text-on-surface-variant">{animal.summary}</p>
                       {animal.imageCredit ? (
                         <p className="font-body-sm text-body-sm text-on-surface-variant">

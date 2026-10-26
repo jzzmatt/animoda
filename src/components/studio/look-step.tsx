@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
 import { EditorialImage } from "@/components/public/editorial-image";
 import { animalBySlug } from "@/content/catalogue";
 import { pageGutter } from "@/content/site";
@@ -61,8 +62,9 @@ export function LookStep() {
             {direction.image && direction.alt ? (
               <EditorialImage src={direction.image} alt={direction.alt} sizes="(min-width: 1024px) 40vw, 100vw" />
             ) : (
-              <div className="flex h-full items-end p-space-lg">
-                <p className="font-body-md text-on-surface-variant">This direction has a textile note and no photograph.</p>
+              <div className="flex h-full flex-col justify-between p-space-md">
+                <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} />
+                <p className="font-body-md text-on-surface-variant">This direction has a textile note and no garment photograph. The outline is the species silhouette, not the garment.</p>
               </div>
             )}
           </div>
