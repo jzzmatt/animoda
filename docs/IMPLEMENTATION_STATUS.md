@@ -246,7 +246,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ### Phase 5 — Real AI integration
 
-- Status: AWAITING APPROVAL
+- Status: APPROVED
 - Scope: Concept provider, try-on provider, server credentials, job lifecycle, quotas, selected-design reference preservation, and a labelled mock when credentials are absent.
 - Completed work:
   - Added server routes `POST /api/studio/jobs` and `GET /api/studio/jobs/[id]`. A job is queued, then running, then succeeded or failed. Records live in the server process. A restart clears them.
@@ -283,8 +283,8 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - `npm run build`: passed. `/api/studio/jobs` and `/api/studio/jobs/[id]` are dynamic. The studio pages stay static.
   - Browser check in the visible Chrome window, Obsidian Atelier, about 05:16 Europe/London: uploading a photograph, choosing Women and plains zebra, and selecting the gown reaches the sample directions. Regenerating shows “Labelled mock · Succeeded”, leaves the two catalogue cards, and keeps the gown selected. The try-on request shows the same labelled success, says no composite was made, and the portrait and the catalogue gown stay separate images. The job requests carry the visit, the animal, the audience, and the selected design. Desktop width and a 390px layout had no horizontal overflow.
 - Missing credentials: No concept provider and no try-on provider are chosen. The server keys are absent, so the labelled mock is what runs.
-- Outstanding tasks: Explicit approval of this phase. Phase 6 has not started.
-- Approval state and date: Awaiting explicit approval. Not approved.
+- Outstanding tasks: None in this phase.
+- Approval state and date: Approved on 26 October 2026 at 05:38 Europe/London. Phase 6 has not started.
 
 ### Phase 6 — Authentication, database, and private gallery
 
@@ -316,7 +316,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2, Phase 3, and Phase 4 are approved. Phase 5, the studio job path, is implemented and awaiting approval. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. Phase 6 has not started. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Phase 6, authentication and the private gallery, has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 
