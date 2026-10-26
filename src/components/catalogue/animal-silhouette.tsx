@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { silhouetteFor } from "@/content/silhouettes";
+import { silhouetteDepictsRelated, silhouetteFor } from "@/content/silhouettes";
 import { cn } from "@/lib/cn";
 
 type AnimalSilhouetteProps = {
@@ -13,7 +13,10 @@ type AnimalSilhouetteProps = {
 export function AnimalSilhouette({ scientificName, commonName, className }: AnimalSilhouetteProps) {
   const record = silhouetteFor(scientificName);
   const [failed, setFailed] = useState(false);
-  const label = `Silhouette of ${commonName}, ${scientificName}`;
+  const related = record ? silhouetteDepictsRelated(record) : false;
+  const label = related
+    ? `Silhouette for ${commonName}, ${scientificName}. The outline depicts ${record?.depictedName}.`
+    : `Silhouette of ${commonName}, ${scientificName}`;
 
   if (!record || failed) {
     return (
@@ -38,6 +41,7 @@ export function AnimalSilhouette({ scientificName, commonName, className }: Anim
         />
       </div>
       <figcaption className="font-body-sm text-body-sm text-on-surface-variant">
+        {related ? <span>Related outline of {record.depictedName}. </span> : null}
         <a className="underline" href={record.sourceUrl}>
           {record.attribution ? `Silhouette by ${record.attribution}` : "Silhouette"}
         </a>
