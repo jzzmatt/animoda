@@ -210,6 +210,24 @@ describe("supabase server configuration", () => {
     expect(JSON.stringify({ url: config?.url })).not.toContain("server-side-service-role-key");
   });
 
+  it("accepts the dashboard url and secret key names", () => {
+    const config = readSupabaseServerConfig({
+      SUPABASE_URL: "https://example.supabase.co",
+      SUPABASE_SECRET_KEY: "sb_secret_server_side_key_value",
+    });
+    expect(config?.url).toBe("https://example.supabase.co");
+    expect(config?.serviceRoleKey).toBe("sb_secret_server_side_key_value");
+  });
+
+  it("rejects a publishable key used as the server credential", () => {
+    expect(
+      readSupabaseServerConfig({
+        SUPABASE_URL: "https://example.supabase.co",
+        SUPABASE_SECRET_KEY: "sb_publishable_not_a_server_key",
+      }),
+    ).toBeNull();
+  });
+
   it("rejects a non-https url and a short key", () => {
     expect(
       readSupabaseServerConfig({

@@ -4,7 +4,7 @@ Discover Nature. Design Your Style.
 
 Animoda is an AI-powered fashion platform for animal-inspired design, personal visualisation, and manufacturing requests with professional couturiers. It does not manage shipping or delivery.
 
-**Phase 5** is approved. Phase 6A, the Supabase foundation, is written and waiting on an Animoda project. Phase 6B, permanent fashion samples, and Phase 6C, accounts and the private gallery, have not started. The public landing page is at `/`. The animal catalogue is at `/animals`. The studio journey is at `/studio`. The design foundation review remains at `/foundation`. The first visit uses the Obsidian Atelier dark edition. The header can switch to the light edition. See [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md).
+**Phase 5** is approved. Phase 6A can reach the Animoda Supabase project and its public sample bucket. The database migration has not been applied, so Phase 6B has not started. Phase 6C, accounts and the private gallery, has not started. The public landing page is at `/`. The animal catalogue is at `/animals`. The studio journey is at `/studio`. The design foundation review remains at `/foundation`. The first visit uses the Obsidian Atelier dark edition. The header can switch to the light edition. See [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md).
 
 ## Develop
 
@@ -22,4 +22,4 @@ npm run typecheck
 npm run build
 ```
 
-Copy `.env.example` into the gitignored `.env` when Supabase is configured. Phase 6A reads `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` on the server. The service-role key must not use a `NEXT_PUBLIC_` name. Both values are empty here, and the migration has not been applied. The sample report is `GET /api/admin/fashion-samples` and it also requires `FASHION_SAMPLE_ADMIN_TOKEN`. See [docs/supabase-foundation.md](docs/supabase-foundation.md). Phase 5 reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` on the server only. Both are empty in this repository, so the studio runs the labelled mock. Wildlife data comes from the public GBIF API, and the map uses OpenFreeMap.
+Copy `.env.example` into the gitignored `.env` when Supabase is configured. Phase 6A reads `SUPABASE_URL` and `SUPABASE_SECRET_KEY`, or `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, on the server. The secret key must not use a `NEXT_PUBLIC_` name. The sample report is `GET /api/admin/fashion-samples` and it also requires `FASHION_SAMPLE_ADMIN_TOKEN`. The migration has not been applied. See [docs/supabase-foundation.md](docs/supabase-foundation.md). Phase 5 reads `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` on the server only. Both are empty in this repository, so the studio runs the labelled mock. Wildlife data comes from the public GBIF API, and the map uses OpenFreeMap.
