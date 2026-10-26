@@ -13,6 +13,8 @@ import {
 } from "@/content/catalogue";
 import { pageGutter, routes } from "@/content/site";
 import type { WildlifeReport } from "@/server/wildlife";
+import type { PersistedSampleSlot } from "@/content/persisted-samples";
+import { PersistedFashionSamples } from "@/components/catalogue/persisted-fashion-samples";
 import { cn } from "@/lib/cn";
 
 const tabs = [
@@ -23,7 +25,15 @@ const tabs = [
 
 type TabId = (typeof tabs)[number]["id"];
 
-export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; wildlife: WildlifeReport }) {
+export function AnimalProfile({
+  animal,
+  wildlife,
+  storedSamples = null,
+}: {
+  animal: CatalogueAnimal;
+  wildlife: WildlifeReport;
+  storedSamples?: PersistedSampleSlot[] | null;
+}) {
   const [tab, setTab] = useState<TabId>("overview");
   const [setting, setSetting] = useState<(typeof directionSettings)[number]>("All Silhouettes");
   const [marked, setMarked] = useState(false);
@@ -181,6 +191,7 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
           </div>
         </section>
       ) : null}
+      {storedSamples ? <PersistedFashionSamples slots={storedSamples} /> : null}
       <section className="flex flex-col gap-space-md" aria-labelledby="directions-title">
         <div className="flex flex-col justify-between gap-space-md md:flex-row md:items-end">
           <div>
@@ -189,7 +200,9 @@ export function AnimalProfile({ animal, wildlife }: { animal: CatalogueAnimal; w
               Fashion inspiration
             </h2>
             <p className="mt-space-xs max-w-2xl font-body-md text-body-md text-on-surface-variant">
-              These directions are written samples. The Studio does not generate them yet. A direction is a digital concept, not a garment in stock.
+              {storedSamples
+                ? "These cards remain the written catalogue directions. They are not the stored pilot images."
+                : "These directions are written samples. The Studio does not generate them yet. A direction is a digital concept, not a garment in stock."}
             </p>
           </div>
           <div className="flex flex-wrap gap-space-xs" role="group" aria-label="Silhouette">

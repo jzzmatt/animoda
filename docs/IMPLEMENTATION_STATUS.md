@@ -306,6 +306,22 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 - Missing configuration: `FASHION_SAMPLE_ADMIN_TOKEN` is still absent, so the report route stays closed. See `docs/supabase-foundation.md`.
 - Approval state and date: Not approved.
 
+### Phase 6.1 — Emerald tree boa pilot
+
+- Status: VERIFIED, awaiting approval. Three real images were generated for `emerald-tree-boa` only, stored, and read back. No other animal was processed.
+- Catalogue record: Emerald tree boa, `Corallus caninus`, slug `emerald-tree-boa`.
+- Supabase: The existing project and migration were reused. No new migration was created. MCP access to this project still returns a permission error, so the pilot used the server secret key.
+- Storage bucket: `animoda-fashion-samples`, public read, server write. Each object was retrieved from its public URL and checked as a PNG.
+- Generated images: 3. Permanently stored and verified: 3. A second run skipped all three and did not call image generation again.
+- Styles:
+  - Formal Couture, `formal`, completed. `animals/emerald-tree-boa/formal/5d76449f-ff18-4952-a79d-7ed0f84becde.png`
+  - Casual & Streetwear, `casual_street`, completed. `animals/emerald-tree-boa/casual_street/e4351352-0b11-4660-a88c-92d3d40ae613.png`
+  - Youth Couture, `youth_couture`, completed. `animals/emerald-tree-boa/youth_couture/36135fa4-6106-49fd-9b16-7a0e88ffbda9.png`
+- Model and prompt version: `gpt-image-2.5-sunburst`, `boa-pilot-1`. Quality `medium`, size `1024x1536`, PNG.
+- Display: The emerald tree boa profile shows the three stored samples. Other animal pages do not query or show this section. Written catalogue directions remain separate and are not labelled as generated images.
+- Tests (26 October 2026, about 17:32 Africa/Luanda): `npm test` 64 passed. `npm run typecheck` passed. `npm run lint` passed. `npm run build` passed. The emerald tree boa profile is a static page and its build output includes the three stored image paths. No browser automation. No deployment.
+- Approval state and date: Not approved. Phase 6.2 has not started.
+
 ### Phase 6B — Permanent AI fashion samples
 
 - Status: NOT STARTED
@@ -365,7 +381,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`: the migration is applied, and a stored image was read back before the probe was removed. Phase 6B and Phase 6C have not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 stored three Emerald tree boa samples and is awaiting approval. Phase 6.2 and Phase 6C have not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 

@@ -4,7 +4,7 @@ Discover Nature. Design Your Style.
 
 Animoda is an AI-powered fashion platform for animal-inspired design, personal visualisation, and manufacturing requests with professional couturiers. It does not manage shipping or delivery.
 
-**Phase 5** is approved. Phase 6A is verified on the Animoda Supabase project: the sample tables and the public bucket are in place, and a stored image was read back. Phase 6B, permanent fashion samples, and Phase 6C, accounts and the private gallery, have not started. The public landing page is at `/`. The animal catalogue is at `/animals`. The studio journey is at `/studio`. The design foundation review remains at `/foundation`. The first visit uses the Obsidian Atelier dark edition. The header can switch to the light edition. See [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md).
+**Phase 5** is approved. Phase 6A is verified on the Animoda Supabase project. Phase 6.1 stored three Emerald tree boa fashion samples and is awaiting approval. Phase 6.2, the remaining animals, and Phase 6C, accounts and the private gallery, have not started. The public landing page is at `/`. The animal catalogue is at `/animals`. The studio journey is at `/studio`. The design foundation review remains at `/foundation`. The first visit uses the Obsidian Atelier dark edition. The header can switch to the light edition. See [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md).
 
 ## Develop
 
