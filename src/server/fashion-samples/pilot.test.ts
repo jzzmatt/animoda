@@ -1,30 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { animalBySlug } from "@/content/catalogue";
-import { EMERALD_TREE_BOA_SLUG } from "@/content/persisted-samples";
-import { decidePilotStep, isPng, pilotBrief, pilotPrompt, pilotStyles } from "@/server/fashion-samples/pilot";
+import { animalBySlug, catalogueAnimals } from "@/content/catalogue";
+import { decidePilotStep, isPng, pilotPrompt, pilotStyles, sampleCopy } from "@/server/fashion-samples/pilot";
 
 const png = Uint8Array.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, ...new Array(32).fill(1)]);
 
-describe("emerald tree boa pilot", () => {
-  it("uses the catalogue slug and refuses every other animal", () => {
-    const animal = animalBySlug(EMERALD_TREE_BOA_SLUG);
-    expect(animal?.commonName).toBe("Emerald tree boa");
-    expect(animal?.scientificName).toBe("Corallus caninus");
-    expect(() => pilotPrompt(animalBySlug("plains-zebra")!, "formal")).toThrow("pilot_animal_refused");
-  });
-
-  it("writes three different fashion prompts from the boa record", () => {
-    const animal = animalBySlug(EMERALD_TREE_BOA_SLUG)!;
-    const prompts = pilotStyles.map((item) => pilotPrompt(animal, item.style));
-    expect(new Set(prompts).size).toBe(3);
-    for (const prompt of prompts) {
-      expect(prompt).toContain("Corallus caninus");
-      expect(prompt).toContain("#1F7A45");
-      expect(prompt).toContain("fashion");
-      expect(prompt.toLowerCase()).not.toContain("plains zebra");
-    }
-    expect(prompts[2]).toMatch(/age-appropriate/i);
-    expect(pilotBrief("formal").title).not.toBe(pilotBrief("casual_street").title);
+describe("catalogue fashion samples", () => {
+  it("builds a different prompt for each catalogue animal and style", () => {
+    const boa = animalBySlug("emerald-tree-boa")!;
+    const zebra = animalBySlug("plains-zebra")!;
+    const leopard = animalBySlug("leopard")!;
+    const boaPrompts = pilotStyles.map((item) => pilotPrompt(boa, item.style));
+    expect(new Set(boaPrompts).size).toBe(3);
+    expect(boaPrompts[0]).toContain("Corallus caninus");
+    expect(boaPrompts[0]).toContain("#1F7A45");
+    expect(boaPrompts[2]).toMatch(/age-appropriate/i);
+    expect(pilotPrompt(zebra, "formal")).toContain("Equus quagga");
+    expect(pilotPrompt(zebra, "formal")).not.toBe(pilotPrompt(leopard, "formal"));
+    expect(pilotPrompt(leopard, "casual_street")).toMatch(/rosette/i);
+    expect(sampleCopy(zebra, "formal").title).not.toBe(sampleCopy(zebra, "casual_street").title);
+    expect(catalogueAnimals).toHaveLength(37);
   });
 
   it("skips a completed stored sample and does not treat a missing file as finished", () => {

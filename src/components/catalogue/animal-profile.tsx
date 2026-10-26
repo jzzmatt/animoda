@@ -191,7 +191,7 @@ export function AnimalProfile({
           </div>
         </section>
       ) : null}
-      {storedSamples ? <PersistedFashionSamples slots={storedSamples} /> : null}
+      {storedSamples ? <PersistedFashionSamples animalName={animal.commonName} slots={storedSamples} /> : null}
       <section className="flex flex-col gap-space-md" aria-labelledby="directions-title">
         <div className="flex flex-col justify-between gap-space-md md:flex-row md:items-end">
           <div>

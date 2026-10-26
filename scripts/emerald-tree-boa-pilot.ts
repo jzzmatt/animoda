@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
-import { runEmeraldTreeBoaPilot } from "@/server/fashion-samples/pilot-run";
+import { EMERALD_TREE_BOA_SLUG } from "@/content/persisted-samples";
+import { runCatalogueFashionSamples } from "@/server/fashion-samples/pilot-run";
 
 const env: Record<string, string | undefined> = { ...process.env };
 for (const line of readFileSync(".env", "utf8").split("\n")) {
@@ -11,7 +12,7 @@ for (const line of readFileSync(".env", "utf8").split("\n")) {
   if (!env[key]) env[key] = value;
 }
 
-const results = await runEmeraldTreeBoaPilot(env);
+const results = await runCatalogueFashionSamples(env, [EMERALD_TREE_BOA_SLUG]);
 for (const result of results) {
   console.log(`${result.style} ${result.action} id=${result.id ?? ""} path=${result.imagePath ?? ""} error=${result.errorCode ?? ""}`);
 }
