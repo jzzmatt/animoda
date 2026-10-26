@@ -2,15 +2,13 @@ import { describe, expect, it } from "vitest";
 import { animalBySlug } from "@/content/catalogue";
 import {
   audienceMatches,
-  conceptProviderMessage,
   emptyDraft,
+  isVisitId,
   maxPhotoBytes,
   missingFor,
   normalizeDraft,
   photoRejection,
-  requestTryOnPreview,
   sampleDirections,
-  tryOnUnavailableMessage,
 } from "./session";
 
 describe("studio session", () => {
@@ -61,17 +59,16 @@ describe("studio session", () => {
       audience: "Men",
       directionId: "zebra-gown",
       savedThisVisit: true,
+      visitId: "11111111-1111-4111-8111-111111111111",
     });
     expect(draft.animalSlug).toBeNull();
     expect(draft.directionId).toBeNull();
     expect(draft.savedThisVisit).toBe(true);
+    expect(draft.visitId).toBe("11111111-1111-4111-8111-111111111111");
   });
 
-  it("reports that try-on and regeneration are not connected", async () => {
-    const result = await requestTryOnPreview();
-    expect(result.ok).toBe(false);
-    expect(result.message).toBe(tryOnUnavailableMessage);
-    expect(conceptProviderMessage).toMatch(/not connected/);
-    expect(tryOnUnavailableMessage).not.toMatch(/99\.4|98%/);
+  it("drops a visit id that is not a UUID", () => {
+    expect(isVisitId("11111111-1111-4111-8111-111111111111")).toBe(true);
+    expect(normalizeDraft({ visitId: "not-a-visit", animalSlug: "plains-zebra" }).visitId).toBeNull();
   });
 });

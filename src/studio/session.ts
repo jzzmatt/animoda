@@ -22,13 +22,18 @@ export type DirectionSetting = (typeof directionSettings)[number];
 export const maxPhotoBytes = 25 * 1024 * 1024;
 export const acceptedPhotoTypes = ["image/jpeg", "image/png", "image/webp"] as const;
 
-export const conceptProviderMessage =
-  "A concept provider is not connected, so these sample directions cannot be regenerated. The list is unchanged.";
+const visitPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export const tryOnUnavailableMessage =
-  "The try-on provider is not connected. Your photograph and the selected design stay separate, and the design you selected remains the reference.";
+export function isVisitId(value: string): boolean {
+  return visitPattern.test(value);
+}
+
+export function newVisitId(): string {
+  return crypto.randomUUID();
+}
 
 export type StudioDraft = {
+  visitId: string | null;
   photoDataUrl: string | null;
   photoName: string | null;
   animalSlug: string | null;
@@ -40,6 +45,7 @@ export type StudioDraft = {
 
 export function emptyDraft(): StudioDraft {
   return {
+    visitId: null,
     photoDataUrl: null,
     photoName: null,
     animalSlug: null,
@@ -119,6 +125,7 @@ export function normalizeDraft(value: unknown): StudioDraft {
   const parsed = value as Partial<StudioDraft>;
   const animalSlug = typeof parsed.animalSlug === "string" && animalBySlug(parsed.animalSlug) ? parsed.animalSlug : null;
   const draft: StudioDraft = {
+    visitId: typeof parsed.visitId === "string" && isVisitId(parsed.visitId) ? parsed.visitId : null,
     photoDataUrl: typeof parsed.photoDataUrl === "string" && parsed.photoDataUrl.startsWith("data:image/") ? parsed.photoDataUrl : null,
     photoName: typeof parsed.photoName === "string" ? parsed.photoName.slice(0, 180) : null,
     animalSlug,
@@ -160,9 +167,4 @@ export function clearStoredDraft() {
   } catch {
     /* Private browsing can reject storage. The in-memory visit still clears. */
   }
-}
-
-export async function requestTryOnPreview(): Promise<{ ok: false; message: string }> {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  return { ok: false, message: tryOnUnavailableMessage };
 }

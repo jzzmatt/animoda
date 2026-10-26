@@ -7,13 +7,7 @@ import { pageGutter } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { photoRejection } from "@/studio/session";
 import { useStudio } from "@/studio/studio-provider";
-
-const practices = [
-  { title: "Upright stance", body: "Stand straight with relaxed shoulders." },
-  { title: "Frontal light", body: "Avoid harsh backlighting or heavy cast shadows." },
-  { title: "Full torso view", body: "Keep the waistline and collarbones in the frame." },
-  { title: "Neutral gaze", body: "A direct gaze makes the collar area easier to see." },
-];
+import { FramingPracticesPanel } from "./framing-practices-panel";
 
 async function compressPhoto(file: File): Promise<string> {
   const bitmap = await createImageBitmap(file);
@@ -132,8 +126,8 @@ export function PhotoStep() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 items-start gap-space-xl lg:grid-cols-12">
-        <div className="flex flex-col gap-space-md lg:col-span-7">
+      <div className="grid grid-cols-1 items-start gap-space-xl lg:grid-cols-2">
+        <div className="order-3 flex flex-col gap-space-md lg:order-none lg:col-start-1 lg:row-start-2">
           <div className="rounded-xl bg-surface-container-lowest p-space-md shadow-xl">
             <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-lg bg-surface-container">
               {stream ? (
@@ -198,7 +192,7 @@ export function PhotoStep() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-space-lg lg:col-span-5">
+        <div className="order-1 flex flex-col gap-space-lg lg:order-none lg:col-start-1 lg:row-start-1">
           <section className="flex flex-col gap-space-md rounded-xl bg-surface-container-lowest p-space-xl shadow-md">
             <div>
               <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Select method</p>
@@ -207,7 +201,7 @@ export function PhotoStep() {
             </div>
             <button
               type="button"
-              onClick={openCamera}
+              onClick={() => void openCamera()}
               className="flex min-h-11 items-start gap-space-md rounded-xl bg-surface-container-low p-space-md text-left hover:bg-surface-container"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-golden-accent">
@@ -269,22 +263,9 @@ export function PhotoStep() {
             ) : null}
           </section>
 
-          <section className="rounded-xl bg-surface-container-lowest p-space-xl shadow-md">
-            <h2 className="font-title-md text-title-md text-primary">Framing practices</h2>
-            <ul className="mt-space-md grid grid-cols-1 gap-space-xs sm:grid-cols-2">
-              {practices.map((practice, index) => (
-                <li key={practice.title} className="flex items-start gap-space-xs rounded-lg bg-surface p-space-sm">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-label-sm text-label-sm font-bold text-primary">
-                    {index + 1}
-                  </span>
-                  <span>
-                    <span className="block font-label-md text-label-md text-primary">{practice.title}</span>
-                    <span className="block font-body-sm text-body-sm text-on-surface-variant">{practice.body}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
+        </div>
+        <div className="order-2 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2">
+          <FramingPracticesPanel />
         </div>
       </div>
 

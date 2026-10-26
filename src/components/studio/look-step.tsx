@@ -1,19 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { EditorialImage } from "@/components/public/editorial-image";
 import { animalBySlug } from "@/content/catalogue";
 import { pageGutter } from "@/content/site";
 import { cn } from "@/lib/cn";
-import { missingFor, requestTryOnPreview, sampleDirections } from "@/studio/session";
+import { missingFor, sampleDirections } from "@/studio/session";
+import { keptDirectionId } from "@/studio/jobs-client";
 import { useStudio } from "@/studio/studio-provider";
+import { useStudioJob } from "@/studio/use-studio-job";
 import { BlockedStep } from "./blocked-step";
+import { StudioJobNotice } from "./studio-job-notice";
 
 export function LookStep() {
   const studio = useStudio();
-  const [status, setStatus] = useState<"idle" | "loading" | "unavailable">("idle");
-  const [message, setMessage] = useState<string | null>(null);
+  const jobState = useStudioJob("try-on");
 
   if (!studio.ready) {
     return <p className={cn("py-space-xl font-body-md text-on-surface-variant", pageGutter)}>Opening the studio…</p>;
@@ -22,17 +23,14 @@ export function LookStep() {
   if (needed) return <BlockedStep needed={needed} />;
 
   const animal = animalBySlug(studio.animalSlug ?? "");
-  const direction = animal?.directions.find((item) => item.id === studio.directionId);
+  const directionId = keptDirectionId(studio.directionId, jobState.job);
+  const direction = animal?.directions.find((item) => item.id === directionId);
   if (!animal || !direction) return <BlockedStep needed="suggestions" />;
   const related = sampleDirections(animal, studio.audience, "All Silhouettes").filter((item) => item.id !== direction.id);
 
-  async function requestPreview() {
-    setStatus("loading");
-    setMessage(null);
-    const result = await requestTryOnPreview();
-    setStatus("unavailable");
-    setMessage(result.message);
-  }
+  const requestPreview = () => {
+    void jobState.start({ animalSlug: animal.slug, directionId: direction.id, setting: null });
+  };
 
   return (
     <div className={cn("mx-auto flex w-full max-w-7xl flex-col gap-space-xl py-space-xl", pageGutter)}>
@@ -42,7 +40,7 @@ export function LookStep() {
           Your selected design
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          {direction.title} stays the reference for {animal.commonName} ({animal.scientificName}). A try-on composite is not produced in this phase.
+          {direction.title} stays the reference for {animal.commonName} ({animal.scientificName}). A try-on request starts a server job. With no try-on key configured, the job is a labelled mock and no composite is made.
         </p>
       </header>
 
@@ -79,28 +77,21 @@ export function LookStep() {
       <section className="rounded-xl bg-surface-container p-space-lg">
         <h2 className="font-title-md text-title-md text-primary">Try-on preview</h2>
         <p className="mt-space-xs font-body-md text-on-surface-variant">
-          Requesting a preview does not change the selected design. The provider answers that it is not connected.
+          Requesting a preview does not change the selected design and does not upload the photograph. The preview above stays the catalogue photograph.
         </p>
         <div className="mt-space-md flex flex-wrap gap-space-sm">
-          <Button onClick={() => void requestPreview()} disabled={status === "loading"}>
-            {status === "loading" ? "Requesting a preview…" : "Request a try-on preview"}
+          <Button onClick={requestPreview} disabled={jobState.pending}>
+            {jobState.pending ? "Requesting a preview…" : "Request a try-on preview"}
           </Button>
-          {status === "unavailable" ? (
-            <Button variant="tonal" onClick={() => void requestPreview()}>
-              Try the request again
+          {jobState.job && !jobState.pending ? (
+            <Button variant="tonal" onClick={requestPreview}>
+              Request the preview again
             </Button>
           ) : null}
         </div>
-        {status === "loading" ? (
-          <p role="status" className="mt-space-sm font-body-md text-on-surface-variant">
-            Asking the try-on provider…
-          </p>
-        ) : null}
-        {message ? (
-          <p role="alert" className="mt-space-sm font-body-md text-on-surface">
-            {message}
-          </p>
-        ) : null}
+        <div className="mt-space-sm">
+          <StudioJobNotice job={jobState.job} pending={jobState.pending} />
+        </div>
       </section>
 
       {related.length > 0 ? (
@@ -113,8 +104,7 @@ export function LookStep() {
                   type="button"
                   onClick={() => {
                     studio.setDirection(item.id);
-                    setStatus("idle");
-                    setMessage(null);
+                    jobState.clear();
                   }}
                   className="flex min-h-11 w-full flex-col rounded-2xl bg-surface-container-lowest p-space-md text-left shadow-sm"
                 >
