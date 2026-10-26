@@ -3,7 +3,7 @@ import { PhotoStep } from "@/components/studio/photo-step";
 
 export const metadata: Metadata = {
   title: "Your photograph",
-  description: "Add a portrait for this Animoda Studio visit. The photograph stays in this browser and is not uploaded.",
+  description: "Add a portrait for this Animoda Studio visit. Framing practices sit beside the photograph controls. The photograph stays in this browser.",
 };
 
 export default function StudioPhotoPage() {
