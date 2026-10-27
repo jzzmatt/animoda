@@ -20,23 +20,24 @@ export function AnimalSilhouette({ scientificName, commonName, className }: Anim
 
   if (!record || failed) {
     return (
-      <div className={cn("flex aspect-square items-center bg-[#F8F3E8] p-space-sm", className)} role="img" aria-label={`No silhouette is published for ${commonName}, ${scientificName}`}>
+      <div className={cn("flex aspect-square w-full items-center bg-[#F8F3E8] p-space-sm", className)} role="img" aria-label={`No silhouette is published for ${commonName}, ${scientificName}`}>
         <p className="font-body-sm text-body-sm text-[#3E3A36]">No silhouette is published for {commonName}.</p>
       </div>
     );
   }
 
   return (
-    <figure className={cn("flex flex-col gap-space-xxs", className)}>
-      <div className="flex aspect-square items-center justify-center bg-[#F8F3E8] p-space-sm">
+    <figure className={cn("flex w-full min-w-0 flex-col gap-space-xxs", className)}>
+      <div className="relative aspect-square w-full overflow-hidden bg-[#F8F3E8]">
         {/* Local SVG outlines are not optimized by next/image. A failed file falls back in this component. */}
+        {/* The frame size comes from the square, so a very tall file such as the anaconda cannot expand the page. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={record.src}
           alt={label}
           width={record.width ?? 512}
           height={record.height ?? 512}
-          className="max-h-full max-w-full object-contain"
+          className="absolute inset-0 h-full w-full object-contain p-space-sm"
           onError={() => setFailed(true)}
         />
       </div>

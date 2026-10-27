@@ -39,6 +39,17 @@ describe("animal silhouettes", () => {
     expect(markup).not.toContain("/stitch/");
   });
 
+  it("keeps the green anaconda outline inside the square frame", () => {
+    const anaconda = silhouetteFor("Eunectes murinus");
+    expect(anaconda?.width).toBeLessThan(anaconda?.height ?? 0);
+    const markup = renderToStaticMarkup(<AnimalSilhouette scientificName="Eunectes murinus" commonName="Green anaconda" />);
+    expect(markup).toContain(anaconda?.src ?? "");
+    expect(markup).toContain("aspect-square");
+    expect(markup).toContain("overflow-hidden");
+    expect(markup).toContain("object-contain");
+    expect(markup).not.toContain("No silhouette is published for Green anaconda");
+  });
+
   it("gives every catalogue animal a local outline and names a related taxon when the drawing is not exact", () => {
     const coverage = silhouetteCoverage(catalogueAnimals);
     expect(coverage.total).toBe(catalogueAnimals.length);
