@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   catalogueAnimals,
@@ -31,6 +32,22 @@ describe("animal catalogue", () => {
     ).toEqual(["victoria-crowned-pigeon"]);
     expect(filterCatalogue(catalogueAnimals, { text: "viper", group: "All Animals", region: "All regions", color: "All tones", sort: "catalogue" }).map((animal) => animal.slug)).toEqual(["emerald-tree-boa"]);
     expect(filterCatalogue(catalogueAnimals, { text: "quagga", group: "Mammals", region: "Africa", color: "Monochrome", sort: "catalogue" }).map((animal) => animal.scientificName)).toEqual(["Equus quagga"]);
+  });
+
+  it("uses a tiger photograph for the tiger and keeps the youth bomber as the garment", () => {
+    const tiger = catalogueAnimals.find((animal) => animal.slug === "tiger");
+    expect(tiger).toBeDefined();
+    expect(tiger?.image).toBe("/catalogue/tiger.jpg");
+    expect(tiger?.alt).toContain("Bengal tiger");
+    expect(tiger?.imageCredit).toContain("Charles J. Sharp");
+    expect(tiger?.imageCredit).toContain("CC BY-SA 4.0");
+    expect(tiger?.imageSourceUrl).toBe(
+      "https://commons.wikimedia.org/wiki/File:Bengal_tiger_(Panthera_tigris_tigris)_female_3.jpg",
+    );
+    expect(tiger?.directions[0]?.image).toBe("/stitch/design-tiger.jpg");
+    expect(tiger?.directions[0]?.alt).toContain("bomber jackets");
+    const portrait = readFileSync("public/catalogue/tiger.jpg");
+    expect(portrait.subarray(0, 3).toString("hex")).toBe("ffd8ff");
   });
 
   it("keeps youth directions on the youth filter and drops the fit score", () => {
