@@ -1,4 +1,8 @@
 import { animalBySlug, directionSettings, type SampleDirection } from "@/content/catalogue";
+import { EMERALD_TREE_BOA_SLUG } from "@/content/persisted-samples";
+import type { PilotEnsureResult, PilotSampleFile } from "@/server/fashion-samples/pilot-job";
+import { readImageModel } from "@/server/fashion-samples/openai-image";
+import { readSupabaseServerConfig } from "@/server/supabase/server";
 import {
   audienceMatches,
   isVisitId,
@@ -17,8 +21,11 @@ const jobIdPattern = /^job_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a
 
 export const studioJobKinds = ["concept", "try-on"] as const;
 export type StudioJobKind = (typeof studioJobKinds)[number];
-export type StudioJobStatus = "queued" | "running" | "succeeded" | "failed";
-export type StudioJobMode = "mock" | "key-without-provider";
+export type StudioJobStatus = "pending" | "generating" | "completed" | "mock_completed" | "failed";
+export type StudioJobMode = "mock" | "pilot" | "unconfigured";
+export type StudioJobLabel = "Labelled mock" | "Stored pilot" | "Configuration error" | "Provider not chosen";
+
+export type StoredPilotSample = Pick<PilotSampleFile, "style" | "imagePath">;
 
 export type StudioQuota = {
   kind: StudioJobKind;
@@ -32,13 +39,14 @@ export type PublicStudioJob = {
   kind: StudioJobKind;
   status: StudioJobStatus;
   mode: StudioJobMode;
-  label: "Labelled mock" | "Provider not chosen";
+  label: StudioJobLabel;
   animalSlug: string;
   audience: StudioAudience;
   referenceDirectionId: string | null;
   directionIds: string[];
   composite: null;
-  providerCalled: false;
+  providerCalled: boolean;
+  storedSamples: StoredPilotSample[] | null;
   referencePreserved: true;
   message: string;
   createdAt: string;
@@ -75,6 +83,8 @@ type StoredJob = {
   audience: StudioAudience;
   referenceDirectionId: string | null;
   directionIds: string[];
+  providerCalled: boolean;
+  storedSamples: StoredPilotSample[] | null;
   message: string;
   createdAt: number;
   updatedAt: number;
@@ -96,9 +106,29 @@ export function resetStudioJobsForTests() {
   visitOrder.length = 0;
 }
 
-function hasServerKey(kind: StudioJobKind): boolean {
-  const name = kind === "concept" ? "FASHION_CONCEPT_API_KEY" : "VIRTUAL_TRY_ON_API_KEY";
-  return (process.env[name] ?? "").trim().length > 0;
+function conceptKeySet(env: Record<string, string | undefined>): boolean {
+  return (env.FASHION_CONCEPT_API_KEY ?? "").trim().length > 0;
+}
+
+function tryOnKeySet(env: Record<string, string | undefined>): boolean {
+  return (env.VIRTUAL_TRY_ON_API_KEY ?? "").trim().length > 0;
+}
+
+function pilotConfigReason(env: Record<string, string | undefined>): "openai" | "openai_model" | "supabase" | null {
+  if (!(env.OPENAI_API_KEY ?? "").trim()) return "openai";
+  if (!readImageModel(env)) return "openai_model";
+  if (!readSupabaseServerConfig(env)) return "supabase";
+  return null;
+}
+
+function configurationMessage(reason: "openai" | "openai_model" | "supabase"): string {
+  if (reason === "openai") {
+    return "Configuration error. OPENAI_API_KEY is not configured, so this job did not call a provider and no image was generated. The selected design remains the reference.";
+  }
+  if (reason === "openai_model") {
+    return "Configuration error. OPENAI_IMAGE_MODEL is not a gpt-image model, so this job did not call a provider and no image was generated. The selected design remains the reference.";
+  }
+  return "Configuration error. Supabase is not configured, so this job did not call a provider and no image was stored. The selected design remains the reference.";
 }
 
 function readString(value: unknown): string | null | "bad" {
@@ -202,19 +232,20 @@ function rememberJob(job: StoredJob) {
   }
 }
 
-function conceptMessage(mode: StudioJobMode): string {
-  if (mode === "mock") {
-    return "Labelled mock. No fashion concept key is configured, so this job does not call a provider. The catalogue directions are unchanged, and the selected design remains the reference.";
-  }
-  return "A fashion concept key is set on the server, but no concept provider has been chosen. No request was sent. The catalogue directions are unchanged, and the selected design remains the reference.";
-}
+const mockConceptMessage =
+  "Labelled mock. No provider was called. Real image generation in this phase is limited to the Emerald tree boa pilot, so this animal stays on the catalogue directions. The selected design remains the reference.";
 
-function tryOnMessage(mode: StudioJobMode): string {
-  if (mode === "mock") {
-    return "Labelled mock. No virtual try-on key is configured, so this job does not call a provider and no composite was made. Your photograph stayed in the browser, and the selected design remains the reference.";
-  }
-  return "A virtual try-on key is set on the server, but no try-on provider has been chosen. No request was sent and no composite was made. Your photograph stayed in the browser, and the selected design remains the reference.";
-}
+const unusedConceptKeyMessage =
+  "Provider not chosen. A fashion concept key is set on the server, but it is not the image provider and it was not sent. No request was sent. Real image generation in this phase uses OPENAI_API_KEY and is limited to the Emerald tree boa pilot. The catalogue directions are unchanged, and the selected design remains the reference.";
+
+const mockTryOnMessage =
+  "Labelled mock. No virtual try-on provider was called, so no composite was made. Your photograph stayed in the browser, and the selected design remains the reference.";
+
+const unusedTryOnKeyMessage =
+  "Provider not chosen. A virtual try-on key is set on the server, but no try-on provider has been chosen. No request was sent and no composite was made. Your photograph stayed in the browser, and the selected design remains the reference.";
+
+const pilotPendingMessage =
+  "Stored pilot. The Emerald tree boa samples are being checked in Supabase. No image has been requested yet. The catalogue directions are unchanged, and the selected design remains the reference.";
 
 function quotaMessage(kind: StudioJobKind): string {
   const name = kind === "concept" ? "concept" : "try-on";
@@ -233,7 +264,8 @@ function toPublic(job: StoredJob): PublicStudioJob {
     referenceDirectionId: job.referenceDirectionId,
     directionIds: [...job.directionIds],
     composite: null,
-    providerCalled: false,
+    providerCalled: job.providerCalled,
+    storedSamples: job.storedSamples ? job.storedSamples.map((sample) => ({ ...sample })) : null,
     referencePreserved: true,
     message: job.message,
     createdAt: new Date(job.createdAt).toISOString(),
@@ -243,15 +275,36 @@ function toPublic(job: StoredJob): PublicStudioJob {
 }
 
 function settle(job: StoredJob, now: number): StoredJob {
-  if (job.status === "succeeded" || job.status === "failed" || job.mode !== "mock") return job;
+  if (job.status === "completed" || job.status === "mock_completed" || job.status === "failed" || job.mode !== "mock") return job;
   const age = now - job.createdAt;
   if (age >= mockQueuedMs + mockRunMs) {
-    return { ...job, status: "succeeded", updatedAt: now };
+    return { ...job, status: "mock_completed", updatedAt: now };
   }
-  if (age >= mockQueuedMs && job.status === "queued") {
-    return { ...job, status: "running", updatedAt: now };
+  if (age >= mockQueuedMs && job.status === "pending") {
+    return { ...job, status: "generating", updatedAt: now };
   }
   return job;
+}
+
+function planConcept(env: Record<string, string | undefined>, animalSlug: string): Pick<StoredJob, "status" | "mode" | "label" | "message"> {
+  if (animalSlug === EMERALD_TREE_BOA_SLUG) {
+    const reason = pilotConfigReason(env);
+    if (reason) {
+      return { status: "failed", mode: "unconfigured", label: "Configuration error", message: configurationMessage(reason) };
+    }
+    return { status: "pending", mode: "pilot", label: "Stored pilot", message: pilotPendingMessage };
+  }
+  if (conceptKeySet(env)) {
+    return { status: "failed", mode: "unconfigured", label: "Provider not chosen", message: unusedConceptKeyMessage };
+  }
+  return { status: "pending", mode: "mock", label: "Labelled mock", message: mockConceptMessage };
+}
+
+function planTryOn(env: Record<string, string | undefined>): Pick<StoredJob, "status" | "mode" | "label" | "message"> {
+  if (tryOnKeySet(env)) {
+    return { status: "failed", mode: "unconfigured", label: "Provider not chosen", message: unusedTryOnKeyMessage };
+  }
+  return { status: "pending", mode: "mock", label: "Labelled mock", message: mockTryOnMessage };
 }
 
 export function createStudioJob(request: StudioJobRequest, now = Date.now()): StudioJobResult {
@@ -295,23 +348,24 @@ export function createStudioJob(request: StudioJobRequest, now = Date.now()): St
   row[request.kind] = nextUsed;
   usage.set(request.visitId, row);
 
-  const mode: StudioJobMode = hasServerKey(request.kind) ? "key-without-provider" : "mock";
+  const plan = request.kind === "concept" ? planConcept(process.env, animal.slug) : planTryOn(process.env);
   const catalogueIds = sampleDirections(animal, request.audience, setting).map((item) => item.id);
   const referenceDirectionId = direction?.id ?? null;
   const directionIds = request.kind === "try-on" && referenceDirectionId ? [referenceDirectionId] : catalogueIds;
-  const failed = mode === "key-without-provider";
   const job: StoredJob = {
     id: `job_${crypto.randomUUID()}`,
     visitId: request.visitId,
     kind: request.kind,
-    status: failed ? "failed" : "queued",
-    mode,
-    label: failed ? "Provider not chosen" : "Labelled mock",
+    status: plan.status,
+    mode: plan.mode,
+    label: plan.label,
     animalSlug: animal.slug,
     audience: request.audience,
     referenceDirectionId,
     directionIds,
-    message: request.kind === "concept" ? conceptMessage(mode) : tryOnMessage(mode),
+    providerCalled: false,
+    storedSamples: null,
+    message: plan.message,
     createdAt: now,
     updatedAt: now,
     quota: quotaSnapshot(request.visitId, request.kind, nextUsed),
@@ -326,5 +380,34 @@ export function readStudioJob(id: string, visitId: string, now = Date.now()): Pu
   if (!current || current.visitId !== visitId) return null;
   const next = settle(current, now);
   if (next !== current) jobs.set(id, next);
+  return toPublic(next);
+}
+
+/** Records a pilot result. A completed status requires samples that were already read back. */
+export function applyPilotOutcome(id: string, visitId: string, outcome: PilotEnsureResult, now = Date.now()): PublicStudioJob | null {
+  if (!jobIdPattern.test(id) || !isVisitId(visitId)) return null;
+  const current = jobs.get(id);
+  if (!current || current.visitId !== visitId || current.mode !== "pilot" || current.animalSlug !== EMERALD_TREE_BOA_SLUG) return null;
+  const next: StoredJob =
+    outcome.status === "completed"
+      ? {
+          ...current,
+          status: "completed",
+          label: "Stored pilot",
+          providerCalled: outcome.providerCalled,
+          storedSamples: outcome.samples.map((sample) => ({ style: sample.style, imagePath: sample.imagePath })),
+          message: outcome.message,
+          updatedAt: now,
+        }
+      : {
+          ...current,
+          status: "failed",
+          label: outcome.message.startsWith("Configuration error") ? "Configuration error" : "Stored pilot",
+          providerCalled: false,
+          storedSamples: null,
+          message: outcome.message,
+          updatedAt: now,
+        };
+  jobs.set(id, next);
   return toPublic(next);
 }

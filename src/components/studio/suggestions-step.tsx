@@ -43,7 +43,7 @@ export function SuggestionsStep() {
           Sample directions for {studio.audience.toLowerCase()} — {animal.commonName}
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          These cards are the catalogue directions for {animal.scientificName}. Regenerating starts a server job. With no concept key configured, the job is a labelled mock and this list stays the catalogue. Select one design to carry forward.
+          These cards are the catalogue directions for {animal.scientificName}. Regenerating starts a server job. A mock job finishes as mock completed and does not call a provider, so this list stays the catalogue. Only the Emerald tree boa pilot can confirm stored images. Select one design to carry forward.
         </p>
       </header>
 

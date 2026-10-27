@@ -1,9 +1,10 @@
 import type { StudioJobView } from "@/studio/jobs-client";
 
 const statusLabel: Record<StudioJobView["status"], string> = {
-  queued: "Queued",
-  running: "Running",
-  succeeded: "Succeeded",
+  pending: "Pending",
+  generating: "Generating",
+  completed: "Completed",
+  mock_completed: "Mock completed",
   failed: "Failed",
 };
 

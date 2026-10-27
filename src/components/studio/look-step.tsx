@@ -41,7 +41,7 @@ export function LookStep() {
           Your selected design
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          {direction.title} stays the reference for {animal.commonName} ({animal.scientificName}). A try-on request starts a server job. With no try-on key configured, the job is a labelled mock and no composite is made.
+          {direction.title} stays the reference for {animal.commonName} ({animal.scientificName}). A try-on request starts a server job. With no try-on provider chosen, the job finishes as mock completed and no composite is made.
         </p>
       </header>
 

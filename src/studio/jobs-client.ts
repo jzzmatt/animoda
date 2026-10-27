@@ -2,13 +2,13 @@ export const studioJobUnreachableMessage =
   "The studio job could not be reached. The catalogue directions are unchanged, and the selected design remains the reference.";
 
 export type StudioJobKind = "concept" | "try-on";
-export type StudioJobStatus = "queued" | "running" | "succeeded" | "failed";
+export type StudioJobStatus = "pending" | "generating" | "completed" | "mock_completed" | "failed";
 
 export type StudioJobView = {
   id: string | null;
   kind: StudioJobKind | null;
   status: StudioJobStatus;
-  mode: "mock" | "key-without-provider" | null;
+  mode: "mock" | "pilot" | "unconfigured" | null;
   label: string;
   referenceDirectionId: string | null;
   directionIds: string[];
@@ -30,7 +30,8 @@ export type StudioJobPollInput = {
   onUpdate?: (job: StudioJobView) => void;
 };
 
-const statuses = new Set<StudioJobStatus>(["queued", "running", "succeeded", "failed"]);
+const statuses = new Set<StudioJobStatus>(["pending", "generating", "completed", "mock_completed", "failed"]);
+const modes = new Set(["mock", "pilot", "unconfigured"]);
 
 /** The catalogue selection wins. A job may echo another id; this visit does not adopt it. */
 export function keptDirectionId(current: string | null, job: { referenceDirectionId: string | null } | null): string | null {
@@ -72,7 +73,7 @@ function viewFromPayload(value: unknown, input: StudioJobPollInput): StudioJobVi
     id: typeof record.id === "string" ? record.id : null,
     kind: record.kind === "concept" || record.kind === "try-on" ? record.kind : input.kind,
     status: record.status as StudioJobStatus,
-    mode: record.mode === "mock" || record.mode === "key-without-provider" ? record.mode : null,
+    mode: typeof record.mode === "string" && modes.has(record.mode) ? (record.mode as StudioJobView["mode"]) : null,
     label: typeof record.label === "string" ? record.label : "Studio job",
     referenceDirectionId: typeof record.referenceDirectionId === "string" ? record.referenceDirectionId : input.directionId,
     directionIds,
@@ -136,7 +137,7 @@ export async function pollStudioJob(input: StudioJobPollInput): Promise<StudioJo
   if (!job) return failedView(input, "The studio job response was not usable. The selected design remains the reference.");
   input.onUpdate?.(job);
   const started = Date.now();
-  while ((job.status === "queued" || job.status === "running") && job.id) {
+  while ((job.status === "pending" || job.status === "generating") && job.id) {
     if (Date.now() - started >= timeoutMs) break;
     await wait(intervalMs);
     let next: Response;
@@ -161,7 +162,7 @@ export async function pollStudioJob(input: StudioJobPollInput): Promise<StudioJo
     job = parsed;
     input.onUpdate?.(job);
   }
-  if (job.status === "queued" || job.status === "running") {
+  if (job.status === "pending" || job.status === "generating") {
     return {
       ...job,
       status: "failed",
