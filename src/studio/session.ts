@@ -4,16 +4,19 @@ import {
   type CatalogueAnimal,
   type SampleDirection,
 } from "@/content/catalogue";
+import { isFashionSampleAudience, sampleFitsAudience, type FashionSampleStyleId } from "@/content/fashion-samples";
 
-export const studioAudiences = ["Women", "Men", "Girls", "Boys", "Unisex"] as const;
+export const catalogueAudiences = ["Women", "Men", "Girls", "Boys", "Unisex"] as const;
+export type CatalogueAudience = (typeof catalogueAudiences)[number];
+
+export const studioAudiences = ["Women", "Men", "Kids"] as const;
 export type StudioAudience = (typeof studioAudiences)[number];
 
 export const studioSteps = [
-  { id: "photo", href: "/studio", label: "1. Photo" },
-  { id: "animal", href: "/studio/animal", label: "2. Choose Animal" },
-  { id: "suggestions", href: "/studio/suggestions", label: "3. Suggestions" },
-  { id: "look", href: "/studio/look", label: "4. Try-On" },
-  { id: "couturier", href: "/studio/next", label: "5. Couturier" },
+  { id: "animal", href: "/studio", label: "1. Animal" },
+  { id: "sample", href: "/studio/sample", label: "2. Fashion Sample" },
+  { id: "photo", href: "/studio/photo", label: "3. Photograph" },
+  { id: "look", href: "/studio/look", label: "4. Your Look" },
 ] as const;
 
 export type StudioStepId = (typeof studioSteps)[number]["id"];
@@ -38,7 +41,8 @@ export type StudioDraft = {
   photoName: string | null;
   animalSlug: string | null;
   audience: StudioAudience;
-  directionId: string | null;
+  fashionSampleId: string | null;
+  fashionSampleStyle: FashionSampleStyleId | null;
   savedThisVisit: boolean;
   quotationNoted: boolean;
 };
@@ -49,8 +53,9 @@ export function emptyDraft(): StudioDraft {
     photoDataUrl: null,
     photoName: null,
     animalSlug: null,
-    audience: "Unisex",
-    directionId: null,
+    audience: "Women",
+    fashionSampleId: null,
+    fashionSampleStyle: null,
     savedThisVisit: false,
     quotationNoted: false,
   };
@@ -69,7 +74,7 @@ export function photoRejection(file: { type: string; size: number }): string | n
   return null;
 }
 
-export function audienceMatches(label: string, audience: StudioAudience): boolean {
+export function audienceMatches(label: string, audience: CatalogueAudience): boolean {
   const value = label.toLowerCase();
   const youth = /\b(kid|kids|youth|child|children)\b/.test(value);
   const women = /\bwomen\b/.test(value);
@@ -83,7 +88,7 @@ export function audienceMatches(label: string, audience: StudioAudience): boolea
 
 export function sampleDirections(
   animal: CatalogueAnimal,
-  audience: StudioAudience,
+  audience: CatalogueAudience,
   setting: DirectionSetting,
 ): SampleDirection[] {
   return animal.directions.filter((direction) => {
@@ -93,31 +98,40 @@ export function sampleDirections(
   });
 }
 
-export function directionStillFits(draft: StudioDraft): boolean {
-  if (!draft.animalSlug || !draft.directionId) return false;
-  const animal = animalBySlug(draft.animalSlug);
-  const direction = animal?.directions.find((item) => item.id === draft.directionId);
-  if (!direction) return false;
-  return audienceMatches(direction.audience, draft.audience);
+const sampleIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export function fashionSampleStillFits(draft: StudioDraft): boolean {
+  if (!draft.animalSlug || !animalBySlug(draft.animalSlug)) return false;
+  if (!draft.fashionSampleId || !sampleIdPattern.test(draft.fashionSampleId) || !draft.fashionSampleStyle) return false;
+  const audienceId = draft.audience.toLowerCase();
+  if (!isFashionSampleAudience(audienceId)) return false;
+  return sampleFitsAudience(audienceId, draft.fashionSampleStyle);
 }
 
-export function missingFor(step: StudioStepId, draft: StudioDraft): "photo" | "animal" | "suggestions" | null {
-  const hasPhoto = Boolean(draft.photoDataUrl);
+export function missingFor(step: StudioStepId, draft: StudioDraft): "animal" | "sample" | "photo" | null {
   const hasAnimal = Boolean(draft.animalSlug && animalBySlug(draft.animalSlug));
-  const hasDirection = directionStillFits(draft);
-  if (step === "photo") return null;
-  if (!hasPhoto) return "photo";
+  const hasSample = fashionSampleStillFits(draft);
+  const hasPhoto = Boolean(draft.photoDataUrl);
   if (step === "animal") return null;
   if (!hasAnimal) return "animal";
-  if (step === "suggestions") return null;
-  if (!hasDirection) return "suggestions";
+  if (step === "sample") return null;
+  if (!hasSample) return "sample";
+  if (step === "photo") return null;
+  if (!hasPhoto) return "photo";
   return null;
 }
 
 const storageKey = "animoda-studio";
 
 function asAudience(value: unknown): StudioAudience {
-  return studioAudiences.includes(value as StudioAudience) ? (value as StudioAudience) : "Unisex";
+  if (value === "Girls" || value === "Boys" || value === "Kids") return "Kids";
+  if (value === "Men") return "Men";
+  return "Women";
+}
+
+function asStyle(value: unknown): FashionSampleStyleId | null {
+  if (value === "formal" || value === "casual_street" || value === "youth_couture") return value;
+  return null;
 }
 
 export function normalizeDraft(value: unknown): StudioDraft {
@@ -130,11 +144,15 @@ export function normalizeDraft(value: unknown): StudioDraft {
     photoName: typeof parsed.photoName === "string" ? parsed.photoName.slice(0, 180) : null,
     animalSlug,
     audience: asAudience(parsed.audience),
-    directionId: typeof parsed.directionId === "string" ? parsed.directionId : null,
+    fashionSampleId: typeof parsed.fashionSampleId === "string" && sampleIdPattern.test(parsed.fashionSampleId) ? parsed.fashionSampleId : null,
+    fashionSampleStyle: asStyle(parsed.fashionSampleStyle),
     savedThisVisit: parsed.savedThisVisit === true,
     quotationNoted: parsed.quotationNoted === true,
   };
-  if (!directionStillFits(draft)) draft.directionId = null;
+  if (!fashionSampleStillFits(draft)) {
+    draft.fashionSampleId = null;
+    draft.fashionSampleStyle = null;
+  }
   if (!draft.photoDataUrl) draft.photoName = null;
   return draft;
 }

@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
-import { EditorialImage } from "@/components/public/editorial-image";
 import { animalBySlug } from "@/content/catalogue";
 import { pageGutter, routes } from "@/content/site";
 import { cn } from "@/lib/cn";
@@ -18,40 +17,35 @@ export function NextStep() {
   if (!studio.ready) {
     return <p className={cn("py-space-xl font-body-md text-on-surface-variant", pageGutter)}>Opening the studio…</p>;
   }
-  const needed = missingFor("couturier", studio);
+  const needed = missingFor("look", studio);
   if (needed) return <BlockedStep needed={needed} />;
 
   const animal = animalBySlug(studio.animalSlug ?? "");
-  const direction = animal?.directions.find((item) => item.id === studio.directionId);
-  if (!animal || !direction) return <BlockedStep needed="suggestions" />;
+  if (!animal || !studio.fashionSampleStyle) return <BlockedStep needed="sample" />;
 
   return (
     <div className={cn("mx-auto flex w-full max-w-7xl flex-col gap-space-xl py-space-xl", pageGutter)}>
       <header className="max-w-3xl">
-        <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Step 5 of 5 · Next steps</p>
+        <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Couturier notes</p>
         <h1 className="mt-space-xs font-headline-xl-mobile text-headline-xl-mobile text-primary md:font-headline-lg md:text-headline-lg">
           What to do with this look
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          {direction.title} for {studio.audience.toLowerCase()}, inspired by {animal.commonName}. Nothing on this page is sent, paid, or shipped.
+          The selected Fashion Sample for {studio.audience.toLowerCase()}, inspired by {animal.commonName}. Nothing on this page is sent, paid, or shipped.
         </p>
       </header>
 
       <section className="grid grid-cols-1 gap-gutter overflow-hidden rounded-3xl bg-surface-container-lowest shadow-sm md:grid-cols-[12rem_1fr]">
         <div className="relative min-h-40 bg-surface-container">
-          {direction.image && direction.alt ? (
-            <EditorialImage src={direction.image} alt="" sizes="200px" />
-          ) : (
-            <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} className="h-full" />
-          )}
+          <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} className="h-full" />
         </div>
         <div className="flex flex-col gap-space-xxs p-space-lg">
-          <p className="font-label-caps text-label-caps text-secondary uppercase">{direction.audience}</p>
-          <h2 className="font-headline-sm text-headline-sm text-primary">{direction.title}</h2>
+          <p className="font-label-caps text-label-caps text-secondary uppercase">{studio.audience}</p>
+          <h2 className="font-headline-sm text-headline-sm text-primary">Fashion Sample</h2>
           <p className="font-body-md text-on-surface-variant">
             {animal.commonName} ({animal.scientificName}) · {studio.audience}
           </p>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">Textile note: {direction.textile}</p>
+          <p className="font-body-sm text-body-sm text-on-surface-variant">{studio.fashionSampleStyle === "formal" ? "Formal Couture" : studio.fashionSampleStyle === "casual_street" ? "Casual & Streetwear" : "Youth Couture"}</p>
         </div>
       </section>
 

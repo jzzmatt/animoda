@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
-import { ensureStoredAnimalSamples } from "@/server/fashion-samples/pilot-job";
-import { runCatalogueFashionSamples } from "@/server/fashion-samples/pilot-run";
-import { applyPilotOutcome, createStudioJob, parseStudioJobRequest } from "@/server/studio-jobs";
+import { isFashionSampleAudience } from "@/content/fashion-samples";
+import { confirmSelectedFashionSample } from "@/server/fashion-samples/views";
+import { createStudioJob, parseStudioJobRequest, type VerifiedFashionSampleRef } from "@/server/studio-jobs";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+
+function mockRequested(): boolean {
+  return process.env.ANIMODA_MOCK_GENERATION?.trim() === "1";
+}
 
 export async function POST(request: Request) {
   const raw = await request.text();
@@ -12,22 +16,32 @@ export async function POST(request: Request) {
   if (!parsed.ok) {
     return NextResponse.json({ error: parsed.error, quota: parsed.quota }, { status: parsed.status });
   }
-  const result = createStudioJob(parsed.request);
+  if (parsed.request.replaceStored) {
+    return NextResponse.json(
+      { error: "Replacing a Fashion Sample is not part of this step. No image was requested.", quota: null },
+      { status: 400 },
+    );
+  }
+  let verified: VerifiedFashionSampleRef | null = null;
+  if (!mockRequested()) {
+    const audience = parsed.request.audience.toLowerCase();
+    if (!isFashionSampleAudience(audience) || !parsed.request.fashionSampleId) {
+      return NextResponse.json({ error: "Choose an available Fashion Sample before continuing.", quota: null }, { status: 400 });
+    }
+    const confirmed = await confirmSelectedFashionSample({
+      animalId: parsed.request.animalSlug,
+      audience,
+      sampleId: parsed.request.fashionSampleId,
+    });
+    if (!confirmed.ok) {
+      return NextResponse.json({ error: confirmed.message, quota: null }, { status: 409 });
+    }
+    verified = { style: confirmed.sample.style, imagePath: confirmed.sample.imagePath };
+  }
+  const result = createStudioJob(parsed.request, Date.now(), verified);
   if (!result.ok) {
     return NextResponse.json({ error: result.error, quota: result.quota }, { status: result.status });
   }
-  let job = result.job;
-  if (job.mode === "catalogue" && job.kind === "concept") {
-    const slug = job.animalSlug;
-    const outcome = await ensureStoredAnimalSamples(slug, {
-      replaceStored: parsed.request.replaceStored,
-      generateMissing: async () => {
-        await runCatalogueFashionSamples(undefined, [slug], { regenerate: parsed.request.replaceStored });
-      },
-    });
-    const applied = applyPilotOutcome(job.id, parsed.request.visitId, outcome);
-    if (applied) job = applied;
-  }
-  const status = job.status === "pending" || job.status === "generating" ? 202 : 200;
-  return NextResponse.json(job, { status });
+  const status = result.job.status === "pending" || result.job.status === "generating" ? 202 : 200;
+  return NextResponse.json(result.job, { status });
 }

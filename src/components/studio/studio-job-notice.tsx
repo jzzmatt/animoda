@@ -1,13 +1,5 @@
 import type { StudioJobView } from "@/studio/jobs-client";
 
-const statusLabel: Record<StudioJobView["status"], string> = {
-  pending: "Pending",
-  generating: "Generating",
-  completed: "Completed",
-  mock_completed: "Mock completed",
-  failed: "Failed",
-};
-
 export function StudioJobNotice({ job, pending }: { job: StudioJobView | null; pending: boolean }) {
   if (pending && !job) {
     return (
@@ -22,10 +14,7 @@ export function StudioJobNotice({ job, pending }: { job: StudioJobView | null; p
       role={job.status === "failed" ? "alert" : "status"}
       className="rounded-xl bg-surface-container p-space-md font-body-md text-on-surface"
     >
-      <span className="font-label-md text-label-md">
-        {job.label} · {statusLabel[job.status]}
-      </span>
-      {job.id ? <span className="mt-space-xxs block break-all font-body-sm text-body-sm text-on-surface-variant">{job.id}</span> : null}
+      <span className="font-label-md text-label-md">{job.label}</span>
       <span className="mt-space-xxs block">{job.message}</span>
       {job.quota ? (
         <span className="mt-space-xxs block font-body-sm text-body-sm text-on-surface-variant">

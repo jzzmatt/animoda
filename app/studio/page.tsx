@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { PhotoStep } from "@/components/studio/photo-step";
+import { AnimalStep } from "@/components/studio/animal-step";
 
 export const metadata: Metadata = {
-  title: "Your photograph",
-  description: "Add a portrait for this Animoda Studio visit. Framing practices sit beside the photograph controls. The photograph stays in this browser.",
+  title: "Choose an animal",
+  description: "Choose an animal from the Animoda catalogue. The next step is a Fashion Sample.",
 };
 
-export default function StudioPhotoPage() {
-  return <PhotoStep />;
+export default function StudioAnimalPage() {
+  return <AnimalStep />;
 }

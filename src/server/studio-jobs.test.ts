@@ -3,8 +3,7 @@ import { GET } from "../../app/api/studio/jobs/[id]/route";
 import { POST } from "../../app/api/studio/jobs/route";
 import { ensureStoredAnimalSamples } from "@/server/fashion-samples/pilot-job";
 import { runCatalogueFashionSamples } from "@/server/fashion-samples/pilot-run";
-import { sampleDirections } from "@/studio/session";
-import { animalBySlug } from "@/content/catalogue";
+import { confirmSelectedFashionSample } from "@/server/fashion-samples/views";
 import {
   applyPilotOutcome,
   createStudioJob,
@@ -25,6 +24,23 @@ vi.mock("@/server/fashion-samples/pilot-job", async () => {
 vi.mock("@/server/fashion-samples/pilot-run", () => ({
   runCatalogueFashionSamples: vi.fn(async () => []),
 }));
+
+vi.mock("@/server/fashion-samples/views", () => ({
+  confirmSelectedFashionSample: vi.fn(async () => ({
+    ok: true,
+    sample: {
+      sampleId: "33333333-3333-4333-8333-333333333333",
+      animalId: "plains-zebra",
+      audience: "kids",
+      style: "youth_couture",
+      imagePath: "animals/plains-zebra/youth_couture/33333333-3333-4333-8333-333333333333.png",
+      imageUrl: "https://example.supabase.co/youth.png",
+      title: "Youth Couture",
+    },
+  })),
+}));
+
+const sampleId = "33333333-3333-4333-8333-333333333333";
 
 const isolatedEnv = [
   "FASHION_CONCEPT_API_KEY",
@@ -49,9 +65,8 @@ function conceptRequest(overrides: Partial<StudioJobRequest> = {}): StudioJobReq
     visitId: visit,
     kind: "concept",
     animalSlug: "plains-zebra",
-    audience: "Women",
-    directionId: "zebra-gown",
-    setting: "All Silhouettes",
+    audience: "Kids",
+    fashionSampleId: sampleId,
     replaceStored: false,
     ...overrides,
   };
@@ -74,6 +89,7 @@ describe("studio jobs", () => {
   beforeEach(() => {
     resetStudioJobsForTests();
     vi.mocked(ensureStoredAnimalSamples).mockReset();
+    vi.mocked(confirmSelectedFashionSample).mockClear();
     vi.mocked(runCatalogueFashionSamples).mockReset();
     vi.mocked(ensureStoredAnimalSamples).mockResolvedValue({
       status: "completed",
@@ -104,24 +120,22 @@ describe("studio jobs", () => {
       status: "pending",
       mode: "mock",
       label: "Labelled mock",
-      referenceDirectionId: "zebra-gown",
+      referenceDirectionId: sampleId,
       composite: null,
       providerCalled: false,
       referencePreserved: true,
     });
     expect(created.job.message).toMatch(/Labelled mock/);
-    expect(created.job.message).toMatch(/does not count as a stored catalogue image/);
+    expect(created.job.message).toMatch(/does not count as a real Fashion Sample/);
 
     const running = readStudioJob(created.job.id, visit, 1_000 + mockQueuedMs);
     expect(running?.status).toBe("generating");
     const done = readStudioJob(created.job.id, visit, 1_000 + mockQueuedMs + mockRunMs);
-    const zebra = animalBySlug("plains-zebra");
-    if (!zebra || !done) throw new Error("fixture missing");
+    if (!done) throw new Error("fixture missing");
     expect(done.status).toBe("mock_completed");
     expect(done.providerCalled).toBe(false);
     expect(done.storedSamples).toBeNull();
-    expect(done.directionIds).toEqual(sampleDirections(zebra, "Women", "All Silhouettes").map((item) => item.id));
-    expect(done.directionIds).toEqual(["zebra-gown", "zebra-trench"]);
+    expect(done.directionIds).toEqual([]);
     expect(done.quota).toEqual({ kind: "concept", used: 1, limit: mockJobQuota, remaining: mockJobQuota - 1 });
   });
 
@@ -130,21 +144,21 @@ describe("studio jobs", () => {
     expect(created.ok).toBe(true);
     if (!created.ok) return;
     expect(created.job.status).toBe("failed");
-    expect(created.job.label).toBe("Configuration error");
+    expect(created.job.label).toBe("Try-on unavailable");
     expect(created.job.providerCalled).toBe(false);
-    expect(created.job.message).toMatch(/OPENAI_API_KEY/);
+    expect(created.job.message).toMatch(/No provider was called/);
     expect(readStudioJob(created.job.id, visit, 9_000)?.status).toBe("failed");
   });
 
-  it("keeps a children's concept on the children's direction", () => {
+  it("keeps the selected fashion sample id and rejects a missing one", () => {
     process.env.ANIMODA_MOCK_GENERATION = "1";
-    const created = createStudioJob(conceptRequest({ audience: "Girls", directionId: "zebra-kids" }), 1_000);
+    const created = createStudioJob(conceptRequest({ audience: "Kids" }), 1_000);
     expect(created.ok).toBe(true);
     if (!created.ok) return;
     const done = readStudioJob(created.job.id, visit, 1_000 + mockQueuedMs + mockRunMs);
-    expect(done?.directionIds).toEqual(["zebra-kids"]);
-    expect(done?.referenceDirectionId).toBe("zebra-kids");
-    expect(createStudioJob(conceptRequest({ audience: "Girls", directionId: "zebra-gown" }), 2_000).ok).toBe(false);
+    expect(done?.referenceDirectionId).toBe(sampleId);
+    expect(done?.storedSamples).toBeNull();
+    expect(createStudioJob(conceptRequest({ fashionSampleId: null }), 2_000).ok).toBe(false);
   });
 
   it("does not make a try-on composite", () => {
@@ -157,7 +171,7 @@ describe("studio jobs", () => {
     expect(created.job.composite).toBeNull();
     expect(created.job.message).toMatch(/no composite/i);
     expect(created.job.message).toMatch(/photograph/i);
-    expect(createStudioJob(tryOnRequest({ directionId: null }), 2_000).ok).toBe(false);
+    expect(createStudioJob(tryOnRequest({ fashionSampleId: null }), 2_000).ok).toBe(false);
 
     process.env.ANIMODA_MOCK_GENERATION = "1";
     const mock = createStudioJob(tryOnRequest({ visitId: otherVisit }), 3_000);
@@ -175,7 +189,7 @@ describe("studio jobs", () => {
     expect(concept.ok).toBe(true);
     if (!concept.ok) return;
     expect(concept.job.status).toBe("failed");
-    expect(concept.job.message).toMatch(/OPENAI_API_KEY/);
+    expect(concept.job.message).toMatch(/No provider was called/);
     expect(JSON.stringify(concept.job)).not.toContain(conceptKey);
     expect(JSON.stringify(concept.job)).not.toContain("try-on-secret");
   });
@@ -188,14 +202,13 @@ describe("studio jobs", () => {
     const response = await POST(
       new Request("http://localhost/api/studio/jobs", {
         method: "POST",
-        body: JSON.stringify(conceptRequest({ animalSlug: "army-green-moth", directionId: null })),
+        body: JSON.stringify(conceptRequest({ animalSlug: "army-green-moth" })),
       }),
     );
     expect(response.status).toBe(200);
     const body = (await response.json()) as { status: string; message: string; providerCalled: boolean };
     expect(body.status).toBe("failed");
     expect(body.providerCalled).toBe(false);
-    expect(body.message).toMatch(/gpt-image-2\.5-sunburst/);
     expect(body.message).toMatch(/No provider was called/);
     expect(ensureStoredAnimalSamples).not.toHaveBeenCalled();
     expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
@@ -234,69 +247,61 @@ describe("studio jobs", () => {
     expect(parsed.error).not.toContain("base64");
   });
 
-  it("checks stored samples for every catalogue animal without requesting a new image", async () => {
+  it("does not generate an image when a fashion sample is confirmed", async () => {
     configureImageProvider();
     const response = await POST(
       new Request("http://localhost/api/studio/jobs", {
         method: "POST",
-        body: JSON.stringify(conceptRequest({ animalSlug: "army-green-moth", directionId: null })),
+        body: JSON.stringify(conceptRequest({ animalSlug: "army-green-moth" })),
       }),
     );
     expect(response.status).toBe(200);
-    const body = (await response.json()) as { status: string; providerCalled: boolean; mode: string; label: string };
-    expect(body).toMatchObject({ status: "completed", mode: "catalogue", providerCalled: false, label: "Stored samples" });
-    expect(ensureStoredAnimalSamples).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(ensureStoredAnimalSamples).mock.calls[0]?.[0]).toBe("army-green-moth");
+    const body = (await response.json()) as { status: string; providerCalled: boolean; message: string };
+    expect(body.providerCalled).toBe(false);
+    expect(body.status).toBe("failed");
+    expect(body.message).toMatch(/No provider was called/);
+    expect(confirmSelectedFashionSample).toHaveBeenCalledTimes(1);
+    expect(ensureStoredAnimalSamples).not.toHaveBeenCalled();
     expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
     expect(JSON.stringify(body)).not.toContain(imageKey);
   });
 
-  it("passes only the requested animal when a missing style must be generated", async () => {
+  it("refuses to replace a fashion sample and does not call a provider", async () => {
     configureImageProvider();
-    vi.mocked(ensureStoredAnimalSamples).mockImplementation(async (slug, deps) => {
-      await deps?.generateMissing?.(deps.env);
-      return { status: "completed", samples: [], providerCalled: true, message: `Stored samples. OpenAI returned the missing PNG files for ${slug}.` };
-    });
     const response = await POST(
       new Request("http://localhost/api/studio/jobs", {
         method: "POST",
         body: JSON.stringify(conceptRequest({ animalSlug: "plains-zebra", replaceStored: true })),
       }),
     );
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as { status: string; providerCalled: boolean };
-    expect(body).toMatchObject({ status: "completed", providerCalled: true });
-    expect(runCatalogueFashionSamples).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(runCatalogueFashionSamples).mock.calls[0]?.[1]).toEqual(["plains-zebra"]);
-    expect(vi.mocked(runCatalogueFashionSamples).mock.calls[0]?.[2]).toEqual({ regenerate: true });
+    expect(response.status).toBe(400);
+    const body = (await response.json()) as { error: string };
+    expect(body.error).toMatch(/No image was requested/);
+    expect(confirmSelectedFashionSample).not.toHaveBeenCalled();
+    expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
+    expect(ensureStoredAnimalSamples).not.toHaveBeenCalled();
   });
 
-  it("does not complete a catalogue job until stored files are confirmed", () => {
+  it("does not mark a personalized request as a completed generated image", () => {
     configureImageProvider();
-    delete process.env.OPENAI_IMAGE_MODEL;
-    const ready = createStudioJob(conceptRequest({ animalSlug: "emerald-tree-boa", directionId: null }), 2_000);
+    const ready = createStudioJob(conceptRequest({ animalSlug: "emerald-tree-boa" }), 2_000, {
+      style: "youth_couture",
+      imagePath: "animals/emerald-tree-boa/youth_couture/33333333-3333-4333-8333-333333333333.png",
+    });
     expect(ready.ok).toBe(true);
     if (!ready.ok) return;
-    expect(ready.job).toMatchObject({ status: "pending", mode: "catalogue", label: "Stored samples", providerCalled: false, storedSamples: null });
-    expect(ready.job.message).toMatch(/Emerald tree boa/);
-    expect(ready.job.message).toMatch(/No image has been requested yet/);
-    expect(readStudioJob(ready.job.id, visit, 9_000)?.status).toBe("pending");
-
-    const samples = [
-      { style: "formal" as const, imagePath: "animals/emerald-tree-boa/formal/11111111-1111-4111-8111-111111111111.png", imageUrl: "https://example.supabase.co/formal.png" },
-      { style: "casual_street" as const, imagePath: "animals/emerald-tree-boa/casual_street/22222222-2222-4222-8222-222222222222.png", imageUrl: "https://example.supabase.co/casual.png" },
-      { style: "youth_couture" as const, imagePath: "animals/emerald-tree-boa/youth_couture/33333333-3333-4333-8333-333333333333.png", imageUrl: "https://example.supabase.co/youth.png" },
-    ];
-    const applied = applyPilotOutcome(ready.job.id, visit, {
-      status: "completed",
-      samples,
-      providerCalled: false,
-      message: "Stored samples. No new image was requested.",
-    });
-    expect(applied?.status).toBe("completed");
-    expect(applied?.providerCalled).toBe(false);
-    expect(applied?.storedSamples).toEqual(samples.map(({ style, imagePath }) => ({ style, imagePath })));
-    expect(JSON.stringify(applied)).not.toContain(imageKey);
+    expect(ready.job.providerCalled).toBe(false);
+    expect(ready.job.status).toBe("failed");
+    expect(ready.job.storedSamples).toEqual([
+      {
+        style: "youth_couture",
+        imagePath: "animals/emerald-tree-boa/youth_couture/33333333-3333-4333-8333-333333333333.png",
+      },
+    ]);
+    expect(
+      applyPilotOutcome(ready.job.id, visit, { status: "completed", samples: [], providerCalled: true, message: "generated" }),
+    ).toBeNull();
+    expect(JSON.stringify(ready.job)).not.toContain(imageKey);
   });
 
   it("accepts a mock through the route and refuses another visit", async () => {
@@ -309,7 +314,7 @@ describe("studio jobs", () => {
     );
     expect(response.status).toBe(202);
     const body = (await response.json()) as { id: string; status: string; referenceDirectionId: string; composite: null; mode: string };
-    expect(body.referenceDirectionId).toBe("zebra-gown");
+    expect(body.referenceDirectionId).toBe(sampleId);
     expect(body.composite).toBeNull();
     expect(body.mode).toBe("mock");
     expect(["pending", "generating", "mock_completed"]).toContain(body.status);

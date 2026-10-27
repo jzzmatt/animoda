@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { createContext, useContext, useEffect, useMemo, type ReactNode } from "react";
 import { useSyncExternalStore } from "react";
+import type { FashionSampleStyleId } from "@/content/fashion-samples";
 import type { StudioAudience, StudioDraft } from "./session";
 import {
   ensureStudioLoaded,
@@ -19,7 +20,7 @@ type StudioContextValue = StudioDraft & {
   clearPhoto: () => void;
   setAnimal: (slug: string) => void;
   setAudience: (audience: StudioAudience) => void;
-  setDirection: (id: string) => void;
+  setFashionSample: (input: { id: string; style: FashionSampleStyleId }) => void;
   saveVisit: () => void;
   noteQuotation: () => void;
   reset: () => void;

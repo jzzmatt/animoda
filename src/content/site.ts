@@ -172,7 +172,7 @@ export const processPillars = [
     icon: "palette",
     label: "Phase 02",
     title: "AI Fashion Studio",
-    body: "Choose who the look is for and a species from the catalogue. The studio shows sample directions. Checking stored samples confirms the saved fashion images for that animal.",
+    body: "Choose an animal, then an available Fashion Sample. The photograph stays in this browser.",
     href: routes.studio,
     action: "Open Studio",
   },
@@ -180,7 +180,7 @@ export const processPillars = [
     icon: "accessibility_new",
     label: "Phase 03",
     title: "Virtual Try-On",
-    body: "The try-on step keeps the design you select beside your photograph. The photograph stays in the browser and no composite is made.",
+    body: "The selected Fashion Sample stays beside your photograph. The photograph stays in the browser and no composite is made.",
     href: routes.studio,
     action: "Try Fitting Room",
   },
@@ -195,11 +195,10 @@ export const processPillars = [
 ] as const;
 
 export const studioJourney = [
-  { label: "1. Photo", body: "Add a photograph in this browser. It is not uploaded." },
-  { label: "2. Choose Animal", body: "Search the catalogue and choose who the look is for, including girls and boys." },
-  { label: "3. Suggestions", body: "Review catalogue directions for that animal, then select one. Checking stored samples leaves the written directions unchanged." },
-  { label: "4. Try-On", body: "The selected design stays the reference beside your photograph. Try-on does not upload the photograph or make a composite." },
-  { label: "5. Couturier", body: "Save the visit, or note a manufacturing question. Nothing is sent, paid, or shipped." },
+  { label: "1. Animal", body: "Search the catalogue and choose one animal." },
+  { label: "2. Fashion Sample", body: "Choose Men, Women, or Kids, then use an available Fashion Sample." },
+  { label: "3. Photograph", body: "Add a photograph in this browser. It is not uploaded." },
+  { label: "4. Your Look", body: "The selected Fashion Sample stays the reference. Personalized fashion does not upload the photograph or make a composite." },
 ] as const;
 
 export const pageGutter = "px-margin-mobile md:px-margin";

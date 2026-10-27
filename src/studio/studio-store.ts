@@ -1,6 +1,6 @@
 import { animalBySlug } from "@/content/catalogue";
+import { sampleFitsAudience, type FashionSampleStyleId } from "@/content/fashion-samples";
 import {
-  audienceMatches,
   clearStoredDraft,
   emptyDraft,
   newVisitId,
@@ -66,23 +66,36 @@ export const studioActions = {
     update((current) => {
       if (!animalBySlug(slug)) return current;
       const same = current.animalSlug === slug;
-      return { ...current, animalSlug: slug, directionId: same ? current.directionId : null, quotationNoted: false };
+      return {
+        ...current,
+        animalSlug: slug,
+        fashionSampleId: same ? current.fashionSampleId : null,
+        fashionSampleStyle: same ? current.fashionSampleStyle : null,
+        quotationNoted: false,
+      };
     });
   },
   setAudience(audience: StudioAudience) {
     update((current) => {
-      const animal = current.animalSlug ? animalBySlug(current.animalSlug) : undefined;
-      const direction = animal?.directions.find((item) => item.id === current.directionId);
-      const keep = direction ? audienceMatches(direction.audience, audience) : false;
-      return { ...current, audience, directionId: keep ? current.directionId : null };
+      const audienceId = audience.toLowerCase();
+      const keep =
+        current.fashionSampleStyle && (audienceId === "men" || audienceId === "women" || audienceId === "kids")
+          ? sampleFitsAudience(audienceId, current.fashionSampleStyle)
+          : false;
+      return {
+        ...current,
+        audience,
+        fashionSampleId: keep ? current.fashionSampleId : null,
+        fashionSampleStyle: keep ? current.fashionSampleStyle : null,
+      };
     });
   },
-  setDirection(id: string) {
+  setFashionSample(input: { id: string; style: FashionSampleStyleId }) {
     update((current) => {
-      const animal = current.animalSlug ? animalBySlug(current.animalSlug) : undefined;
-      const direction = animal?.directions.find((item) => item.id === id);
-      if (!direction || !audienceMatches(direction.audience, current.audience)) return current;
-      return { ...current, directionId: id, quotationNoted: false };
+      const audienceId = current.audience.toLowerCase();
+      if (audienceId !== "men" && audienceId !== "women" && audienceId !== "kids") return current;
+      if (!sampleFitsAudience(audienceId, input.style)) return current;
+      return { ...current, fashionSampleId: input.id, fashionSampleStyle: input.style, quotationNoted: false };
     });
   },
   saveVisit() {

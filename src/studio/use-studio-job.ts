@@ -10,7 +10,7 @@ export function useStudioJob(kind: StudioJobKind) {
   const [pending, setPending] = useState(false);
   const pendingRef = useRef(false);
 
-  async function start(input: { animalSlug: string; directionId: string | null; setting?: string | null; replaceStored?: boolean }) {
+  async function start(input: { animalSlug: string; fashionSampleId: string; replaceStored?: boolean }) {
     if (!studio.visitId || pendingRef.current) return;
     pendingRef.current = true;
     setPending(true);
@@ -21,8 +21,7 @@ export function useStudioJob(kind: StudioJobKind) {
         kind,
         animalSlug: input.animalSlug,
         audience: studio.audience,
-        directionId: input.directionId,
-        setting: input.setting ?? null,
+        fashionSampleId: input.fashionSampleId,
         replaceStored: input.replaceStored === true,
         onUpdate: setJob,
       });
@@ -34,7 +33,7 @@ export function useStudioJob(kind: StudioJobKind) {
         status: "failed",
         mode: null,
         label: "Studio job",
-        referenceDirectionId: input.directionId,
+        referenceDirectionId: input.fashionSampleId,
         directionIds: [],
         composite: null,
         message: studioJobUnreachableMessage,

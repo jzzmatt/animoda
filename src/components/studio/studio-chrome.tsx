@@ -10,11 +10,10 @@ import { missingFor, studioSteps, type StudioStepId } from "@/studio/session";
 import { useStudio } from "@/studio/studio-provider";
 
 const backHref: Record<StudioStepId, string> = {
-  photo: routes.home,
-  animal: "/studio",
-  suggestions: "/studio/animal",
-  look: "/studio/suggestions",
-  couturier: "/studio/look",
+  animal: routes.home,
+  sample: "/studio",
+  photo: "/studio/sample",
+  look: "/studio/photo",
 };
 
 export function StudioChrome({ children }: { children: ReactNode }) {

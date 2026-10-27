@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { pageGutter } from "@/content/site";
 import { cn } from "@/lib/cn";
-import { photoRejection } from "@/studio/session";
+import { missingFor, photoRejection } from "@/studio/session";
 import { useStudio } from "@/studio/studio-provider";
+import { BlockedStep } from "./blocked-step";
 import { FramingPracticesPanel } from "./framing-practices-panel";
 
 async function compressPhoto(file: File): Promise<string> {
@@ -110,13 +111,15 @@ export function PhotoStep() {
   if (!studio.ready) {
     return <p className={cn("py-space-xl font-body-md text-on-surface-variant", pageGutter)}>Opening the studio…</p>;
   }
+  const needed = missingFor("photo", studio);
+  if (needed) return <BlockedStep needed={needed} />;
 
   return (
     <div className={cn("mx-auto flex w-full max-w-7xl flex-col gap-space-xl py-space-xl", pageGutter)}>
       <header className="max-w-3xl">
         <p className="mb-space-sm inline-flex items-center gap-space-xs rounded-full bg-surface-container px-space-sm py-space-xxs font-label-caps text-label-caps tracking-widest text-secondary uppercase">
           <span className="h-2 w-2 rounded-full bg-golden-accent" />
-          Step 1 of 5 · Personal atelier
+          Step 3 of 4 · Personal atelier
         </p>
         <h1 className="font-headline-xl-mobile text-headline-xl-mobile text-primary md:font-headline-xl md:text-headline-xl">
           Add your portrait
@@ -274,11 +277,11 @@ export function PhotoStep() {
           Cancel studio
         </Button>
         {studio.photoDataUrl ? (
-          <Button href="/studio/animal" icon="arrow_forward" iconPosition="end">
-            Continue to animal selection
+          <Button href="/studio/look" icon="arrow_forward" iconPosition="end">
+            Continue to your look
           </Button>
         ) : (
-          <Button disabled>Continue to animal selection</Button>
+          <Button disabled>Continue to your look</Button>
         )}
       </div>
     </div>

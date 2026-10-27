@@ -7,7 +7,7 @@ import { EditorialImage } from "@/components/public/editorial-image";
 import { catalogueAnimals, catalogueGroups, filterCatalogue, type CatalogueGroup } from "@/content/catalogue";
 import { pageGutter } from "@/content/site";
 import { cn } from "@/lib/cn";
-import { missingFor, studioAudiences } from "@/studio/session";
+import { missingFor } from "@/studio/session";
 import { useStudio } from "@/studio/studio-provider";
 import { BlockedStep } from "./blocked-step";
 
@@ -31,7 +31,7 @@ export function AnimalStep() {
   return (
     <div className={cn("mx-auto flex w-full max-w-7xl flex-col gap-space-xl py-space-xl", pageGutter)}>
       <header className="max-w-3xl">
-        <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Step 2 of 5 · Atelier selection</p>
+        <p className="font-label-caps text-label-caps tracking-widest text-secondary uppercase">Step 1 of 4 · Atelier selection</p>
         <h1 className="mt-space-xs font-headline-xl-mobile text-headline-xl-mobile text-primary md:font-headline-xl md:text-headline-xl">
           Choose your animal muse
         </h1>
@@ -39,29 +39,6 @@ export function AnimalStep() {
           Choose an entry from this catalogue. The screen’s count of 248 species is illustrative. This visit uses the {catalogueAnimals.length} entries already published here, including one fish family.
         </p>
       </header>
-
-      <section className="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
-        <h2 className="font-title-md text-title-md text-primary">Who is this look for?</h2>
-        <p className="mt-space-xxs font-body-sm text-body-sm text-on-surface-variant">
-          Girls and boys use age-appropriate children’s directions. Unisex does not assume a gendered garment.
-        </p>
-        <div className="mt-space-sm flex flex-wrap gap-space-xs" role="group" aria-label="Audience">
-          {studioAudiences.map((audience) => (
-            <button
-              key={audience}
-              type="button"
-              aria-pressed={studio.audience === audience}
-              onClick={() => studio.setAudience(audience)}
-              className={cn(
-                "min-h-11 rounded-full px-space-md font-label-md text-label-md",
-                studio.audience === audience ? "bg-primary-container text-on-primary" : "bg-surface-container text-on-surface",
-              )}
-            >
-              {audience}
-            </button>
-          ))}
-        </div>
-      </section>
 
       <div className="flex flex-col gap-space-sm">
         <label className="font-label-md text-label-md text-primary" htmlFor="studio-animal-search">
@@ -139,15 +116,15 @@ export function AnimalStep() {
         <div>
           <p className="font-label-caps text-label-caps text-secondary uppercase">Selected muse</p>
           <p className="font-body-md text-body-md text-on-surface">
-            {selected ? `${selected.commonName} · ${studio.audience}` : "Choose a species to continue."}
+            {selected ? selected.commonName : "Choose a species to continue."}
           </p>
         </div>
         {selected ? (
-          <Button href="/studio/suggestions" icon="arrow_forward" iconPosition="end">
-            Review sample directions
+          <Button href="/studio/sample" icon="arrow_forward" iconPosition="end">
+            Choose a Fashion Sample
           </Button>
         ) : (
-          <Button disabled>Review sample directions</Button>
+          <Button disabled>Choose a Fashion Sample</Button>
         )}
       </div>
     </div>
