@@ -8,12 +8,12 @@ export function PersistedFashionSamples({ animalName, slots }: { animalName: str
   return (
     <section className="flex flex-col gap-space-md" aria-labelledby="stored-samples-title">
       <div>
-        <p className="font-label-caps text-label-caps text-secondary uppercase">Stored samples</p>
+        <p className="font-label-caps text-label-caps text-secondary uppercase">Fashion Samples</p>
         <h2 id="stored-samples-title" className="font-headline-md text-headline-md text-primary">
-          Stored fashion samples
+          Fashion Samples
         </h2>
         <p className="mt-space-xs max-w-2xl font-body-md text-body-md text-on-surface-variant">
-          These three {animalName} styles are read from stored catalogue records. A style appears only after its image is in Supabase Storage.
+          Available Fashion Samples for {animalName} show a saved image. A sample that is not available cannot be selected.
         </p>
       </div>
       <ul className="grid gap-gutter md:grid-cols-2 xl:grid-cols-3">
@@ -51,7 +51,7 @@ function SampleCard({ animalName, slot }: { animalName: string; slot: PersistedS
         ) : null}
         {phase === "missing" || phase === "error" ? (
           <p className="flex h-full items-center justify-center p-space-md text-center font-body-sm text-body-sm text-on-surface-variant">
-            This style is not available from Storage.
+            This Fashion Sample is unavailable.
           </p>
         ) : null}
       </div>
@@ -59,9 +59,8 @@ function SampleCard({ animalName, slot }: { animalName: string; slot: PersistedS
         <p className="font-label-caps text-label-caps text-secondary uppercase">{slot.label}</p>
         <h3 className="font-title-md text-title-md text-primary">{slot.title ?? slot.label}</h3>
         <p className="font-body-md text-body-md text-on-surface-variant">
-          {stored ? slot.description : "No stored image is published for this style."}
+          {stored ? slot.description : "This Fashion Sample has not been generated yet."}
         </p>
-        {slot.recordId ? <p className="font-body-sm text-body-sm text-on-surface-variant">Record {slot.recordId}</p> : null}
       </div>
     </article>
   );

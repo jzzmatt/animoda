@@ -37,32 +37,39 @@ describe("studio session", () => {
     expect(audienceMatches("Women · Formal", "Men")).toBe(false);
   });
 
-  it("blocks later steps until the visit has a portrait, an animal, and a selected design", () => {
+  it("keeps the selected fashion sample across the studio steps and clears it when the audience no longer fits", () => {
     const draft = emptyDraft();
-    expect(missingFor("animal", draft)).toBe("photo");
-    draft.photoDataUrl = "data:image/jpeg;base64,abc";
-    expect(missingFor("suggestions", draft)).toBe("animal");
+    expect(missingFor("animal", draft)).toBeNull();
+    expect(missingFor("sample", draft)).toBe("animal");
     draft.animalSlug = "plains-zebra";
-    draft.audience = "Women";
-    expect(missingFor("look", draft)).toBe("suggestions");
-    draft.directionId = "zebra-gown";
-    expect(missingFor("couturier", draft)).toBeNull();
-    draft.audience = "Boys";
-    expect(missingFor("look", draft)).toBe("suggestions");
+    draft.audience = "Kids";
+    expect(missingFor("photo", draft)).toBe("sample");
+    draft.fashionSampleId = "33333333-3333-4333-8333-333333333333";
+    draft.fashionSampleStyle = "youth_couture";
+    expect(missingFor("photo", draft)).toBeNull();
+    expect(missingFor("look", draft)).toBe("photo");
+    draft.photoDataUrl = "data:image/jpeg;base64,abc";
+    expect(missingFor("look", draft)).toBeNull();
+    draft.audience = "Men";
+    expect(missingFor("photo", normalizeDraft(draft))).toBe("sample");
   });
 
-  it("drops a stored design that no longer belongs to the animal and audience", () => {
+  it("does not turn an old direction id into a fashion sample", () => {
     const draft = normalizeDraft({
       photoDataUrl: "data:image/png;base64,abc",
       photoName: "portrait.png",
       animalSlug: "not-a-species",
-      audience: "Men",
+      audience: "Boys",
       directionId: "zebra-gown",
+      fashionSampleId: "33333333-3333-4333-8333-333333333333",
+      fashionSampleStyle: "formal",
       savedThisVisit: true,
       visitId: "11111111-1111-4111-8111-111111111111",
     });
     expect(draft.animalSlug).toBeNull();
-    expect(draft.directionId).toBeNull();
+    expect(draft.audience).toBe("Kids");
+    expect(draft.fashionSampleId).toBeNull();
+    expect(draft.fashionSampleStyle).toBeNull();
     expect(draft.savedThisVisit).toBe(true);
     expect(draft.visitId).toBe("11111111-1111-4111-8111-111111111111");
   });

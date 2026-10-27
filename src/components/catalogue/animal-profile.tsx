@@ -6,15 +6,11 @@ import { AnimalSilhouette } from "@/components/catalogue/animal-silhouette";
 import { EditorialImage } from "@/components/public/editorial-image";
 import { Icon } from "@/components/ui/icon";
 import { HabitatPanel } from "@/components/catalogue/habitat-panel";
-import {
-  directionSettings,
-  filterDirections,
-  type CatalogueAnimal,
-} from "@/content/catalogue";
+import type { CatalogueAnimal } from "@/content/catalogue";
+import type { PublicFashionSample } from "@/content/fashion-samples";
+import { FashionSampleBoard } from "@/components/fashion/fashion-sample-board";
 import { pageGutter, routes } from "@/content/site";
 import type { WildlifeReport } from "@/server/wildlife";
-import type { PersistedSampleSlot } from "@/content/persisted-samples";
-import { PersistedFashionSamples } from "@/components/catalogue/persisted-fashion-samples";
 import { cn } from "@/lib/cn";
 
 const tabs = [
@@ -28,21 +24,15 @@ type TabId = (typeof tabs)[number]["id"];
 export function AnimalProfile({
   animal,
   wildlife,
-  storedSamples = null,
+  fashionSamples = [],
 }: {
   animal: CatalogueAnimal;
   wildlife: WildlifeReport;
-  storedSamples?: PersistedSampleSlot[] | null;
+  fashionSamples?: PublicFashionSample[];
 }) {
   const [tab, setTab] = useState<TabId>("overview");
-  const [setting, setSetting] = useState<(typeof directionSettings)[number]>("All Silhouettes");
   const [marked, setMarked] = useState(false);
-  const directions = filterDirections(animal, setting);
   const gallery = [{ src: animal.image, alt: animal.alt }];
-  for (const direction of animal.directions) {
-    if (!direction.image || !direction.alt || gallery.some((image) => image.src === direction.image)) continue;
-    gallery.push({ src: direction.image, alt: direction.alt });
-  }
 
   return (
     <article className={cn("mx-auto flex max-w-7xl flex-col gap-space-2xl py-space-3xl", pageGutter)}>
@@ -160,7 +150,6 @@ export function AnimalProfile({
             )}
           >
             {item.label}
-            {item.id === "gallery" ? ` (${gallery.length})` : ""}
           </button>
         ))}
       </div>
@@ -191,65 +180,17 @@ export function AnimalProfile({
           </div>
         </section>
       ) : null}
-      {storedSamples ? <PersistedFashionSamples animalName={animal.commonName} slots={storedSamples} /> : null}
-      <section className="flex flex-col gap-space-md" aria-labelledby="directions-title">
-        <div className="flex flex-col justify-between gap-space-md md:flex-row md:items-end">
-          <div>
-            <p className="font-label-caps text-label-caps text-secondary uppercase">Sample directions</p>
-            <h2 id="directions-title" className="font-headline-md text-headline-md text-primary">
-              Fashion inspiration
-            </h2>
-            <p className="mt-space-xs max-w-2xl font-body-md text-body-md text-on-surface-variant">
-              {storedSamples
-                ? "These cards remain the written catalogue directions. They are not the stored pilot images."
-                : "These directions are written samples. The Studio does not generate them yet. A direction is a digital concept, not a garment in stock."}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-space-xs" role="group" aria-label="Silhouette">
-            {directionSettings.map((item) => (
-              <button
-                key={item}
-                type="button"
-                aria-pressed={setting === item}
-                onClick={() => setSetting(item)}
-                className={cn(
-                  "rounded-full px-space-md py-space-xxs font-label-md text-label-md",
-                  setting === item ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant",
-                )}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-        </div>
-        {directions.length === 0 ? (
-          <p role="status" className="font-body-md text-body-md text-on-surface-variant">
-            This species has no sample direction in that silhouette.
+      <section className="flex flex-col gap-space-md" aria-labelledby="fashion-samples-title">
+        <div>
+          <p className="font-label-caps text-label-caps text-secondary uppercase">Fashion Samples</p>
+          <h2 id="fashion-samples-title" className="font-headline-md text-headline-md text-primary">
+            Fashion Samples
+          </h2>
+          <p className="mt-space-xs max-w-2xl font-body-md text-body-md text-on-surface-variant">
+            Available Fashion Samples for {animal.commonName} show their saved image. A sample that has not been generated, or that is not matched to an audience, cannot be selected.
           </p>
-        ) : (
-          <ul className="grid gap-gutter md:grid-cols-2 xl:grid-cols-3">
-            {directions.map((direction) => (
-              <li key={direction.id} className="flex flex-col overflow-hidden rounded-3xl bg-surface-container-lowest shadow-atelier">
-                {direction.image && direction.alt ? (
-                  <div className="relative aspect-[3/4] bg-surface-container">
-                    <EditorialImage src={direction.image} alt={direction.alt} sizes="(min-width: 1280px) 25vw, 100vw" />
-                  </div>
-                ) : (
-                  <div className="flex aspect-[3/4] flex-col justify-between p-space-md">
-                    <AnimalSilhouette scientificName={animal.scientificName} commonName={animal.commonName} />
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">No garment photograph is published for this direction. The outline is the species silhouette, not the garment.</p>
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col gap-space-xs p-space-lg">
-                  <p className="font-label-caps text-label-caps text-secondary uppercase">{direction.audience}</p>
-                  <h3 className="font-title-md text-title-md text-primary">{direction.title}</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant">{direction.body}</p>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">Textile note: {direction.textile}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+        </div>
+        <FashionSampleBoard samples={fashionSamples} />
         <Link href={`${routes.studio}?animal=${animal.slug}`} className="inline-flex items-center gap-space-xxs font-label-md text-label-md text-secondary">
           Start a look from this animal
           <Icon name="arrow_forward" className="text-[16px]" />

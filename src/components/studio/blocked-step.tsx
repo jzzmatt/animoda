@@ -4,23 +4,23 @@ import { pageGutter } from "@/content/site";
 import { cn } from "@/lib/cn";
 
 const blocks = {
-  photo: {
-    title: "Add a portrait first",
-    body: "The later steps use the photograph from this visit. It stays in this browser and is not uploaded.",
-    href: "/studio",
-    action: "Go to your photograph",
-  },
   animal: {
     title: "Choose an animal first",
-    body: "Sample directions come from a species in the catalogue.",
-    href: "/studio/animal",
+    body: "Fashion Samples belong to an animal in the catalogue.",
+    href: "/studio",
     action: "Choose an animal",
   },
-  suggestions: {
-    title: "Select a design first",
-    body: "The try-on step keeps the design you select. Choose one sample direction before continuing.",
-    href: "/studio/suggestions",
-    action: "Review sample directions",
+  sample: {
+    title: "Choose a Fashion Sample first",
+    body: "The later steps keep the Fashion Sample you select. An unavailable sample cannot be used.",
+    href: "/studio/sample",
+    action: "Choose a Fashion Sample",
+  },
+  photo: {
+    title: "Add a portrait first",
+    body: "The last step uses the photograph from this visit. It stays in this browser and is not uploaded.",
+    href: "/studio/photo",
+    action: "Add your photograph",
   },
 } as const;
 

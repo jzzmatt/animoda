@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { keptDirectionId, pollStudioJob, studioJobUnreachableMessage, type StudioJobView } from "./jobs-client";
+import { keptFashionSampleId, pollStudioJob, studioJobUnreachableMessage, type StudioJobView } from "./jobs-client";
 
 const visit = "11111111-1111-4111-8111-111111111111";
 
@@ -12,8 +12,10 @@ function json(body: unknown, status = 200) {
 
 describe("studio job client", () => {
   it("keeps the selected design when a job echoes a different id", () => {
-    expect(keptDirectionId("zebra-gown", { referenceDirectionId: "zebra-tuxedo" })).toBe("zebra-gown");
-    expect(keptDirectionId(null, { referenceDirectionId: "zebra-gown" })).toBeNull();
+    expect(keptFashionSampleId("33333333-3333-4333-8333-333333333333", { referenceDirectionId: "44444444-4444-4444-8444-444444444444" })).toBe(
+      "33333333-3333-4333-8333-333333333333",
+    );
+    expect(keptFashionSampleId(null, { referenceDirectionId: "33333333-3333-4333-8333-333333333333" })).toBeNull();
     expect(studioJobUnreachableMessage).not.toMatch(/99\.4|98%|biometric|guaranteed/i);
   });
 
@@ -45,7 +47,7 @@ describe("studio job client", () => {
       kind: "try-on",
       animalSlug: "plains-zebra",
       audience: "Women",
-      directionId: "zebra-gown",
+      fashionSampleId: "33333333-3333-4333-8333-333333333333",
       intervalMs: 0,
       timeoutMs: 1000,
       fetchImpl,
@@ -58,8 +60,7 @@ describe("studio job client", () => {
         kind: "try-on",
         animalSlug: "plains-zebra",
         audience: "Women",
-        directionId: "zebra-gown",
-        setting: null,
+        fashionSampleId: "33333333-3333-4333-8333-333333333333",
         replaceStored: false,
       },
     ]);
@@ -67,7 +68,7 @@ describe("studio job client", () => {
     expect(result.composite).toBeNull();
     expect(result.status).toBe("mock_completed");
     expect(result.directionIds).toEqual(["zebra-gown"]);
-    expect(keptDirectionId("zebra-gown", result)).toBe("zebra-gown");
+    expect(keptFashionSampleId("33333333-3333-4333-8333-333333333333", result)).toBe("33333333-3333-4333-8333-333333333333");
     expect(updates.map((job) => job.status)).toEqual(["pending", "mock_completed"]);
     expect(result.quota?.remaining).toBe(7);
   });
@@ -86,13 +87,13 @@ describe("studio job client", () => {
       kind: "try-on",
       animalSlug: "plains-zebra",
       audience: "Women",
-      directionId: "zebra-gown",
+      fashionSampleId: "33333333-3333-4333-8333-333333333333",
       fetchImpl,
     });
     expect(result.status).toBe("failed");
     expect(result.label).toBe("Visit quota");
     expect(result.composite).toBeNull();
-    expect(result.referenceDirectionId).toBe("zebra-gown");
+    expect(result.referenceDirectionId).toBe("33333333-3333-4333-8333-333333333333");
     expect(result.quota?.remaining).toBe(0);
   });
 });

@@ -1,5 +1,5 @@
 export const studioJobUnreachableMessage =
-  "The studio job could not be reached. The catalogue directions are unchanged, and the selected design remains the reference.";
+  "The studio job could not be reached. The selected Fashion Sample remains the reference.";
 
 export type StudioJobKind = "concept" | "try-on";
 export type StudioJobStatus = "pending" | "generating" | "completed" | "mock_completed" | "failed";
@@ -22,8 +22,7 @@ export type StudioJobPollInput = {
   kind: StudioJobKind;
   animalSlug: string;
   audience: string;
-  directionId: string | null;
-  setting?: string | null;
+  fashionSampleId: string | null;
   replaceStored?: boolean;
   intervalMs?: number;
   timeoutMs?: number;
@@ -34,9 +33,10 @@ export type StudioJobPollInput = {
 const statuses = new Set<StudioJobStatus>(["pending", "generating", "completed", "mock_completed", "failed"]);
 const modes = new Set(["mock", "catalogue", "unconfigured"]);
 
-/** The catalogue selection wins. A job may echo another id; this visit does not adopt it. */
-export function keptDirectionId(current: string | null, job: { referenceDirectionId: string | null } | null): string | null {
-  return job?.referenceDirectionId === current ? current : current;
+/** The visit selection wins. A job may echo another id; this visit does not adopt it. */
+export function keptFashionSampleId(current: string | null, job: { referenceDirectionId: string | null } | null): string | null {
+  if (job?.referenceDirectionId === current) return current;
+  return current;
 }
 
 function failedView(input: StudioJobPollInput, message: string, quota: StudioJobView["quota"] = null): StudioJobView {
@@ -46,7 +46,7 @@ function failedView(input: StudioJobPollInput, message: string, quota: StudioJob
     status: "failed",
     mode: null,
     label: quota ? "Visit quota" : "Studio job",
-    referenceDirectionId: input.directionId,
+    referenceDirectionId: input.fashionSampleId,
     directionIds: [],
     composite: null,
     message,
@@ -76,7 +76,7 @@ function viewFromPayload(value: unknown, input: StudioJobPollInput): StudioJobVi
     status: record.status as StudioJobStatus,
     mode: typeof record.mode === "string" && modes.has(record.mode) ? (record.mode as StudioJobView["mode"]) : null,
     label: typeof record.label === "string" ? record.label : "Studio job",
-    referenceDirectionId: typeof record.referenceDirectionId === "string" ? record.referenceDirectionId : input.directionId,
+    referenceDirectionId: typeof record.referenceDirectionId === "string" ? record.referenceDirectionId : input.fashionSampleId,
     directionIds,
     composite: null,
     message: record.message,
@@ -102,8 +102,7 @@ export async function pollStudioJob(input: StudioJobPollInput): Promise<StudioJo
     kind: input.kind,
     animalSlug: input.animalSlug,
     audience: input.audience,
-    directionId: input.directionId,
-    setting: input.setting ?? null,
+    fashionSampleId: input.fashionSampleId,
     replaceStored: input.replaceStored === true,
   };
   const body = JSON.stringify(payload);
