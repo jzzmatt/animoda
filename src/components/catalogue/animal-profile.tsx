@@ -177,7 +177,7 @@ export function AnimalProfile({
               <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-surface-container">
                 <EditorialImage src={image.src} alt={image.alt} sizes="(min-width: 1024px) 30vw, 100vw" />
               </div>
-              {animal.imageCredit ? (
+              {image.src === animal.image && animal.imageCredit ? (
                 <p className="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">{animal.imageCredit}</p>
               ) : null}
             </li>
