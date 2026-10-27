@@ -21,7 +21,7 @@
   - Use Material Symbols Outlined, the icon set in the approved screens. `next/font` does not ship that family, so the root layout loads the same Google Fonts stylesheet the screens use.
   - The foundation review now lives at `/foundation`. The public landing page is `/`.
   - Keep product localisation for Phase 9. This foundation review is in English, matching the approved screens. Portuguese remains the planned default language.
-  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists the later names only, with empty placeholders. Image generation reads `OPENAI_API_KEY` and `OPENAI_IMAGE_MODEL` on the server. `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` are not sent to a provider. A mock studio job finishes as `mock_completed`. A `completed` studio job requires stored PNG files that were read back. Phase 6A reads `SUPABASE_URL` and `SUPABASE_SECRET_KEY`, or `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, on the server. The secret key is never a `NEXT_PUBLIC_` value.
+  - Keep secrets on the server. Phase 1 reads no credentials. `.env.example` lists placeholders only. Image generation reads `OPENAI_API_KEY` and `OPENAI_IMAGE_MODEL` on the server. An empty model uses `gpt-image-2.5-flare`. An invalid model fails the job. A mock runs only when `ANIMODA_MOCK_GENERATION=1` and does not count as a stored sample. A `completed` studio job requires stored PNG files that were read back. Phase 6A reads `SUPABASE_URL` and `SUPABASE_SECRET_KEY`, or `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, on the server. The secret key is never a `NEXT_PUBLIC_` value.
 
 ## Approved design mapping
 
@@ -348,6 +348,17 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 - Remaining blockers: Phase 6.1 and Phase 6.2 are still awaiting approval. Phase 6C has not started. `FASHION_SAMPLE_ADMIN_TOKEN` is absent, so the admin report stays closed. Try-on still has no chosen provider and makes no composite. No new image was generated for Army green moth or any other animal.
 - Approval state and date: Not approved.
 
+### Catalogue image generation for every animal
+
+- Status: IMPLEMENTED, awaiting a full generation run. The Emerald tree boa limit is removed. The full catalogue batch was not started in this change.
+- Root cause of the model error: `readImageModel` returned null both when `OPENAI_IMAGE_MODEL` was missing and when the value failed a `gpt-image-` prefix check. The studio then said the model was not a gpt-image model and called no provider. An empty value and an invalid value were the same failure. The local `.env` already contains `gpt-image-2.5-sunburst`, which is a documented model, so a missing runtime value produced the same message as a bad name.
+- Model validation: the server accepts only `gpt-image-2.5-sunburst`, `gpt-image-2.5-flare`, `gpt-image-2`, `gpt-image-1.5`, and `gpt-image-1-mini`. `gpt-image-1` is rejected. An empty `OPENAI_IMAGE_MODEL` uses `gpt-image-2.5-flare`. An explicit unsupported name is not replaced and the job fails. The resolved model is the `model` field on `POST /v1/images/generations`.
+- Legacy names: `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` are no longer read. Catalogue images use `OPENAI_API_KEY`. Virtual try-on does not call OpenAI; the photograph stays in the browser and no composite is made. `FASHION_SAMPLE_ADMIN_TOKEN` is no longer an authorization secret. `GET /api/admin/fashion-samples` returns 403. The OpenAI key is not accepted as a browser credential. The server script `scripts/catalogue-fashion-samples.ts` prints the report. `--generate` fills missing styles and `--regenerate` replaces stored styles. Neither flag was used in this change.
+- Animals and samples: the catalogue has 37 animals, so the expected sample count is 111. A sample is completed only when the database row is valid and the Storage object can be read as a PNG. Existing valid samples are reused. The studio can check any catalogue animal. Replace stored samples is a separate request.
+- Read-only verification on 27 October 2026 at about 11:52 Africa/Luanda: 37 animals, 111 expected, 111 completed, 0 pending, 0 failed, 0 missing, 0 inconsistent, 0 duplicate groups. Each public object returned a PNG signature. `OPENAI_IMAGE_MODEL` in the local environment is `gpt-image-2.5-sunburst`, which is on the supported list. No provider call was made and no new image was uploaded.
+- Tests and build (27 October 2026, about 11:51 Africa/Luanda): `npm test` 73 passed. `npm run typecheck` passed. `npm run lint` passed. `npm run build` passed. No browser, Playwright, Puppeteer, or deployment. `--generate` was not run.
+- Approval state and date: Not approved. A replacement batch waits for an explicit instruction. The stored 111 samples do not need to be generated again.
+
 ### Phase 6B — Permanent AI fashion samples
 
 - Status: COVERED BY PHASE 6.1 AND PHASE 6.2
@@ -416,7 +427,7 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
 
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Every catalogue animal now has a local species silhouette. An exact reusable PhyloPic outline is used where one exists. Otherwise the outline is the closest reusable drawing of the same kind of animal, and the caption names that taxon. An unknown scientific name still shows a published missing state. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 and Phase 6.2 stored 111 fashion samples, three for each of the 37 catalogue animals. The studio now marks a mock job `mock_completed`. An Emerald tree boa concept job is `completed` only when the three stored PNG files can be read back. Other animals do not call the image provider. Phase 6C has not started. No try-on provider is chosen, so a try-on job makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Every catalogue animal now has a local species silhouette. An exact reusable PhyloPic outline is used where one exists. Otherwise the outline is the closest reusable drawing of the same kind of animal, and the caption names that taxon. An unknown scientific name still shows a published missing state. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 and Phase 6.2 stored 111 fashion samples, three for each of the 37 catalogue animals. Any catalogue animal can confirm or fill its three stored fashion images. A mock job runs only when `ANIMODA_MOCK_GENERATION=1`. Virtual try-on does not call a provider and makes no composite. Phase 6C has not started. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 
@@ -456,7 +467,7 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 - Marine Life lists the requested fishes. Pothos was removed from that chip. Halfmoon male betta is Betta splendens, a freshwater fish; halfmoon is a tail shape and male is the sex. Black moor, fantail, and shubunkin are varieties of the freshwater goldfish Carassius auratus and share GBIF usage key 4286942. Livebearers is the family Poeciliidae, and the photograph is one guppy. Mandarin fish on this card is the marine dragonet Synchiropus splendidus. The freshwater perch Siniperca chuatsi is a different species. Moorish idol is Zanclus cornutus. Picasso triggerfish is Rhinecanthus aculeatus. Rusty parrotfish is Scarus ferrugineus, not Scarus rubroviolaceus.
 - The supplied insect, reptile, and bird list is in those catalogue groups. Army green moth is the oleander hawk-moth, Daphnis nerii. Calligrapher beetle on this card is Calligrapha philadelphica. Thorny cricket is Cosmoderus femoralis; the photograph is a museum specimen of the related species Cosmoderus erinaceus because an openly licensed photograph of C. femoralis was not available. Rainbow bright chameleon is the panther chameleon, Furcifer pardalis. Phoenix rooster is a long-tailed breed of Gallus gallus, not a separate wild species. Majestic eagle is a descriptive label for the bald eagle, Haliaeetus leucocephalus. Ploughshare tortoise is Astrochelys yniphora, and GBIF places it in class Testudines while the catalogue chip is Reptiles. Victoria crowned pigeon uses the Oceania browse tag. Stock-photo search links from the list were not downloaded. Photographs are openly licensed Wikimedia Commons files, credited on the card. GBIF currently returns no class for the catalogue fishes, so the profile omits a blank class.
 - Material Symbols require a request to Google Fonts at runtime. A later phase can self-host the subset if offline icon rendering becomes a requirement.
-- Image generation uses server-only `OPENAI_API_KEY` and `OPENAI_IMAGE_MODEL`. `FASHION_CONCEPT_API_KEY` and `VIRTUAL_TRY_ON_API_KEY` are empty and are not the image provider. A set value fails that studio job and sends no request. A mock job finishes as `mock_completed`. The portrait stays in the browser. A job does not replace the selected catalogue design. The visit quota is process memory, not an account quota.
+- Image generation uses server-only `OPENAI_API_KEY` and `OPENAI_IMAGE_MODEL`. An empty model uses `gpt-image-2.5-flare`. The retired concept, try-on, and admin-token names are not read. A mock job runs only when `ANIMODA_MOCK_GENERATION=1`. The portrait stays in the browser. Virtual try-on makes no composite. A job does not replace the selected catalogue design. The visit quota is process memory, not an account quota.
 
 ## External credentials still required
 
@@ -468,11 +479,12 @@ Later phases, in order: 4 Studio journey, 5 AI providers, 6 auth and private gal
 | 6 | `NEXT_PUBLIC_SUPABASE_URL` | Absent |
 | 6 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Absent |
 | 6 | `SUPABASE_SERVICE_ROLE_KEY` | Absent. The server accepts `SUPABASE_SECRET_KEY` in its place. |
-| 6 | `FASHION_SAMPLE_ADMIN_TOKEN` | Absent. The admin report stays closed. |
-| 6 | `OPENAI_API_KEY` | Set on the server. Server only. Value not recorded here. This is the image provider. |
-| 6 | `OPENAI_IMAGE_MODEL` | Set. The value starts with `gpt-image-` and is the model already used for the stored pilot. |
-| 5 | `FASHION_CONCEPT_API_KEY` | Absent. Not the image provider. A set value is not sent, and that job fails. |
-| 5 | `VIRTUAL_TRY_ON_API_KEY` | Absent. A set value is not sent. No composite is made. An empty value finishes as `mock_completed`. |
+| 6 | `OPENAI_API_KEY` | Set on the server. Server only. Value not recorded here. This authenticates image generation. It is not a browser token. |
+| 6 | `OPENAI_IMAGE_MODEL` | Set to `gpt-image-2.5-sunburst`. An empty value would use `gpt-image-2.5-flare`. |
+| 6 | `ANIMODA_MOCK_GENERATION` | Absent. A value of `1` is the only labelled mock. |
+| 5 | `FASHION_CONCEPT_API_KEY` | Removed from the application. Not read. |
+| 5 | `VIRTUAL_TRY_ON_API_KEY` | Removed from the application. Not read. Virtual try-on is still not a provider call. |
+| 6 | `FASHION_SAMPLE_ADMIN_TOKEN` | Removed from the application. HTTP admin access stays closed. |
 | 3 | Wildlife source | In use. Public GBIF, no key. A labelled snapshot covers a failed request. |
 | 3 | MapLibre style | In use. OpenFreeMap Liberty, no key. |
 

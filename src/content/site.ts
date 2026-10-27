@@ -172,7 +172,7 @@ export const processPillars = [
     icon: "palette",
     label: "Phase 02",
     title: "AI Fashion Studio",
-    body: "Choose who the look is for and a species from the catalogue. The studio shows sample directions. Regenerating starts a server job. A mock job finishes as mock completed and the directions stay the catalogue.",
+    body: "Choose who the look is for and a species from the catalogue. The studio shows sample directions. Checking stored samples confirms the saved fashion images for that animal.",
     href: routes.studio,
     action: "Open Studio",
   },
@@ -180,7 +180,7 @@ export const processPillars = [
     icon: "accessibility_new",
     label: "Phase 03",
     title: "Virtual Try-On",
-    body: "The try-on step keeps the design you select beside your photograph. With no try-on provider chosen, the preview job finishes as mock completed. The photograph stays in the browser and no composite is made.",
+    body: "The try-on step keeps the design you select beside your photograph. The photograph stays in the browser and no composite is made.",
     href: routes.studio,
     action: "Try Fitting Room",
   },
@@ -197,8 +197,8 @@ export const processPillars = [
 export const studioJourney = [
   { label: "1. Photo", body: "Add a photograph in this browser. It is not uploaded." },
   { label: "2. Choose Animal", body: "Search the catalogue and choose who the look is for, including girls and boys." },
-  { label: "3. Suggestions", body: "Review catalogue directions for that animal, then select one. A mock completed job leaves the list unchanged and does not call a provider." },
-  { label: "4. Try-On", body: "The selected design stays the reference beside your photograph. A mock completed job makes no composite when no try-on provider is chosen." },
+  { label: "3. Suggestions", body: "Review catalogue directions for that animal, then select one. Checking stored samples leaves the written directions unchanged." },
+  { label: "4. Try-On", body: "The selected design stays the reference beside your photograph. Try-on does not upload the photograph or make a composite." },
   { label: "5. Couturier", body: "Save the visit, or note a manufacturing question. Nothing is sent, paid, or shipped." },
 ] as const;
 

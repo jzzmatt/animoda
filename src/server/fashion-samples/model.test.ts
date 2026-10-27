@@ -243,14 +243,9 @@ describe("supabase server configuration", () => {
     ).toBeNull();
   });
 
-  it("requires the admin token before the sample report can be read", () => {
-    expect(authorizeFashionSampleAdmin("Bearer test-admin-token", {})).toBe("unconfigured");
-    expect(authorizeFashionSampleAdmin(null, { FASHION_SAMPLE_ADMIN_TOKEN: "test-admin-token" })).toBe("unauthorized");
-    expect(authorizeFashionSampleAdmin("Bearer wrong-token", { FASHION_SAMPLE_ADMIN_TOKEN: "test-admin-token" })).toBe(
-      "unauthorized",
-    );
-    expect(
-      authorizeFashionSampleAdmin("Bearer test-admin-token", { FASHION_SAMPLE_ADMIN_TOKEN: "test-admin-token" }),
-    ).toBe("ok");
+  it("does not accept a browser token as catalogue administration", () => {
+    expect(authorizeFashionSampleAdmin(null)).toBe("unavailable");
+    expect(authorizeFashionSampleAdmin("Bearer test-admin-token")).toBe("unavailable");
+    expect(authorizeFashionSampleAdmin("Bearer sk-test-value")).toBe("unavailable");
   });
 });

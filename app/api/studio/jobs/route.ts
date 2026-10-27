@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { EMERALD_TREE_BOA_SLUG } from "@/content/persisted-samples";
-import { ensureEmeraldTreeBoaPilot } from "@/server/fashion-samples/pilot-job";
+import { ensureStoredAnimalSamples } from "@/server/fashion-samples/pilot-job";
 import { runCatalogueFashionSamples } from "@/server/fashion-samples/pilot-run";
 import { applyPilotOutcome, createStudioJob, parseStudioJobRequest } from "@/server/studio-jobs";
 
@@ -18,10 +17,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: result.error, quota: result.quota }, { status: result.status });
   }
   let job = result.job;
-  if (job.mode === "pilot" && job.kind === "concept" && job.animalSlug === EMERALD_TREE_BOA_SLUG) {
-    const outcome = await ensureEmeraldTreeBoaPilot(process.env, {
-      generateMissing: async (env) => {
-        await runCatalogueFashionSamples(env, [EMERALD_TREE_BOA_SLUG]);
+  if (job.mode === "catalogue" && job.kind === "concept") {
+    const slug = job.animalSlug;
+    const outcome = await ensureStoredAnimalSamples(slug, {
+      replaceStored: parsed.request.replaceStored,
+      generateMissing: async () => {
+        await runCatalogueFashionSamples(undefined, [slug], { regenerate: parsed.request.replaceStored });
       },
     });
     const applied = applyPilotOutcome(job.id, parsed.request.visitId, outcome);

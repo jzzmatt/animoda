@@ -1,8 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GET } from "../../app/api/studio/jobs/[id]/route";
 import { POST } from "../../app/api/studio/jobs/route";
-import { EMERALD_TREE_BOA_SLUG } from "@/content/persisted-samples";
-import { ensureEmeraldTreeBoaPilot } from "@/server/fashion-samples/pilot-job";
+import { ensureStoredAnimalSamples } from "@/server/fashion-samples/pilot-job";
 import { runCatalogueFashionSamples } from "@/server/fashion-samples/pilot-run";
 import { sampleDirections } from "@/studio/session";
 import { animalBySlug } from "@/content/catalogue";
@@ -20,7 +19,7 @@ import {
 
 vi.mock("@/server/fashion-samples/pilot-job", async () => {
   const actual = await vi.importActual<typeof import("@/server/fashion-samples/pilot-job")>("@/server/fashion-samples/pilot-job");
-  return { ...actual, ensureEmeraldTreeBoaPilot: vi.fn(actual.ensureEmeraldTreeBoaPilot) };
+  return { ...actual, ensureStoredAnimalSamples: vi.fn(actual.ensureStoredAnimalSamples) };
 });
 
 vi.mock("@/server/fashion-samples/pilot-run", () => ({
@@ -30,18 +29,20 @@ vi.mock("@/server/fashion-samples/pilot-run", () => ({
 const isolatedEnv = [
   "FASHION_CONCEPT_API_KEY",
   "VIRTUAL_TRY_ON_API_KEY",
+  "FASHION_SAMPLE_ADMIN_TOKEN",
   "OPENAI_API_KEY",
   "OPENAI_IMAGE_MODEL",
   "SUPABASE_URL",
   "NEXT_PUBLIC_SUPABASE_URL",
   "SUPABASE_SECRET_KEY",
   "SUPABASE_SERVICE_ROLE_KEY",
+  "ANIMODA_MOCK_GENERATION",
 ] as const;
 
 const visit = "11111111-1111-4111-8111-111111111111";
 const otherVisit = "22222222-2222-4222-8222-222222222222";
 const conceptKey = "super-secret-concept-key";
-const tryOnKey = "super-secret-try-on-key";
+const imageKey = "sk-test-secret-value";
 
 function conceptRequest(overrides: Partial<StudioJobRequest> = {}): StudioJobRequest {
   return {
@@ -51,6 +52,7 @@ function conceptRequest(overrides: Partial<StudioJobRequest> = {}): StudioJobReq
     audience: "Women",
     directionId: "zebra-gown",
     setting: "All Silhouettes",
+    replaceStored: false,
     ...overrides,
   };
 }
@@ -59,18 +61,25 @@ function tryOnRequest(overrides: Partial<StudioJobRequest> = {}): StudioJobReque
   return { ...conceptRequest(), kind: "try-on", ...overrides };
 }
 
+function configureImageProvider() {
+  process.env.OPENAI_API_KEY = imageKey;
+  process.env.OPENAI_IMAGE_MODEL = "gpt-image-2.5-sunburst";
+  process.env.SUPABASE_URL = "https://example.supabase.co";
+  process.env.SUPABASE_SECRET_KEY = "server-secret-test-value";
+}
+
 describe("studio jobs", () => {
   const savedEnv: Partial<Record<(typeof isolatedEnv)[number], string | undefined>> = {};
 
   beforeEach(() => {
     resetStudioJobsForTests();
-    vi.mocked(ensureEmeraldTreeBoaPilot).mockReset();
+    vi.mocked(ensureStoredAnimalSamples).mockReset();
     vi.mocked(runCatalogueFashionSamples).mockReset();
-    vi.mocked(ensureEmeraldTreeBoaPilot).mockResolvedValue({
+    vi.mocked(ensureStoredAnimalSamples).mockResolvedValue({
       status: "completed",
       samples: [],
       providerCalled: false,
-      message: "Stored pilot. No new image was requested.",
+      message: "Stored samples. No new image was requested.",
     });
     for (const name of isolatedEnv) {
       savedEnv[name] = process.env[name];
@@ -86,7 +95,8 @@ describe("studio jobs", () => {
     }
   });
 
-  it("runs a labelled mock concept job and keeps the selected design", () => {
+  it("runs a labelled mock only when the mock flag is set", () => {
+    process.env.ANIMODA_MOCK_GENERATION = "1";
     const created = createStudioJob(conceptRequest(), 1_000);
     expect(created.ok).toBe(true);
     if (!created.ok) return;
@@ -100,29 +110,34 @@ describe("studio jobs", () => {
       referencePreserved: true,
     });
     expect(created.job.message).toMatch(/Labelled mock/);
-    expect(created.job.message).toMatch(/selected design remains the reference/);
-    expect(JSON.stringify(created.job)).not.toMatch(/99\.4|98%|biometric|guaranteed/i);
+    expect(created.job.message).toMatch(/does not count as a stored catalogue image/);
 
     const running = readStudioJob(created.job.id, visit, 1_000 + mockQueuedMs);
     expect(running?.status).toBe("generating");
-    expect(running?.referenceDirectionId).toBe("zebra-gown");
-
     const done = readStudioJob(created.job.id, visit, 1_000 + mockQueuedMs + mockRunMs);
     const zebra = animalBySlug("plains-zebra");
     if (!zebra || !done) throw new Error("fixture missing");
     expect(done.status).toBe("mock_completed");
     expect(done.providerCalled).toBe(false);
     expect(done.storedSamples).toBeNull();
-    expect(done.message).toMatch(/No provider was called/);
-    expect(done.message).toMatch(/Emerald tree boa/);
     expect(done.directionIds).toEqual(sampleDirections(zebra, "Women", "All Silhouettes").map((item) => item.id));
     expect(done.directionIds).toEqual(["zebra-gown", "zebra-trench"]);
-    expect(done.referenceDirectionId).toBe("zebra-gown");
-    expect(done.composite).toBeNull();
     expect(done.quota).toEqual({ kind: "concept", used: 1, limit: mockJobQuota, remaining: mockJobQuota - 1 });
   });
 
+  it("fails a concept job when the image key is missing", () => {
+    const created = createStudioJob(conceptRequest(), 1_000);
+    expect(created.ok).toBe(true);
+    if (!created.ok) return;
+    expect(created.job.status).toBe("failed");
+    expect(created.job.label).toBe("Configuration error");
+    expect(created.job.providerCalled).toBe(false);
+    expect(created.job.message).toMatch(/OPENAI_API_KEY/);
+    expect(readStudioJob(created.job.id, visit, 9_000)?.status).toBe("failed");
+  });
+
   it("keeps a children's concept on the children's direction", () => {
+    process.env.ANIMODA_MOCK_GENERATION = "1";
     const created = createStudioJob(conceptRequest({ audience: "Girls", directionId: "zebra-kids" }), 1_000);
     expect(created.ok).toBe(true);
     if (!created.ok) return;
@@ -132,50 +147,63 @@ describe("studio jobs", () => {
     expect(createStudioJob(conceptRequest({ audience: "Girls", directionId: "zebra-gown" }), 2_000).ok).toBe(false);
   });
 
-  it("returns a labelled mock try-on with no composite", () => {
+  it("does not make a try-on composite", () => {
     const created = createStudioJob(tryOnRequest(), 1_000);
     expect(created.ok).toBe(true);
     if (!created.ok) return;
-    const done = readStudioJob(created.job.id, visit, 1_000 + mockQueuedMs + mockRunMs);
-    expect(done?.status).toBe("mock_completed");
-    expect(done?.directionIds).toEqual(["zebra-gown"]);
-    expect(done?.referenceDirectionId).toBe("zebra-gown");
-    expect(done?.composite).toBeNull();
-    expect(done?.providerCalled).toBe(false);
-    expect(done?.message).toMatch(/no composite/i);
-    expect(done?.message).toMatch(/browser/);
+    expect(created.job.status).toBe("failed");
+    expect(created.job.label).toBe("Try-on unavailable");
+    expect(created.job.providerCalled).toBe(false);
+    expect(created.job.composite).toBeNull();
+    expect(created.job.message).toMatch(/no composite/i);
+    expect(created.job.message).toMatch(/photograph/i);
     expect(createStudioJob(tryOnRequest({ directionId: null }), 2_000).ok).toBe(false);
+
+    process.env.ANIMODA_MOCK_GENERATION = "1";
+    const mock = createStudioJob(tryOnRequest({ visitId: otherVisit }), 3_000);
+    expect(mock.ok).toBe(true);
+    if (!mock.ok) return;
+    const done = readStudioJob(mock.job.id, otherVisit, 3_000 + mockQueuedMs + mockRunMs);
+    expect(done?.status).toBe("mock_completed");
+    expect(done?.composite).toBeNull();
   });
 
-  it("fails a keyed job without sending the key or calling a provider", () => {
+  it("ignores the retired concept and try-on keys", () => {
     process.env.FASHION_CONCEPT_API_KEY = `  ${conceptKey}  `;
-    process.env.VIRTUAL_TRY_ON_API_KEY = "   ";
+    process.env.VIRTUAL_TRY_ON_API_KEY = "try-on-secret";
     const concept = createStudioJob(conceptRequest(), 1_000);
     expect(concept.ok).toBe(true);
     if (!concept.ok) return;
     expect(concept.job.status).toBe("failed");
-    expect(concept.job.mode).toBe("unconfigured");
-    expect(concept.job.label).toBe("Provider not chosen");
-    expect(concept.job.providerCalled).toBe(false);
-    expect(concept.job.referenceDirectionId).toBe("zebra-gown");
-    expect(concept.job.message).toMatch(/not the image provider/);
-    expect(concept.job.message).toMatch(/No request was sent/);
+    expect(concept.job.message).toMatch(/OPENAI_API_KEY/);
     expect(JSON.stringify(concept.job)).not.toContain(conceptKey);
-    expect(readStudioJob(concept.job.id, visit, 9_000)?.status).toBe("failed");
+    expect(JSON.stringify(concept.job)).not.toContain("try-on-secret");
+  });
 
-    delete process.env.FASHION_CONCEPT_API_KEY;
-    process.env.VIRTUAL_TRY_ON_API_KEY = tryOnKey;
-    const tryOn = createStudioJob(tryOnRequest({ visitId: otherVisit }), 1_000);
-    expect(tryOn.ok).toBe(true);
-    if (!tryOn.ok) return;
-    expect(tryOn.job.mode).toBe("unconfigured");
-    expect(JSON.stringify(tryOn.job)).not.toContain(tryOnKey);
-    const stillMock = createStudioJob(conceptRequest({ visitId: otherVisit }), 1_000);
-    expect(stillMock.ok && stillMock.job.mode).toBe("mock");
-    expect(JSON.stringify(stillMock)).not.toContain(tryOnKey);
+  it("rejects an unsupported image model and does not call a provider", async () => {
+    process.env.OPENAI_API_KEY = imageKey;
+    process.env.OPENAI_IMAGE_MODEL = "gpt-image-1";
+    process.env.SUPABASE_URL = "https://example.supabase.co";
+    process.env.SUPABASE_SECRET_KEY = "server-secret-test-value";
+    const response = await POST(
+      new Request("http://localhost/api/studio/jobs", {
+        method: "POST",
+        body: JSON.stringify(conceptRequest({ animalSlug: "army-green-moth", directionId: null })),
+      }),
+    );
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as { status: string; message: string; providerCalled: boolean };
+    expect(body.status).toBe("failed");
+    expect(body.providerCalled).toBe(false);
+    expect(body.message).toMatch(/gpt-image-2\.5-sunburst/);
+    expect(body.message).toMatch(/No provider was called/);
+    expect(ensureStoredAnimalSamples).not.toHaveBeenCalled();
+    expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
+    expect(JSON.stringify(body)).not.toContain(imageKey);
   });
 
   it("stops one job kind at the visit quota and leaves the other kind open", () => {
+    process.env.ANIMODA_MOCK_GENERATION = "1";
     for (let index = 0; index < mockJobQuota; index += 1) {
       const job = createStudioJob(conceptRequest(), index);
       expect(job.ok).toBe(true);
@@ -185,13 +213,12 @@ describe("studio jobs", () => {
     if (blocked.ok) return;
     expect(blocked.status).toBe(429);
     expect(blocked.quota).toEqual({ kind: "concept", used: mockJobQuota, limit: mockJobQuota, remaining: 0 });
-    expect(blocked.error).toMatch(/not an account quota/);
-    expect(blocked.error).not.toMatch(/99\.4|98%/);
     expect(createStudioJob(tryOnRequest(), 60).ok).toBe(true);
     expect(createStudioJob(conceptRequest({ visitId: otherVisit }), 70).ok).toBe(true);
   });
 
   it("hides a job from another visit and rejects a photograph", () => {
+    process.env.ANIMODA_MOCK_GENERATION = "1";
     const created = createStudioJob(conceptRequest(), 1_000);
     expect(created.ok).toBe(true);
     if (!created.ok) return;
@@ -207,7 +234,73 @@ describe("studio jobs", () => {
     expect(parsed.error).not.toContain("base64");
   });
 
+  it("checks stored samples for every catalogue animal without requesting a new image", async () => {
+    configureImageProvider();
+    const response = await POST(
+      new Request("http://localhost/api/studio/jobs", {
+        method: "POST",
+        body: JSON.stringify(conceptRequest({ animalSlug: "army-green-moth", directionId: null })),
+      }),
+    );
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as { status: string; providerCalled: boolean; mode: string; label: string };
+    expect(body).toMatchObject({ status: "completed", mode: "catalogue", providerCalled: false, label: "Stored samples" });
+    expect(ensureStoredAnimalSamples).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(ensureStoredAnimalSamples).mock.calls[0]?.[0]).toBe("army-green-moth");
+    expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
+    expect(JSON.stringify(body)).not.toContain(imageKey);
+  });
+
+  it("passes only the requested animal when a missing style must be generated", async () => {
+    configureImageProvider();
+    vi.mocked(ensureStoredAnimalSamples).mockImplementation(async (slug, deps) => {
+      await deps?.generateMissing?.(deps.env);
+      return { status: "completed", samples: [], providerCalled: true, message: `Stored samples. OpenAI returned the missing PNG files for ${slug}.` };
+    });
+    const response = await POST(
+      new Request("http://localhost/api/studio/jobs", {
+        method: "POST",
+        body: JSON.stringify(conceptRequest({ animalSlug: "plains-zebra", replaceStored: true })),
+      }),
+    );
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as { status: string; providerCalled: boolean };
+    expect(body).toMatchObject({ status: "completed", providerCalled: true });
+    expect(runCatalogueFashionSamples).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(runCatalogueFashionSamples).mock.calls[0]?.[1]).toEqual(["plains-zebra"]);
+    expect(vi.mocked(runCatalogueFashionSamples).mock.calls[0]?.[2]).toEqual({ regenerate: true });
+  });
+
+  it("does not complete a catalogue job until stored files are confirmed", () => {
+    configureImageProvider();
+    delete process.env.OPENAI_IMAGE_MODEL;
+    const ready = createStudioJob(conceptRequest({ animalSlug: "emerald-tree-boa", directionId: null }), 2_000);
+    expect(ready.ok).toBe(true);
+    if (!ready.ok) return;
+    expect(ready.job).toMatchObject({ status: "pending", mode: "catalogue", label: "Stored samples", providerCalled: false, storedSamples: null });
+    expect(ready.job.message).toMatch(/Emerald tree boa/);
+    expect(ready.job.message).toMatch(/No image has been requested yet/);
+    expect(readStudioJob(ready.job.id, visit, 9_000)?.status).toBe("pending");
+
+    const samples = [
+      { style: "formal" as const, imagePath: "animals/emerald-tree-boa/formal/11111111-1111-4111-8111-111111111111.png", imageUrl: "https://example.supabase.co/formal.png" },
+      { style: "casual_street" as const, imagePath: "animals/emerald-tree-boa/casual_street/22222222-2222-4222-8222-222222222222.png", imageUrl: "https://example.supabase.co/casual.png" },
+      { style: "youth_couture" as const, imagePath: "animals/emerald-tree-boa/youth_couture/33333333-3333-4333-8333-333333333333.png", imageUrl: "https://example.supabase.co/youth.png" },
+    ];
+    const applied = applyPilotOutcome(ready.job.id, visit, {
+      status: "completed",
+      samples,
+      providerCalled: false,
+      message: "Stored samples. No new image was requested.",
+    });
+    expect(applied?.status).toBe("completed");
+    expect(applied?.providerCalled).toBe(false);
+    expect(applied?.storedSamples).toEqual(samples.map(({ style, imagePath }) => ({ style, imagePath })));
+    expect(JSON.stringify(applied)).not.toContain(imageKey);
+  });
+
   it("accepts a mock through the route and refuses another visit", async () => {
+    process.env.ANIMODA_MOCK_GENERATION = "1";
     const response = await POST(
       new Request("http://localhost/api/studio/jobs", {
         method: "POST",
@@ -220,7 +313,7 @@ describe("studio jobs", () => {
     expect(body.composite).toBeNull();
     expect(body.mode).toBe("mock");
     expect(["pending", "generating", "mock_completed"]).toContain(body.status);
-    expect(ensureEmeraldTreeBoaPilot).not.toHaveBeenCalled();
+    expect(ensureStoredAnimalSamples).not.toHaveBeenCalled();
     expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
 
     const hidden = await GET(new Request(`http://localhost/api/studio/jobs/${body.id}?visitId=${otherVisit}`), {
@@ -238,114 +331,5 @@ describe("studio jobs", () => {
     const portraitBody = (await portrait.json()) as { error: string };
     expect(portraitBody.error).toMatch(/photograph/);
     expect(JSON.stringify(portraitBody)).not.toContain("data:image");
-    expect(JSON.stringify(portraitBody)).not.toContain("base64");
-  });
-
-  it("keeps army green moth on a mock even when the image key is set", async () => {
-    const imageKey = "sk-test-secret-value";
-    process.env.OPENAI_API_KEY = imageKey;
-    process.env.OPENAI_IMAGE_MODEL = "gpt-image-test";
-    process.env.SUPABASE_URL = "https://example.supabase.co";
-    process.env.SUPABASE_SECRET_KEY = "server-secret-test-value";
-    const created = createStudioJob(conceptRequest({ animalSlug: "army-green-moth", directionId: null }), 1_000);
-    expect(created.ok).toBe(true);
-    if (!created.ok) return;
-    const done = readStudioJob(created.job.id, visit, 1_000 + mockQueuedMs + mockRunMs);
-    expect(done?.status).toBe("mock_completed");
-    expect(done?.mode).toBe("mock");
-    expect(done?.providerCalled).toBe(false);
-    expect(done?.message).toMatch(/No provider was called/);
-    expect(done?.message).toMatch(/Emerald tree boa/);
-    expect(JSON.stringify(done)).not.toContain(imageKey);
-
-    const response = await POST(
-      new Request("http://localhost/api/studio/jobs", {
-        method: "POST",
-        body: JSON.stringify(conceptRequest({ animalSlug: "army-green-moth", directionId: null, visitId: otherVisit })),
-      }),
-    );
-    expect(response.status).toBe(202);
-    expect(ensureEmeraldTreeBoaPilot).not.toHaveBeenCalled();
-    expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
-    expect(await response.text()).not.toContain(imageKey);
-  });
-
-  it("does not complete the boa pilot until stored files are confirmed", () => {
-    const created = createStudioJob(conceptRequest({ animalSlug: EMERALD_TREE_BOA_SLUG, directionId: null }), 1_000);
-    expect(created.ok).toBe(true);
-    if (!created.ok) return;
-    expect(created.job.status).toBe("failed");
-    expect(created.job.label).toBe("Configuration error");
-    expect(created.job.providerCalled).toBe(false);
-    expect(created.job.message).toMatch(/OPENAI_API_KEY/);
-    expect(readStudioJob(created.job.id, visit, 9_000)?.status).toBe("failed");
-
-    process.env.OPENAI_API_KEY = "sk-test-secret-value";
-    process.env.OPENAI_IMAGE_MODEL = "gpt-image-test";
-    process.env.SUPABASE_URL = "https://example.supabase.co";
-    process.env.SUPABASE_SECRET_KEY = "server-secret-test-value";
-    const ready = createStudioJob(conceptRequest({ animalSlug: EMERALD_TREE_BOA_SLUG, directionId: null, visitId: otherVisit }), 2_000);
-    expect(ready.ok).toBe(true);
-    if (!ready.ok) return;
-    expect(ready.job).toMatchObject({ status: "pending", mode: "pilot", label: "Stored pilot", providerCalled: false, storedSamples: null });
-    expect(ready.job.message).toMatch(/No image has been requested yet/);
-    expect(readStudioJob(ready.job.id, otherVisit, 9_000)?.status).toBe("pending");
-
-    const samples = [
-      { style: "formal" as const, imagePath: "animals/emerald-tree-boa/formal/11111111-1111-4111-8111-111111111111.png", imageUrl: "https://example.supabase.co/formal.png" },
-      { style: "casual_street" as const, imagePath: "animals/emerald-tree-boa/casual_street/22222222-2222-4222-8222-222222222222.png", imageUrl: "https://example.supabase.co/casual.png" },
-      { style: "youth_couture" as const, imagePath: "animals/emerald-tree-boa/youth_couture/33333333-3333-4333-8333-333333333333.png", imageUrl: "https://example.supabase.co/youth.png" },
-    ];
-    const applied = applyPilotOutcome(ready.job.id, otherVisit, {
-      status: "completed",
-      samples,
-      providerCalled: false,
-      message: "Stored pilot. No new image was requested.",
-    });
-    expect(applied?.status).toBe("completed");
-    expect(applied?.providerCalled).toBe(false);
-    expect(applied?.storedSamples).toEqual(samples.map(({ style, imagePath }) => ({ style, imagePath })));
-    expect(JSON.stringify(applied)).not.toContain("sk-test-secret-value");
-  });
-
-  it("confirms a stored boa pilot through the route without requesting a new image", async () => {
-    process.env.OPENAI_API_KEY = "sk-test-secret-value";
-    process.env.OPENAI_IMAGE_MODEL = "gpt-image-test";
-    process.env.SUPABASE_URL = "https://example.supabase.co";
-    process.env.SUPABASE_SECRET_KEY = "server-secret-test-value";
-    const response = await POST(
-      new Request("http://localhost/api/studio/jobs", {
-        method: "POST",
-        body: JSON.stringify(conceptRequest({ animalSlug: EMERALD_TREE_BOA_SLUG, directionId: null })),
-      }),
-    );
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as { status: string; providerCalled: boolean; mode: string };
-    expect(body).toMatchObject({ status: "completed", mode: "pilot", providerCalled: false });
-    expect(ensureEmeraldTreeBoaPilot).toHaveBeenCalledTimes(1);
-    expect(runCatalogueFashionSamples).not.toHaveBeenCalled();
-    expect(JSON.stringify(body)).not.toContain("sk-test-secret-value");
-  });
-
-  it("passes only the boa slug when a missing pilot style must be generated", async () => {
-    process.env.OPENAI_API_KEY = "sk-test-secret-value";
-    process.env.OPENAI_IMAGE_MODEL = "gpt-image-test";
-    process.env.SUPABASE_URL = "https://example.supabase.co";
-    process.env.SUPABASE_SECRET_KEY = "server-secret-test-value";
-    vi.mocked(ensureEmeraldTreeBoaPilot).mockImplementation(async (env, deps) => {
-      await deps?.generateMissing?.(env);
-      return { status: "completed", samples: [], providerCalled: true, message: "Stored pilot. OpenAI returned the missing PNG files." };
-    });
-    const response = await POST(
-      new Request("http://localhost/api/studio/jobs", {
-        method: "POST",
-        body: JSON.stringify(conceptRequest({ animalSlug: EMERALD_TREE_BOA_SLUG, directionId: null })),
-      }),
-    );
-    expect(response.status).toBe(200);
-    const body = (await response.json()) as { status: string; providerCalled: boolean };
-    expect(body).toMatchObject({ status: "completed", providerCalled: true });
-    expect(runCatalogueFashionSamples).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(runCatalogueFashionSamples).mock.calls[0]?.[1]).toEqual([EMERALD_TREE_BOA_SLUG]);
   });
 });

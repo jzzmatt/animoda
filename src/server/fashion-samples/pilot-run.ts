@@ -8,7 +8,7 @@ import {
   sampleObjectPath,
   type FashionSampleStyle,
 } from "@/server/fashion-samples/model";
-import { assertImageModel, generateFashionPng, readImageModel } from "@/server/fashion-samples/openai-image";
+import { assertImageModel, generateFashionPng, readImageModel, readOpenAiApiKey } from "@/server/fashion-samples/openai-image";
 import { CATALOGUE_PROMPT_VERSION, decidePilotStep, pilotPromptRecord, pilotStyles, sampleCopy } from "@/server/fashion-samples/pilot";
 import { createSupabaseServiceClient, readSupabaseServerConfig, type SupabaseServerConfig } from "@/server/supabase/server";
 
@@ -64,16 +64,18 @@ async function generateWithRetry(input: { apiKey: string; model: string; prompt:
 }
 
 export async function runCatalogueFashionSamples(
-  env: Record<string, string | undefined> = process.env,
+  env?: Record<string, string | undefined>,
   slugs?: readonly string[],
+  options: { regenerate?: boolean } = {},
 ): Promise<PilotStyleResult[]> {
   const config = readSupabaseServerConfig(env);
-  const apiKey = env.OPENAI_API_KEY?.trim() ?? "";
+  const apiKey = readOpenAiApiKey(env);
   const model = readImageModel(env);
   if (!config) throw new Error("supabase_not_configured");
-  if (!apiKey || !model) throw new Error("openai_not_configured");
+  if (!apiKey) throw new Error("openai_not_configured");
+  if (!model.ok) throw new Error("openai_model_invalid");
   const serverConfig: SupabaseServerConfig = config;
-  const imageModel = model;
+  const imageModel = model.model;
   await assertImageModel(apiKey, imageModel);
 
   const animals = catalogueAnimals.filter((animal) => !slugs || slugs.includes(animal.slug));
@@ -98,7 +100,16 @@ export async function runCatalogueFashionSamples(
       cursor += 1;
       const item = work[index];
       if (!item) return;
-      const result = await storeOneSample({ supabase, config: serverConfig, apiKey, model: imageModel, rows, animal: item.animal, style: item.style });
+      const result = await storeOneSample({
+        supabase,
+        config: serverConfig,
+        apiKey,
+        model: imageModel,
+        rows,
+        animal: item.animal,
+        style: item.style,
+        regenerate: options.regenerate === true,
+      });
       results.push(result);
       console.log(`${results.length}/${work.length} ${result.animalId} ${result.style} ${result.action} ${result.errorCode ?? ""}`);
     }
@@ -115,13 +126,14 @@ async function storeOneSample(input: {
   rows: SampleRow[];
   animal: CatalogueAnimal;
   style: FashionSampleStyle;
+  regenerate: boolean;
 }): Promise<PilotStyleResult> {
-  const { supabase, config, apiKey, model, rows, animal, style } = input;
+  const { supabase, config, apiKey, model, rows, animal, style, regenerate } = input;
   const existing = rows.find((row) => row.animal_id === animal.slug && row.style === style && isFashionSampleStyle(row.style)) ?? null;
   const stored = await objectExists(supabase, existing?.image_path ?? null);
-  const step = decidePilotStep(
-    existing ? { generationStatus: existing.generation_status, imagePath: existing.image_path, objectExists: stored } : null,
-  );
+  const step = regenerate
+    ? "generate"
+    : decidePilotStep(existing ? { generationStatus: existing.generation_status, imagePath: existing.image_path, objectExists: stored } : null);
   if (step === "skip" && existing?.image_path) {
     return { animalId: animal.slug, style, action: "skipped", id: existing.id, imagePath: existing.image_path, errorCode: null };
   }

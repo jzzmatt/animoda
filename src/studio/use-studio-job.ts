@@ -10,7 +10,7 @@ export function useStudioJob(kind: StudioJobKind) {
   const [pending, setPending] = useState(false);
   const pendingRef = useRef(false);
 
-  async function start(input: { animalSlug: string; directionId: string | null; setting?: string | null }) {
+  async function start(input: { animalSlug: string; directionId: string | null; setting?: string | null; replaceStored?: boolean }) {
     if (!studio.visitId || pendingRef.current) return;
     pendingRef.current = true;
     setPending(true);
@@ -23,6 +23,7 @@ export function useStudioJob(kind: StudioJobKind) {
         audience: studio.audience,
         directionId: input.directionId,
         setting: input.setting ?? null,
+        replaceStored: input.replaceStored === true,
         onUpdate: setJob,
       });
       setJob(result);

@@ -8,7 +8,7 @@ export type StudioJobView = {
   id: string | null;
   kind: StudioJobKind | null;
   status: StudioJobStatus;
-  mode: "mock" | "pilot" | "unconfigured" | null;
+  mode: "mock" | "catalogue" | "unconfigured" | null;
   label: string;
   referenceDirectionId: string | null;
   directionIds: string[];
@@ -24,6 +24,7 @@ export type StudioJobPollInput = {
   audience: string;
   directionId: string | null;
   setting?: string | null;
+  replaceStored?: boolean;
   intervalMs?: number;
   timeoutMs?: number;
   fetchImpl?: typeof fetch;
@@ -31,7 +32,7 @@ export type StudioJobPollInput = {
 };
 
 const statuses = new Set<StudioJobStatus>(["pending", "generating", "completed", "mock_completed", "failed"]);
-const modes = new Set(["mock", "pilot", "unconfigured"]);
+const modes = new Set(["mock", "catalogue", "unconfigured"]);
 
 /** The catalogue selection wins. A job may echo another id; this visit does not adopt it. */
 export function keptDirectionId(current: string | null, job: { referenceDirectionId: string | null } | null): string | null {
@@ -103,6 +104,7 @@ export async function pollStudioJob(input: StudioJobPollInput): Promise<StudioJo
     audience: input.audience,
     directionId: input.directionId,
     setting: input.setting ?? null,
+    replaceStored: input.replaceStored === true,
   };
   const body = JSON.stringify(payload);
   if (body.includes("data:image")) {

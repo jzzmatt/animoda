@@ -2,15 +2,51 @@ import { isPng } from "@/server/fashion-samples/pilot";
 
 const imageEndpoint = "https://api.openai.com/v1/images/generations";
 
+/** Documented GPT Image models for POST /v1/images/generations. gpt-image-1 is excluded. */
+export const supportedGptImageModels = [
+  "gpt-image-2.5-sunburst",
+  "gpt-image-2.5-flare",
+  "gpt-image-2",
+  "gpt-image-1.5",
+  "gpt-image-1-mini",
+] as const;
+
+export type SupportedGptImageModel = (typeof supportedGptImageModels)[number];
+
+/** Used only when OPENAI_IMAGE_MODEL is unset. An invalid explicit value is never replaced. */
+export const defaultGptImageModel: SupportedGptImageModel = "gpt-image-2.5-flare";
+
+export type ImageModelResolution =
+  | { ok: true; model: SupportedGptImageModel; source: "configured" | "default" }
+  | { ok: false; reason: "invalid_model" };
+
 export type GeneratedPng = {
   bytes: Buffer;
   model: string;
 };
 
-export function readImageModel(env: Record<string, string | undefined> = process.env): string | null {
-  const model = env.OPENAI_IMAGE_MODEL?.trim() ?? "";
-  if (!model.startsWith("gpt-image-")) return null;
-  return model;
+export function readOpenAiApiKey(env?: Record<string, string | undefined>): string {
+  const raw = env ? env.OPENAI_API_KEY : process.env.OPENAI_API_KEY;
+  return raw?.trim() ?? "";
+}
+
+/**
+ * Resolves the image model. An empty value uses the documented default.
+ * Any other value must match a supported GPT Image model exactly.
+ * The unset branch reads process.env.OPENAI_IMAGE_MODEL directly so the server runtime can see it.
+ */
+export function readImageModel(env?: Record<string, string | undefined>): ImageModelResolution {
+  const raw = env ? env.OPENAI_IMAGE_MODEL : process.env.OPENAI_IMAGE_MODEL;
+  const model = raw?.trim() ?? "";
+  if (!model) return { ok: true, model: defaultGptImageModel, source: "default" };
+  if ((supportedGptImageModels as readonly string[]).includes(model)) {
+    return { ok: true, model: model as SupportedGptImageModel, source: "configured" };
+  }
+  return { ok: false, reason: "invalid_model" };
+}
+
+export function imageModelErrorMessage(): string {
+  return `Configuration error. OPENAI_IMAGE_MODEL must be one of ${supportedGptImageModels.join(", ")}. gpt-image-1 is not available. No provider was called and no image was generated. The selected design remains the reference.`;
 }
 
 export async function assertImageModel(apiKey: string, model: string): Promise<void> {

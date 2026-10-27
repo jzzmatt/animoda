@@ -31,8 +31,8 @@ export function SuggestionsStep() {
   const selectedId = keptDirectionId(studio.directionId, jobState.job);
   const directions = sampleDirections(animal, studio.audience, setting);
 
-  const regenerate = () => {
-    void jobState.start({ animalSlug: animal.slug, directionId: selectedId, setting });
+  const regenerate = (replaceStored: boolean) => {
+    void jobState.start({ animalSlug: animal.slug, directionId: selectedId, setting, replaceStored });
   };
 
   return (
@@ -43,7 +43,7 @@ export function SuggestionsStep() {
           Sample directions for {studio.audience.toLowerCase()} — {animal.commonName}
         </h1>
         <p className="mt-space-xs font-body-lg text-body-lg text-on-surface-variant">
-          These cards are the catalogue directions for {animal.scientificName}. Regenerating starts a server job. A mock job finishes as mock completed and does not call a provider, so this list stays the catalogue. Only the Emerald tree boa pilot can confirm stored images. Select one design to carry forward.
+          These cards are the catalogue directions for {animal.scientificName}. Checking stored samples confirms the three saved fashion images for this animal and generates only a style that is missing. Replace stored samples asks OpenAI for new images. Select one design to carry forward.
         </p>
       </header>
 
@@ -64,15 +64,25 @@ export function SuggestionsStep() {
             </button>
           ))}
         </div>
-        <button
-          type="button"
-          onClick={regenerate}
-          disabled={jobState.pending}
-          className="inline-flex min-h-11 items-center gap-space-xxs rounded-full bg-surface-container px-space-md font-label-md text-label-md text-on-surface disabled:opacity-50"
-        >
-          <Icon name="auto_awesome" className="text-[18px]" />
-          {jobState.pending ? "Regenerating…" : "Regenerate"}
-        </button>
+        <div className="flex flex-wrap gap-space-xs">
+          <button
+            type="button"
+            onClick={() => regenerate(false)}
+            disabled={jobState.pending}
+            className="inline-flex min-h-11 items-center gap-space-xxs rounded-full bg-surface-container px-space-md font-label-md text-label-md text-on-surface disabled:opacity-50"
+          >
+            <Icon name="auto_awesome" className="text-[18px]" />
+            {jobState.pending ? "Checking…" : "Check stored samples"}
+          </button>
+          <button
+            type="button"
+            onClick={() => regenerate(true)}
+            disabled={jobState.pending}
+            className="inline-flex min-h-11 items-center gap-space-xxs rounded-full bg-surface-container px-space-md font-label-md text-label-md text-on-surface disabled:opacity-50"
+          >
+            Replace stored samples
+          </button>
+        </div>
       </div>
       <StudioJobNotice job={jobState.job} pending={jobState.pending} />
 

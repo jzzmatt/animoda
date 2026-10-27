@@ -60,6 +60,7 @@ describe("studio job client", () => {
         audience: "Women",
         directionId: "zebra-gown",
         setting: null,
+        replaceStored: false,
       },
     ]);
     expect(JSON.stringify(posted)).not.toContain("data:image");
