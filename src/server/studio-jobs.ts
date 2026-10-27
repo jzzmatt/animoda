@@ -1,4 +1,7 @@
 import { animalBySlug, directionSettings, type SampleDirection } from "@/content/catalogue";
+import { pilotConfigurationMessage, type PilotEnsureResult, type PilotSampleFile } from "@/server/fashion-samples/pilot-job";
+import { readImageModel, readOpenAiApiKey } from "@/server/fashion-samples/openai-image";
+import { readSupabaseServerConfig } from "@/server/supabase/server";
 import {
   audienceMatches,
   isVisitId,
@@ -17,8 +20,11 @@ const jobIdPattern = /^job_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a
 
 export const studioJobKinds = ["concept", "try-on"] as const;
 export type StudioJobKind = (typeof studioJobKinds)[number];
-export type StudioJobStatus = "queued" | "running" | "succeeded" | "failed";
-export type StudioJobMode = "mock" | "key-without-provider";
+export type StudioJobStatus = "pending" | "generating" | "completed" | "mock_completed" | "failed";
+export type StudioJobMode = "mock" | "catalogue" | "unconfigured";
+export type StudioJobLabel = "Labelled mock" | "Stored samples" | "Configuration error" | "Try-on unavailable";
+
+export type StoredPilotSample = Pick<PilotSampleFile, "style" | "imagePath">;
 
 export type StudioQuota = {
   kind: StudioJobKind;
@@ -32,13 +38,14 @@ export type PublicStudioJob = {
   kind: StudioJobKind;
   status: StudioJobStatus;
   mode: StudioJobMode;
-  label: "Labelled mock" | "Provider not chosen";
+  label: StudioJobLabel;
   animalSlug: string;
   audience: StudioAudience;
   referenceDirectionId: string | null;
   directionIds: string[];
   composite: null;
-  providerCalled: false;
+  providerCalled: boolean;
+  storedSamples: StoredPilotSample[] | null;
   referencePreserved: true;
   message: string;
   createdAt: string;
@@ -53,6 +60,7 @@ export type StudioJobRequest = {
   audience: StudioAudience;
   directionId: string | null;
   setting: string | null;
+  replaceStored: boolean;
 };
 
 export type StudioJobFailure = {
@@ -75,6 +83,8 @@ type StoredJob = {
   audience: StudioAudience;
   referenceDirectionId: string | null;
   directionIds: string[];
+  providerCalled: boolean;
+  storedSamples: StoredPilotSample[] | null;
   message: string;
   createdAt: number;
   updatedAt: number;
@@ -88,7 +98,7 @@ const visitOrder: string[] = [];
 const portraitError =
   "This route does not accept a photograph. The portrait stays in the browser, and the selected design remains the reference.";
 
-const allowedKeys = new Set(["visitId", "kind", "animalSlug", "audience", "directionId", "setting"]);
+const allowedKeys = new Set(["visitId", "kind", "animalSlug", "audience", "directionId", "setting", "replaceStored"]);
 
 export function resetStudioJobsForTests() {
   jobs.clear();
@@ -96,9 +106,16 @@ export function resetStudioJobsForTests() {
   visitOrder.length = 0;
 }
 
-function hasServerKey(kind: StudioJobKind): boolean {
-  const name = kind === "concept" ? "FASHION_CONCEPT_API_KEY" : "VIRTUAL_TRY_ON_API_KEY";
-  return (process.env[name] ?? "").trim().length > 0;
+function mockGenerationRequested(env?: Record<string, string | undefined>): boolean {
+  const raw = env ? env.ANIMODA_MOCK_GENERATION : process.env.ANIMODA_MOCK_GENERATION;
+  return raw?.trim() === "1";
+}
+
+function catalogueConfigReason(env?: Record<string, string | undefined>): "openai" | "openai_model" | "supabase" | null {
+  if (!readOpenAiApiKey(env)) return "openai";
+  if (!readImageModel(env).ok) return "openai_model";
+  if (!readSupabaseServerConfig(env)) return "supabase";
+  return null;
 }
 
 function readString(value: unknown): string | null | "bad" {
@@ -138,6 +155,9 @@ export function parseStudioJobRequest(raw: string): { ok: true; request: StudioJ
   const audience = readString(record.audience);
   const directionId = readString(record.directionId);
   const setting = readString(record.setting);
+  if (record.replaceStored !== undefined && typeof record.replaceStored !== "boolean") {
+    return { ok: false, status: 400, error: "The studio job request was not valid JSON.", quota: null };
+  }
   if (animalSlug === "bad" || audience === "bad" || directionId === "bad" || setting === "bad" || !animalSlug || !audience) {
     return { ok: false, status: 400, error: "The animal, audience, or selected design is not valid.", quota: null };
   }
@@ -153,6 +173,7 @@ export function parseStudioJobRequest(raw: string): { ok: true; request: StudioJ
       audience: audience as StudioAudience,
       directionId,
       setting,
+      replaceStored: record.replaceStored === true,
     },
   };
 }
@@ -202,18 +223,18 @@ function rememberJob(job: StoredJob) {
   }
 }
 
-function conceptMessage(mode: StudioJobMode): string {
-  if (mode === "mock") {
-    return "Labelled mock. No fashion concept key is configured, so this job does not call a provider. The catalogue directions are unchanged, and the selected design remains the reference.";
-  }
-  return "A fashion concept key is set on the server, but no concept provider has been chosen. No request was sent. The catalogue directions are unchanged, and the selected design remains the reference.";
-}
+const mockConceptMessage =
+  "Labelled mock. ANIMODA_MOCK_GENERATION is set, so no provider was called and this job does not count as a stored catalogue image. The catalogue directions are unchanged, and the selected design remains the reference.";
 
-function tryOnMessage(mode: StudioJobMode): string {
-  if (mode === "mock") {
-    return "Labelled mock. No virtual try-on key is configured, so this job does not call a provider and no composite was made. Your photograph stayed in the browser, and the selected design remains the reference.";
-  }
-  return "A virtual try-on key is set on the server, but no try-on provider has been chosen. No request was sent and no composite was made. Your photograph stayed in the browser, and the selected design remains the reference.";
+const mockTryOnMessage =
+  "Labelled mock. ANIMODA_MOCK_GENERATION is set, so no virtual try-on provider was called and no composite was made. Your photograph stayed in the browser, and the selected design remains the reference.";
+
+const tryOnUnavailableMessage =
+  "Try-on unavailable. Virtual try-on does not call OpenAI, no photograph was sent, and no composite was made. Catalogue fashion images are stored separately. The selected design remains the reference.";
+
+function cataloguePendingMessage(animalSlug: string): string {
+  const name = animalBySlug(animalSlug)?.commonName ?? "this animal";
+  return `Stored samples. The three ${name} styles are being checked in Supabase. No image has been requested yet. The catalogue directions are unchanged, and the selected design remains the reference.`;
 }
 
 function quotaMessage(kind: StudioJobKind): string {
@@ -233,7 +254,8 @@ function toPublic(job: StoredJob): PublicStudioJob {
     referenceDirectionId: job.referenceDirectionId,
     directionIds: [...job.directionIds],
     composite: null,
-    providerCalled: false,
+    providerCalled: job.providerCalled,
+    storedSamples: job.storedSamples ? job.storedSamples.map((sample) => ({ ...sample })) : null,
     referencePreserved: true,
     message: job.message,
     createdAt: new Date(job.createdAt).toISOString(),
@@ -243,15 +265,33 @@ function toPublic(job: StoredJob): PublicStudioJob {
 }
 
 function settle(job: StoredJob, now: number): StoredJob {
-  if (job.status === "succeeded" || job.status === "failed" || job.mode !== "mock") return job;
+  if (job.status === "completed" || job.status === "mock_completed" || job.status === "failed" || job.mode !== "mock") return job;
   const age = now - job.createdAt;
   if (age >= mockQueuedMs + mockRunMs) {
-    return { ...job, status: "succeeded", updatedAt: now };
+    return { ...job, status: "mock_completed", updatedAt: now };
   }
-  if (age >= mockQueuedMs && job.status === "queued") {
-    return { ...job, status: "running", updatedAt: now };
+  if (age >= mockQueuedMs && job.status === "pending") {
+    return { ...job, status: "generating", updatedAt: now };
   }
   return job;
+}
+
+function planConcept(env: Record<string, string | undefined> | undefined, animalSlug: string): Pick<StoredJob, "status" | "mode" | "label" | "message"> {
+  if (mockGenerationRequested(env)) {
+    return { status: "pending", mode: "mock", label: "Labelled mock", message: mockConceptMessage };
+  }
+  const reason = catalogueConfigReason(env);
+  if (reason) {
+    return { status: "failed", mode: "unconfigured", label: "Configuration error", message: pilotConfigurationMessage(reason) };
+  }
+  return { status: "pending", mode: "catalogue", label: "Stored samples", message: cataloguePendingMessage(animalSlug) };
+}
+
+function planTryOn(env: Record<string, string | undefined> | undefined): Pick<StoredJob, "status" | "mode" | "label" | "message"> {
+  if (mockGenerationRequested(env)) {
+    return { status: "pending", mode: "mock", label: "Labelled mock", message: mockTryOnMessage };
+  }
+  return { status: "failed", mode: "unconfigured", label: "Try-on unavailable", message: tryOnUnavailableMessage };
 }
 
 export function createStudioJob(request: StudioJobRequest, now = Date.now()): StudioJobResult {
@@ -295,23 +335,24 @@ export function createStudioJob(request: StudioJobRequest, now = Date.now()): St
   row[request.kind] = nextUsed;
   usage.set(request.visitId, row);
 
-  const mode: StudioJobMode = hasServerKey(request.kind) ? "key-without-provider" : "mock";
+  const plan = request.kind === "concept" ? planConcept(undefined, animal.slug) : planTryOn(undefined);
   const catalogueIds = sampleDirections(animal, request.audience, setting).map((item) => item.id);
   const referenceDirectionId = direction?.id ?? null;
   const directionIds = request.kind === "try-on" && referenceDirectionId ? [referenceDirectionId] : catalogueIds;
-  const failed = mode === "key-without-provider";
   const job: StoredJob = {
     id: `job_${crypto.randomUUID()}`,
     visitId: request.visitId,
     kind: request.kind,
-    status: failed ? "failed" : "queued",
-    mode,
-    label: failed ? "Provider not chosen" : "Labelled mock",
+    status: plan.status,
+    mode: plan.mode,
+    label: plan.label,
     animalSlug: animal.slug,
     audience: request.audience,
     referenceDirectionId,
     directionIds,
-    message: request.kind === "concept" ? conceptMessage(mode) : tryOnMessage(mode),
+    providerCalled: false,
+    storedSamples: null,
+    message: plan.message,
     createdAt: now,
     updatedAt: now,
     quota: quotaSnapshot(request.visitId, request.kind, nextUsed),
@@ -326,5 +367,34 @@ export function readStudioJob(id: string, visitId: string, now = Date.now()): Pu
   if (!current || current.visitId !== visitId) return null;
   const next = settle(current, now);
   if (next !== current) jobs.set(id, next);
+  return toPublic(next);
+}
+
+/** Records a pilot result. A completed status requires samples that were already read back. */
+export function applyPilotOutcome(id: string, visitId: string, outcome: PilotEnsureResult, now = Date.now()): PublicStudioJob | null {
+  if (!jobIdPattern.test(id) || !isVisitId(visitId)) return null;
+  const current = jobs.get(id);
+  if (!current || current.visitId !== visitId || current.mode !== "catalogue" || !animalBySlug(current.animalSlug)) return null;
+  const next: StoredJob =
+    outcome.status === "completed"
+      ? {
+          ...current,
+          status: "completed",
+          label: "Stored samples",
+          providerCalled: outcome.providerCalled,
+          storedSamples: outcome.samples.map((sample) => ({ style: sample.style, imagePath: sample.imagePath })),
+          message: outcome.message,
+          updatedAt: now,
+        }
+      : {
+          ...current,
+          status: "failed",
+          label: outcome.message.startsWith("Configuration error") ? "Configuration error" : "Stored samples",
+          providerCalled: false,
+          storedSamples: null,
+          message: outcome.message,
+          updatedAt: now,
+        };
+  jobs.set(id, next);
   return toPublic(next);
 }

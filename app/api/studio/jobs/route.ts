@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { createStudioJob, parseStudioJobRequest } from "@/server/studio-jobs";
+import { ensureStoredAnimalSamples } from "@/server/fashion-samples/pilot-job";
+import { runCatalogueFashionSamples } from "@/server/fashion-samples/pilot-run";
+import { applyPilotOutcome, createStudioJob, parseStudioJobRequest } from "@/server/studio-jobs";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -14,6 +16,18 @@ export async function POST(request: Request) {
   if (!result.ok) {
     return NextResponse.json({ error: result.error, quota: result.quota }, { status: result.status });
   }
-  const status = result.job.status === "queued" || result.job.status === "running" ? 202 : 200;
-  return NextResponse.json(result.job, { status });
+  let job = result.job;
+  if (job.mode === "catalogue" && job.kind === "concept") {
+    const slug = job.animalSlug;
+    const outcome = await ensureStoredAnimalSamples(slug, {
+      replaceStored: parsed.request.replaceStored,
+      generateMissing: async () => {
+        await runCatalogueFashionSamples(undefined, [slug], { regenerate: parsed.request.replaceStored });
+      },
+    });
+    const applied = applyPilotOutcome(job.id, parsed.request.visitId, outcome);
+    if (applied) job = applied;
+  }
+  const status = job.status === "pending" || job.status === "generating" ? 202 : 200;
+  return NextResponse.json(job, { status });
 }

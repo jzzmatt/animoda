@@ -22,7 +22,7 @@ describe("studio job client", () => {
     const queued = {
       id: "job_11111111-1111-4111-8111-111111111111",
       kind: "try-on",
-      status: "queued",
+      status: "pending",
       mode: "mock",
       label: "Labelled mock",
       referenceDirectionId: "zebra-tuxedo",
@@ -36,7 +36,7 @@ describe("studio job client", () => {
         posted.push(JSON.parse(String(init.body)));
         return json(queued, 202);
       }
-      return json({ ...queued, status: "succeeded", composite: "https://example.invalid/composite.png" });
+      return json({ ...queued, status: "mock_completed", composite: "https://example.invalid/composite.png" });
     }) as typeof fetch;
 
     const updates: StudioJobView[] = [];
@@ -60,14 +60,15 @@ describe("studio job client", () => {
         audience: "Women",
         directionId: "zebra-gown",
         setting: null,
+        replaceStored: false,
       },
     ]);
     expect(JSON.stringify(posted)).not.toContain("data:image");
     expect(result.composite).toBeNull();
-    expect(result.status).toBe("succeeded");
+    expect(result.status).toBe("mock_completed");
     expect(result.directionIds).toEqual(["zebra-gown"]);
     expect(keptDirectionId("zebra-gown", result)).toBe("zebra-gown");
-    expect(updates.map((job) => job.status)).toEqual(["queued", "succeeded"]);
+    expect(updates.map((job) => job.status)).toEqual(["pending", "mock_completed"]);
     expect(result.quota?.remaining).toBe(7);
   });
 
