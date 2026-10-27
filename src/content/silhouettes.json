@@ -1,6 +1,6 @@
 {
   "retrieved": "2026-10-26",
-  "source": "PhyloPic API build 560. Each file is an exact scientific-name match. Non-commercial licenses were not saved.",
+  "source": "PhyloPic API build 560. Exact names use a reusable vector. Where none exists, depictedName names the closest reusable outline of the same kind of animal. Non-commercial files were not saved.",
   "records": [
     {
       "scientificName": "Aptenodytes forsteri",
@@ -141,92 +141,238 @@
       "sourceUrl": "https://www.phylopic.org/images/135296df-6e7a-4c02-bd22-85ca4aefcc85",
       "width": 1536,
       "height": 894
-    }
-  ],
-  "missing": [
+    },
     {
       "scientificName": "Astrochelys yniphora",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/9699dd46-ac8c-4d67-a105-5255471292e4.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/9699dd46-ac8c-4d67-a105-5255471292e4",
+      "width": 1536,
+      "height": 957,
+      "depictedName": "Manouria emys"
     },
     {
       "scientificName": "Betta splendens",
-      "reason": "PhyloPic has an exact image, but it is not reusable here (https://creativecommons.org/licenses/by-nc/3.0/)."
+      "src": "/silhouettes/efff6941-a431-4251-a066-fd27ab51c52f.svg",
+      "attribution": "Fidji Berio",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/efff6941-a431-4251-a066-fd27ab51c52f",
+      "width": 1536,
+      "height": 879,
+      "depictedName": "Trichopsis schalleri"
     },
     {
       "scientificName": "Calligrapha philadelphica",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/7c72a017-e297-4867-ac96-8a2e05ad8ba7.svg",
+      "attribution": "Andy Wilson",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/7c72a017-e297-4867-ac96-8a2e05ad8ba7",
+      "width": 1536,
+      "height": 1383,
+      "depictedName": "Chrysochus auratus"
     },
     {
       "scientificName": "Corallus caninus",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/29aac993-3298-4a19-8c60-19184c94effe.svg",
+      "attribution": "Becky Barnes",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/29aac993-3298-4a19-8c60-19184c94effe",
+      "width": 1536,
+      "height": 1094,
+      "depictedName": "Boa constrictor"
     },
     {
       "scientificName": "Cosmoderus femoralis",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/3b63434f-264a-4662-bbfd-faa16f9ed1a4.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/3b63434f-264a-4662-bbfd-faa16f9ed1a4",
+      "width": 1536,
+      "height": 1033,
+      "depictedName": "Decticus verrucivorus"
     },
     {
       "scientificName": "Daphnis nerii",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/77e7e4e9-93a5-48d8-a94a-f523260ca211.svg",
+      "attribution": "Andy Wilson",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/77e7e4e9-93a5-48d8-a94a-f523260ca211",
+      "width": 1502,
+      "height": 1536,
+      "depictedName": "Sphinx pinastri"
     },
     {
       "scientificName": "Erebus macrops",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/c224abfd-ee39-4923-98e5-c2606dcc56cb.svg",
+      "attribution": "Patrick Strutzenberger",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/c224abfd-ee39-4923-98e5-c2606dcc56cb",
+      "width": 2318,
+      "height": 1562,
+      "depictedName": "Catocala nupta"
     },
     {
       "scientificName": "Furcifer pardalis",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/1259398b-e679-49c3-8e1b-cb084d574766.svg",
+      "attribution": "Ferran Sayol",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/1259398b-e679-49c3-8e1b-cb084d574766",
+      "width": 1536,
+      "height": 755,
+      "depictedName": "Furcifer rhinoceratus"
     },
     {
       "scientificName": "Gallus gallus",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/2de1c95c-7e1f-429b-9c08-17f0a27d176f.svg",
+      "attribution": "Steven Traver",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/2de1c95c-7e1f-429b-9c08-17f0a27d176f",
+      "width": 1391,
+      "height": 1536,
+      "depictedName": "Gallus gallus domesticus"
     },
     {
       "scientificName": "Giraffa camelopardalis",
-      "reason": "PhyloPic has no exact reusable vector silhouette for this name."
+      "src": "/silhouettes/7a0981e5-7614-4922-8e92-42098499cc8b.svg",
+      "attribution": "Matthew Speight",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/7a0981e5-7614-4922-8e92-42098499cc8b",
+      "width": 1326,
+      "height": 1536,
+      "depictedName": "Giraffa tippelskirchi"
     },
     {
       "scientificName": "Goura victoria",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/26ebcc3d-4cbe-4a3b-8ab0-74315d438849.svg",
+      "attribution": "Michael Scroggie",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/26ebcc3d-4cbe-4a3b-8ab0-74315d438849",
+      "width": 1110,
+      "height": 1536,
+      "depictedName": "Phaps chalcoptera"
     },
     {
       "scientificName": "Horama panthalon",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/7177015d-b6d7-4d7e-928c-0d88b6734941.svg",
+      "attribution": "Andy Wilson",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/7177015d-b6d7-4d7e-928c-0d88b6734941",
+      "width": 1290,
+      "height": 1536,
+      "depictedName": "Hemaris thysbe"
     },
     {
       "scientificName": "Pavo cristatus",
-      "reason": "PhyloPic has an exact image, but it is not reusable here (https://creativecommons.org/licenses/by-nc-sa/3.0/)."
+      "src": "/silhouettes/2928641d-32f3-4543-889e-dd891c1a7783.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/2928641d-32f3-4543-889e-dd891c1a7783",
+      "width": 1536,
+      "height": 607,
+      "depictedName": "Pavo muticus"
     },
     {
       "scientificName": "Poeciliidae",
-      "reason": "PhyloPic has no exact reusable vector silhouette for this name."
+      "src": "/silhouettes/b6fa87f2-1289-438a-beed-edde05302df9.svg",
+      "attribution": "Fidji Berio",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/b6fa87f2-1289-438a-beed-edde05302df9",
+      "width": 1536,
+      "height": 547,
+      "depictedName": "Poecilia reticulata"
     },
     {
       "scientificName": "Python regius",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/0376a292-2e17-4978-b859-6fbf9bea6c67.svg",
+      "attribution": "DS Biswas",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sourceUrl": "https://www.phylopic.org/images/0376a292-2e17-4978-b859-6fbf9bea6c67",
+      "width": 1536,
+      "height": 1145,
+      "depictedName": "Python bivittatus"
     },
     {
       "scientificName": "Rhinecanthus aculeatus",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/dd3a0a12-8e2d-4450-a657-d89e0d462af4.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/dd3a0a12-8e2d-4450-a657-d89e0d462af4",
+      "width": 1536,
+      "height": 781,
+      "depictedName": "Rhinecanthus rectangulus"
     },
     {
       "scientificName": "Scarus ferrugineus",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/a080e28c-b030-429c-9052-f14eb28e6e35.svg",
+      "attribution": "Calla Raymond",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/a080e28c-b030-429c-9052-f14eb28e6e35",
+      "width": 1536,
+      "height": 1080,
+      "depictedName": "Scarus psittacus"
     },
     {
       "scientificName": "Sphaerocoris annulus",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/ac91eefb-7404-4748-b90e-08a0c5481d6b.svg",
+      "attribution": "Darrin Schultz",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/ac91eefb-7404-4748-b90e-08a0c5481d6b",
+      "width": 1356,
+      "height": 1536,
+      "depictedName": "Nezara viridula"
     },
     {
       "scientificName": "Synchiropus splendidus",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/aff05279-3b7e-46a8-957a-21c39c25a9c5.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/aff05279-3b7e-46a8-957a-21c39c25a9c5",
+      "width": 1536,
+      "height": 1299,
+      "depictedName": "Callionymus"
     },
     {
       "scientificName": "Tangara chilensis",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/32b14b84-f53c-4558-a832-12ea41f56f29.svg",
+      "attribution": "Ferran Sayol",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/32b14b84-f53c-4558-a832-12ea41f56f29",
+      "width": 1536,
+      "height": 957,
+      "depictedName": "Coereba flaveola"
     },
     {
       "scientificName": "Zanclus cornutus",
-      "reason": "No PhyloPic node matched this scientific name."
+      "src": "/silhouettes/4f6f2bcc-3bb5-4c1f-8eb1-1db833405861.svg",
+      "attribution": null,
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceUrl": "https://www.phylopic.org/images/4f6f2bcc-3bb5-4c1f-8eb1-1db833405861",
+      "width": 1536,
+      "height": 1139,
+      "depictedName": "Chaetodon auriga"
     }
-  ]
+  ],
+  "missing": []
 }

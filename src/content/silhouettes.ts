@@ -9,7 +9,16 @@ export type SilhouetteRecord = {
   sourceUrl: string;
   width: number | null;
   height: number | null;
+  /** Taxon drawn in the file when PhyloPic has no exact reusable vector for scientificName. */
+  depictedName?: string;
 };
+
+/** A subspecies of the catalogue name is the same animal. A different taxon is named in the caption. */
+export function silhouetteDepictsRelated(record: SilhouetteRecord): boolean {
+  const depicted = record.depictedName?.trim();
+  if (!depicted || depicted === record.scientificName) return false;
+  return !depicted.startsWith(`${record.scientificName} `);
+}
 
 const localSilhouetteSrc = /^\/silhouettes\/[0-9a-f-]{36}\.svg$/;
 

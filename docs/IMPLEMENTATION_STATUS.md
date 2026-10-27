@@ -389,9 +389,18 @@ There is no dedicated Stitch screen for the geographic explorer, My Creations, a
   - `npm run build`: passed. Animal profile pages stay static. Silhouette files are served from `public/silhouettes`.
 - Approval state: Awaiting approval. Phase 6 has not started, and this correction was not deployed.
 
+### Remaining catalogue silhouettes
+
+- Status: AWAITING APPROVAL
+- The 21 scientific names above had no exact reusable vector. Each now has the closest PhyloPic outline of the same kind of animal. The caption names that taxon as a related outline. A subspecies of the catalogue name, such as Gallus gallus domesticus for the phoenix rooster, is treated as the same animal.
+- Non-commercial files were still not copied. The exact betta and Indian peafowl drawings stay unused. The betta uses Trichopsis schalleri. The peafowl uses Pavo muticus.
+- Python bivittatus, used for the ball python, is CC BY 4.0 and keeps the attribution DS Biswas. The other new files are CC0 1.0.
+- Coverage: 35 files, shown on all 37 catalogue entries. An unknown scientific name still shows “No silhouette is published for {name}”.
+- Approval state and date: Not approved.
+
 ## Remaining work
 
-Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Species silhouettes now resolve from the scientific name where a reusable PhyloPic outline exists. Animals without one show a published missing state. That correction is awaiting approval. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 and Phase 6.2 stored 111 fashion samples, three for each of the 37 catalogue animals. Phase 6C has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
+Phase 2, Phase 3, Phase 4, and Phase 5 are approved. Every catalogue animal now has a local species silhouette. An exact reusable PhyloPic outline is used where one exists. Otherwise the outline is the closest reusable drawing of the same kind of animal, and the caption names that taxon. An unknown scientific name still shows a published missing state. The studio photo step shows the Framing practices list beside the photograph controls. Capture and upload start directly. Phase 6 is now split into 6A (Supabase foundation), 6B (permanent AI fashion samples), and 6C (authentication and the private gallery). Phase 6A is verified on project `slkvjqzcvrxlvqvieqpp`. Phase 6.1 and Phase 6.2 stored 111 fashion samples, three for each of the 37 catalogue animals. Phase 6C has not started. No concept provider and no try-on provider are chosen. Empty server keys run a labelled mock that keeps the selected catalogue design and makes no composite. The Marine Life browse group contains the requested fishes. Pothos is not in that group. Insects, reptiles, and birds from the supplied list are in those groups.
 
 The Phase 2 plan that was executed:
 
